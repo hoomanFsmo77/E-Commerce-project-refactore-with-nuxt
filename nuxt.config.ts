@@ -19,11 +19,12 @@ export default defineNuxtConfig({
     ],
     app:{
         rootId:'v-app',
-        rootTag:'main',
+        rootTag:'div',
         head:{
 
             link:[
-                {rel:'icon',href:'https://cdn.shopify.com/s/files/1/0272/9548/1943/files/icon2.png?crop=center&height=32&v=1662527377&width=32'}
+                {rel:'icon',href:'https://cdn.shopify.com/s/files/1/0272/9548/1943/files/icon2.png?crop=center&height=32&v=1662527377&width=32'},
+                {rel:'stylesheet',href:'vue3-carousel/dist/carousel.css'},
             ],
             title:'Brentos – Australian Art by Illustrator and Author Brent Turner',
             meta: [
