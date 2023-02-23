@@ -1,0 +1,15 @@
+@tailwind components;
+@layer components {
+  .pagination-btn{
+    @apply w-[40px] h-[40px] rounded-full border-[1px] border-gray-300 text-dark cursor-pointer hover:bg-dark hover:text-light transition-all hover:!border-dark;
+  }
+  .pagination-btn.disabled{
+    @apply !border-none cursor-default hover:bg-light hover:text-dark;
+  }
+  .pagination-counter{
+    @apply w-[40px] h-[40px] rounded-full transition-all border-[1px] hover:border-dark font-500
+  }
+  .pagination-counter.selected{
+    @apply bg-dark border-dark cursor-default text-light
+  }
+}

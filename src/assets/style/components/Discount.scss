@@ -1,0 +1,6 @@
+@tailwind components;
+@layer components {
+  .sticky-discount{
+    @apply fixed left-0 bottom-0 cursor-pointer transition-all duration-500 ease-in-out shadow-[0_0_40px_rgba(0,0,0,0.2)] bg-light p-0.5 mx-2 rounded-t-6 z-[99];
+  }
+}

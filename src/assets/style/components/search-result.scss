@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+  .search-result-container{
+    @apply absolute top-5 w-full before:w-0 before:w-0 before:border-solid before:border-[transparent_transparent_#fff_transparent] before:absolute before:left-[24px] before:top-[-18px]
+  }
+  .search-result{
+    @apply overflow-y-auto bg-light overflow-x-hidden max-h-[35rem] w-full rounded-l-8 ;
+  }
+  .search-result-container::before{
+    border-width: 0 12.5px 20px 12.5px;
+  }
+}

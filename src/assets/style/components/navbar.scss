@@ -1,0 +1,11 @@
+@tailwind components;
+@layer components {
+
+  .navbar-link{
+    @apply py-0.5 relative flex justify-center items-center
+  }
+  .navbar-link-content{
+    @apply mr-0.5 text-[0.95rem]  text-dark capitalize ;
+  }
+
+}

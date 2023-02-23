@@ -1,0 +1,9 @@
+@tailwind components;
+@layer components {
+  .modal{
+    @apply fixed w-full top-0 left-0 h-full flex justify-center items-center;
+  }
+  .modal-content{
+    @apply relative bg-white z-[99999] overflow-y-auto py-0.8 px-1;
+  }
+}

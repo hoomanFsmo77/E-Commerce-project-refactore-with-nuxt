@@ -1,0 +1,25 @@
+@tailwind components;
+@layer components {
+  .table{
+    @apply w-full overflow-hidden  ;
+  }
+  .table-head-left{
+    @apply p-1 rounded-tl-8 border-l-[1px] border-t-[1px] border-b-[1px] border-gray-300 overflow-hidden bg-gray-100 [&_p]:text-1 [&_p]:text-dark;
+  }
+  .table-head-center{
+    @apply p-1 border-t-[1px] border-b-[1px]  border-gray-300  bg-gray-100 [&_p]:text-1 [&_p]:text-dark;
+  }
+  .table-head-right{
+    @apply p-1 rounded-tr-8 border-r-[1px] border-t-[1px] border-b-[1px] border-gray-300 overflow-hidden bg-gray-100 [&_p]:text-1 [&_p]:text-dark;
+  }
+  .table-content-left{
+    @apply p-1 border-l-[1px] border-b-[1px] border-gray-300;
+  }
+  .table-content-center{
+    @apply p-1  border-b-[1px] border-gray-300;
+  }
+  .table-content-right{
+    @apply p-1 border-r-[1px] border-b-[1px] border-gray-300;
+  }
+
+}

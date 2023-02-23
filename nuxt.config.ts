@@ -21,7 +21,11 @@ export default defineNuxtConfig({
         rootId:'v-app',
         rootTag:'main',
         head:{
-            title:'my website',
+
+            link:[
+                {rel:'icon',href:'https://cdn.shopify.com/s/files/1/0272/9548/1943/files/icon2.png?crop=center&height=32&v=1662527377&width=32'}
+            ],
+            title:'Brentos – Australian Art by Illustrator and Author Brent Turner',
             meta: [
                 { name: 'viewport', content: 'width=device-width ,initial-scale=1.0' },
                 { name: 'description', content: 'welcome to My project' },
