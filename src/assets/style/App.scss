@@ -1,4 +1,5 @@
 @tailwind components;
+@import "vue3-carousel/dist/carousel.css";
 #app{
   @apply bg-light;
 }

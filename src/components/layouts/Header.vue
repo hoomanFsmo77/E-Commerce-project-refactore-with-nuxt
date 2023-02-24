@@ -1,11 +1,14 @@
 <template>
-haeder
+  <header>
+    <container v-if="windowWidth > 960" >
+      <HeaderDesktop/>
+    </container>
+    <HeaderMobile v-else/>
+  </header>
 </template>
 
-<script>
-export default {
-  name: "Header"
-}
+<script setup lang="ts">
+const windowWidth=process.client ? window.innerWidth :null
 </script>
 
 <style scoped>
