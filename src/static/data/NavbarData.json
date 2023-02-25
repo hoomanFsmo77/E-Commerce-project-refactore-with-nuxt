@@ -3,66 +3,66 @@
     {
       "id":1,
       "name":"Art",
-      "link":{"name":"HOME"},
+      "link":{"name":"index"},
       "subMenu":2,
       "children":[
         {
           "id":11,
           "name":"art prints",
-          "link":{"name":"HOME"},
+          "link":{"name":"index"},
           "subMenu":1,
           "children":[
             {
               "id":111,
               "name":"naturescapes",
-              "link":{"name":"COLLECTION_LIST","params": {"name": "naturescapes"}}
+              "link":{"name":"Collections-name","params": {"name": "naturescapes"}}
             },{
               "id":112,
               "name":"surfing koalas",
-              "link":{"name":"COLLECTION_LIST","params": {"name": "surfing-koalas-print"}}
+              "link":{"name":"Collections-name","params": {"name": "surfing-koalas-print"}}
             },{
               "id":113,
               "name":"families",
-              "link":{"name":"COLLECTION_LIST","params": {"name": "families"}}
+              "link":{"name":"Collections-name","params": {"name": "families"}}
             },{
               "id":114,
               "name":"up late",
-              "link":{"name":"COLLECTION_LIST","params": {"name": "up-late"}}
+              "link":{"name":"Collections-name","params": {"name": "up-late"}}
             },{
               "id":114,
               "name":"Minimals",
-              "link":{"name":"COLLECTION_LIST","params": {"name": "minimals"}}
+              "link":{"name":"Collections-name","params": {"name": "minimals"}}
             },{
               "id":115,
               "name":"wildlife portraits",
-              "link":{"name":"COLLECTION_LIST","params": {"name": "wildlife-portraits"}}
+              "link":{"name":"Collections-name","params": {"name": "wildlife-portraits"}}
             },{
               "id":116,
               "name":"view all",
-              "link":{"name":"COLLECTION_LIST","params": {"name": "fine-art-prints"}}
+              "link":{"name":"Collections-name","params": {"name": "fine-art-prints"}}
             }
           ]
         },
         {
           "id":12,
           "name":"travel posters",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "travel-posters"}},
+          "link":{"name":"Collections-name","params": {"name": "travel-posters"}},
           "subMenu":0
         },{
           "id":13,
           "name":"postcard booklets",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "postcard-booklets"}},
+          "link":{"name":"Collections-name","params": {"name": "postcard-booklets"}},
           "subMenu":0
         },{
           "id":14,
           "name":"stickers",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "stickers"}},
+          "link":{"name":"Collections-name","params": {"name": "stickers"}},
           "subMenu":0
         },
         {
           "id":15,
           "name":"Calendars",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "Calendars"}},
+          "link":{"name":"Collections-name","params": {"name": "Calendars"}},
           "subMenu":0
         }
       ]
@@ -70,19 +70,19 @@
     {
       "id":2,
       "name":"Books",
-      "link":{"name":"COLLECTION_LIST","params": {"name": "books"}},
+      "link":{"name":"Collections-name","params": {"name": "books"}},
       "subMenu": 0
     },
     {
       "id":3,
       "name":"clothing",
-     "link":{"name":"HOME"},
+     "link":{"name":"index"},
       "subMenu": 1,
       "children": [
         {
           "id":31,
           "name":"T-shirts",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "t-shirts"}},
+          "link":{"name":"Collections-name","params": {"name": "t-shirts"}},
           "subMenu": 0
         }
       ]
@@ -90,23 +90,23 @@
     {
       "id":4,
       "name":"accessories",
-      "link":{"name":"HOME"},
+      "link":{"name":"index"},
       "subMenu": 1,
       "children": [
         {
           "id":41,
           "name":"beach towels",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "beach-towels"}},
+          "link":{"name":"Collections-name","params": {"name": "beach-towels"}},
           "subMenu": 0
         },{
           "id":42,
           "name":"hats",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "hats"}},
+          "link":{"name":"Collections-name","params": {"name": "hats"}},
           "subMenu": 0
         },{
           "id":43,
           "name":"tote bags",
-          "link":{"name":"COLLECTION_LIST","params": {"name": "beach-totes"}},
+          "link":{"name":"Collections-name","params": {"name": "beach-totes"}},
           "subMenu": 0
         }
 
@@ -115,25 +115,25 @@
     {
       "id":5,
       "name":"surfboards",
-      "link":{"name":"COLLECTION_LIST","params": {"name": "surfboards"}},
+      "link":{"name":"Collections-name","params": {"name": "surfboards"}},
       "subMenu": 0
     },
     {
       "id":6,
       "name":"gallery",
-     "link":{"name":"HOME"},
+     "link":{"name":"index"},
       "subMenu":1,
       "children": [
         {
           "id":61,
           "name":"paintings",
-          "link":{"name":"MAIN_PAGES","params": {"name": "paintings"}},
+          "link":{"name":"Pages-name","params": {"name": "paintings"}},
           "subMenu": 0
         },
         {
           "id":62,
           "name":"comics",
-          "link":{"name":"MAIN_PAGES","params": {"name": "comics"}},
+          "link":{"name":"Pages-name","params": {"name": "comics"}},
 
           "subMenu": 0
         }
@@ -144,20 +144,20 @@
     {
       "id":7,
       "name":"murals",
-      "link":{"name":"HOME"},
+      "link":{"name":"index"},
       "subMenu":1,
       "children": [
         {
           "id":71,
           "name":"mural gallery",
-          "link":{"name":"MAIN_PAGES","params": {"name": "mural-gallery"}},
+          "link":{"name":"Pages-name","params": {"name": "mural-gallery"}},
 
           "subMenu": 0
         },
         {
           "id":61,
           "name":"mural painted",
-          "link":{"name":"CONTACT_BRENTOS"},
+          "link":{"name":"Pages-contact_brentos"},
           "subMenu": 0
         }
       ]
@@ -165,20 +165,20 @@
     {
       "id":7,
       "name":"collabs",
-      "link":{"name":"HOME"},
+      "link":{"name":"index"},
       "subMenu":1,
       "children": [
         {
           "id":71,
           "name":"Brand collabs",
-          "link":{"name":"MAIN_PAGES","params": {"name": "brand-collaboration"}},
+          "link":{"name":"Pages-name","params": {"name": "brand-collaboration"}},
 
           "subMenu": 0
         },
         {
           "id":72,
           "name":"collab with us",
-          "link":{"name":"CONTACT_BRENTOS"},
+          "link":{"name":"Pages-contact_brentos"},
           "subMenu": 0
         }
       ]
@@ -186,7 +186,7 @@
     {
       "id":8,
       "name":"our story",
-      "link":{"name":"OUR_STORY"},
+      "link":{"name":"Pages-our_story"},
       "subMenu":0
     }
   ]

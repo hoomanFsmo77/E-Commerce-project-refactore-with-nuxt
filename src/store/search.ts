@@ -28,8 +28,13 @@ export const Search=defineStore('search',{
         }
     },
     actions:{
-        triggerNavbarSearch(value:string){
-
+        async triggerNavbarSearch(value:string){
+            try {
+                const data=await $fetch('/api/search')
+                console.log(data)
+            }catch (e) {
+                console.log(e)
+            }
         }
     }
 })

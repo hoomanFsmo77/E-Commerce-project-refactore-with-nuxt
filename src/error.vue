@@ -1,10 +1,10 @@
-<template>
-  home
+<template>rror
+e
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "error"
 }
 </script>
 

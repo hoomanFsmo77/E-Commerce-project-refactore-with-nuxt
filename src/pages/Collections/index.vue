@@ -1,10 +1,10 @@
 <template>
-mobile nav
+all collections
 </template>
 
 <script>
 export default {
-  name: "mobile"
+  name: "index"
 }
 </script>
 

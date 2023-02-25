@@ -1,10 +1,10 @@
 <template>
-  home
+product {{$route.params.name}}
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "[name]"
 }
 </script>
 

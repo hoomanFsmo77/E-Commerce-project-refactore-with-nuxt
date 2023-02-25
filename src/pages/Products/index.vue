@@ -1,5 +1,5 @@
 <template>
-  home
+product index
 </template>
 
 <script>

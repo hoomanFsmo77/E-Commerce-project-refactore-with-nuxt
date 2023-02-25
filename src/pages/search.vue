@@ -1,10 +1,10 @@
 <template>
-  home
+search
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "search"
 }
 </script>
 

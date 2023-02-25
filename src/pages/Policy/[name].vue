@@ -1,10 +1,10 @@
 <template>
-  home
+   policy {{$route.params.name}}
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "[name]"
 }
 </script>
 

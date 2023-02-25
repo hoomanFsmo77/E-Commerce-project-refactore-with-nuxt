@@ -1,5 +1,5 @@
 <template>
-  home
+policy index
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
-  home
+challange
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "challenge"
 }
 </script>
 

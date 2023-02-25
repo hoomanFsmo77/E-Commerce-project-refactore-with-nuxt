@@ -1,6 +1,10 @@
 
 
 export default defineNuxtConfig({
+    runtimeConfig:{
+      apiBase:process.env.API_BASE,
+      apiKey:process.env.API_KEY
+    },
     postcss:{
         plugins: {
             'postcss-import': {},

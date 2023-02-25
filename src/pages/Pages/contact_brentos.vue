@@ -1,10 +1,10 @@
 <template>
-  home
+  contact-brentos
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "contact-brentos"
 }
 </script>
 

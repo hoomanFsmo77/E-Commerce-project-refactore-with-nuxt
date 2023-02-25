@@ -2,13 +2,13 @@
   <!--  mobile header-->
   <div >
     <div class="flex justify-between items-center !py-1 px-0.7">
-      <NavbarMobile/>
+      <NavbarMobileIndex/>
       <div>
         <NuxtLink  :to="{name:'index'}">
           <nuxt-img src="https://cdn.shopify.com/s/files/1/0272/9548/1943/files/brentoslogo.png?v=1663235427" width="70" alt=""/>
         </NuxtLink>
       </div>
-      <NuxtLink :to="{name:'index'}" class="pr-0.5" >
+      <NuxtLink :to="{name:'cart'}" class="pr-0.5" >
         <Badge size="lg" class="cursor-pointer text-gray-800" icon="fa-solid fa-cart-shopping" :value="cartLength"/>
       </NuxtLink>
     </div>

@@ -1,10 +1,10 @@
 <template>
-  home
+  our-story
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "our-story"
 }
 </script>
 

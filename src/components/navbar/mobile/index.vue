@@ -1,11 +1,12 @@
 <template>
-  home
+
+frrfrf
+
+
 </template>
 
-<script>
-export default {
-  name: "index"
-}
+<script setup lang="ts">
+
 </script>
 
 <style scoped>

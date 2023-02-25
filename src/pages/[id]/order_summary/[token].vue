@@ -1,10 +1,10 @@
 <template>
-  home
+  :id/checkout/information/:token
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "[token]"
 }
 </script>
 
