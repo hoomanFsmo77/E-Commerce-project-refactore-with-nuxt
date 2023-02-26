@@ -11,11 +11,11 @@
           <template v-if="searchResult.product.length>0">
             <div class="search-result-item  " v-for="item in searchResult.product">
               <nuxt-img
-                  v-lazy="item.coverSrc"
+
                   :srcset="item.coverSrcset"
-                  src="" height="110"  class="responsive-image rounded-8" alt="" />
+                  :src="item.coverSrc" height="110"  class="responsive-image rounded-8" alt="" />
               <span class="mt-0.5 block font-600">$45.00</span>
-              <router-link :to="{name:item.link.name,params:{name:item.link.params.name},query:{id:item.id},hash:`#${item.category}`}" class="font-600 btn-stretch btn-link">{{item.title}}</router-link>
+              <NuxtLink :to="{name:item.link.name,params:{name:item.link.params.name},query:{id:item.id},hash:`#${item.category}`}" class="font-600 btn-stretch btn-link">{{item.title}}</NuxtLink>
             </div>
           </template>
           <template v-else>
@@ -33,9 +33,9 @@
             <!--        <<<<<<<< start >>>>>>>>-->
             <template v-if="searchResult.collection.length>0">
               <li v-for="item in searchResult.collection">
-                <router-link class="btn-link font-600" :to="item.link">
+                <NuxtLink class="btn-link font-600" :to="item.link">
                   {{item.text}}
-                </router-link>
+                </NuxtLink>
               </li>
             </template>
             <template v-else>
@@ -48,9 +48,9 @@
           </ul>
         </div>
         <div class="flex sticky bottom-0 bg-light justify-center mt-1 shadow-[0_0_40px_rgba(0,0,0,0.2)] p-1">
-          <router-link class="btn btn-dark-fill w-full text-center" :to="{name:'SEARCH',query:{search:searchText}}">
+          <NuxtLink class="btn btn-dark-fill w-full text-center" :to="{name:'search',query:{search:searchText}}">
             Search for "{{searchText}}"
-          </router-link>
+          </NuxtLink>
         </div>
       </div>
     </div>

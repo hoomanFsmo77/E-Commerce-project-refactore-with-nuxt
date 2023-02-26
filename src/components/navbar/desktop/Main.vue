@@ -20,6 +20,8 @@
 
 <script lang="ts" setup>
 import navbarData from '~/static/data/NavbarData.json'
+
+
 </script>
 
 <style scoped>

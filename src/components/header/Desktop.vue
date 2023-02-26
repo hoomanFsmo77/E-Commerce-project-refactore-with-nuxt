@@ -12,7 +12,7 @@
       <div class="w-[65%] relative">
         <FormSearch @input="initSearch" v-model="searchText" @on="showResult($event)"/>
         <DarkOverlay z-index="999" @outside="closeResult($event)" :is-fire="isOn"/>
-<!--        <HeaderSearchResult :is-fire="isOn" :search-text="searchText"/>-->
+        <HeaderSearchResult :is-fire="isOn" :search-text="searchText"/>
       </div>
       <NuxtLink :to="{name:'cart'}" class="btn btn-dark-fill">
         <font-awesome-icon size="lg" icon="fa-solid fa-cart-shopping" />

@@ -1,10 +1,11 @@
 import {defineStore} from "pinia";
-import {Search_Store} from "~/utils/Types";
+import {Search_Store,Product_Item,Collection_Item} from "~/utils/Types";
+import {filterCollection,filterProducts} from "~/utils/Helper";
 
 export const Search=defineStore('search',{
     state:():Search_Store=>{
         return{
-            navbarSearchResult:{collection:''},
+            navbarSearchResult:{collection:null,product:null},
             navbarSearchFlag:false,
             mainSearchResult:[],
             mainSearchFlag:false
@@ -29,11 +30,18 @@ export const Search=defineStore('search',{
     },
     actions:{
         async triggerNavbarSearch(value:string){
+            const {public:{apiBase}}=useRuntimeConfig()
+            this.navbarSearchFlag=false
+            this.navbarSearchResult.product=null
+            this.navbarSearchResult.collection=null
             try {
-                const data=await $fetch('/api/search')
-                console.log(data)
-            }catch (e) {
-                console.log(e)
+                const collection=await $fetch<Collection_Item[]>(apiBase +'collection/AllCollectionLists.json')
+                const product=await $fetch<Product_Item[]>(apiBase +'product/productListData.json')
+                this.navbarSearchResult.collection=filterCollection(collection,value)
+                this.navbarSearchResult.product=filterProducts(product,value).slice(0,4)
+                this.navbarSearchFlag=true
+            }catch (err) {
+                console.log(err)
             }
         }
     }
