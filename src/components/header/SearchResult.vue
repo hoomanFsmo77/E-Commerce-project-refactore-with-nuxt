@@ -1,5 +1,5 @@
 <template>
-  <div v-fade:99999="searchText.length>0 && isFire" class="search-result-container">
+  <div v-fade:99999="searchText.length>0 && isFire"  class="search-result-container">
     <div  class="search-result">
       <LoaderSkeletor v-if="!searchFlag"/>
       <div v-else>

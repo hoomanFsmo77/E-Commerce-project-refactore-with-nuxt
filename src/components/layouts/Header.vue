@@ -1,14 +1,14 @@
 <template>
   <header>
-    <container v-if="windowWidth > 960" >
+    <container  class="lg:!block !hidden">
       <HeaderDesktop/>
     </container>
-    <HeaderMobile v-else/>
+    <HeaderMobile />
   </header>
 </template>
 
 <script setup lang="ts">
-const windowWidth=process.client ? window.innerWidth :null
+
 </script>
 
 <style scoped>

@@ -1,11 +1,11 @@
 <template>
-  home
+  <HomeBrand />
+  <HomeIntro />
+
 </template>
 
 <script>
-export default {
-  name: "index"
-}
+
 </script>
 
 <style scoped>

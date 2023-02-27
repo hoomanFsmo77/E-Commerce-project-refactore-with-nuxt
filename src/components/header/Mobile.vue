@@ -1,6 +1,6 @@
 <template>
   <!--  mobile header-->
-  <div >
+  <div class="lg:!hidden !block">
     <div class="flex justify-between items-center !py-1 px-0.7">
       <NavbarMobileMain/>
       <div>
