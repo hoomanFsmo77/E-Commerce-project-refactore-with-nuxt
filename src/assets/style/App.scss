@@ -1,5 +1,12 @@
-@tailwind components;
+@import './components/card.css';
+@import './components/conatiner.css';
+@import './components/Discount.css';
+@import './components/form.css';
+@import './components/general.css';
+@import './components/modal.css';
+@import './components/navbar.css';
+@import './components/pagination.css';
+@import './components/table.css';
+@import './components/Skelton.css';
+@import "./components/search-result.css";
 @import "vue3-carousel/dist/carousel.css";
-#app{
-  @apply bg-light;
-}

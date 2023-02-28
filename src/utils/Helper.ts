@@ -1,4 +1,5 @@
 import {Cart_Item,Collection_Item,Product_Item} from "~/utils/Types";
+import axios from "axios";
 
 export const storeData = <T>(data:T):void => {
     if(process.client){
@@ -22,8 +23,12 @@ export const getData = ():{cart:Cart_Item[],totalPrice:number}|null => {
 }
 
 
-export const filterCollection = (data:Collection_Item[],searchText:string) => {
-    return data.filter(item=>item.text.toLowerCase().startsWith(searchText.toLowerCase()))
+export const filterCollection = (data:Collection_Item[]|undefined,searchText:string) => {
+    if(data){
+        return data.filter(item=>item.text.toLowerCase().startsWith(searchText.toLowerCase()))
+    }else{
+        return null
+    }
 }
 export const filterProducts = (data:any,searchText:string):Product_Item[] => {
     let result:Product_Item[]=[]

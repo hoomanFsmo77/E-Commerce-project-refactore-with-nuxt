@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import '~/assets/style/components/Skelton.scss'
+import '~/assets/style/components/Skelton.css'
 
 
 </script>

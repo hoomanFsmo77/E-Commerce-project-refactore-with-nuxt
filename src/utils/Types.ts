@@ -1,20 +1,22 @@
 
+
 ////////////////////////////////// cart store
 export interface Cart_Item {
     src:string
     available:number
-    link:string
+    link:Link|string
     srcset:string
     title:string
     productId:string
     quantity:number,
+    category:string|undefined
     priceDetail:{
         size:string|null,
         frame:string|null,
-        price:string|number,
+        price:number|string,
         family:string|null
     },
-    discount:string|number|null
+    discount:number|null
 }
 
 
@@ -34,14 +36,28 @@ export interface Search_Store {
     mainSearchResult:any[],
     mainSearchFlag:boolean
 }
+///////////////////////////////////// collection store
+export interface Collection_Store {
+    collections:Collection_Item[],
+    fetchFlag:boolean,
+}
+////////////////////////////////////// product store
+export interface Product_Store {
+    productListData:Product_Item[],
+    productListFetchFlag:boolean,
+    productListErrorFlag:boolean,
 
+    popularProduct:Product_Item[],
+    popularFetchFlag:boolean,
 
+    productDetail:Product_Item | null,
+    productDetailFetchFlag:boolean
+}
 
 
 ///////////////////////// collection list types
 export interface Collection_Item {
-    'link/name':string
-    'link/params/name':string
+    link:Link
     src:string
     srcset:string
     text:string
@@ -50,20 +66,53 @@ export interface Collection_Item {
 
 ///////////////////////// product item
 export interface Product_Item {
+    gallery:{
+        src:string
+        srcset:string
+        zoom:string
+    }[]
     id:string
     title:string
-    isSoldOut:boolean
-    isPeriod:boolean
-    price:number
-    link:{
-        name:string,
-        params:{
-            name:string
-        }
+    available:number
+    description:{content:string}[]
+    hasFrame:boolean
+    option:{
+        sizes?:{
+            size:string
+            price:number
+            available:boolean
+            frame:{
+                price:number
+                available:number
+            }
+        }[]
+        family?:{
+            item:string
+            index:number
+            available:boolean
+        }[]
     }
-    coverSrc:string
-    coverSrcset:string
-    overlaySrc:string
-    overlaySrcset:string
+    price:number|string
+    link:{
+        facebook:string
+        twitter:string
+        pinterest:string
+    }
+    isSoldOut:boolean
+    discount:number|null
+    isPeriod:boolean|null
     category?:string
+    coverSrc?:string
+    coverSrcset?:string
+    overlaySrc?:string
+    overlaySrcset?:string,
+    hasFamily?:boolean
+}
+
+
+export type Link={
+    name:string,
+    params:{
+        name:string
+    }
 }

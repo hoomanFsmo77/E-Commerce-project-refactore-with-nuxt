@@ -6,9 +6,10 @@
   }
   .btn{
     @apply rounded-full py-0.8 px-1.3;
-    span{
-      @apply text-1 ml-0.5 font-600;
-    }
+
+  }
+  .btn span{
+    @apply text-1 ml-0.5 font-600;
   }
   .btn-lg{
     @apply py-1.2 px-2 text-1.2
