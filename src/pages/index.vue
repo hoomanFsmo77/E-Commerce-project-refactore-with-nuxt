@@ -3,6 +3,9 @@
   <HomeIntro />
   <HomeShop />
   <HomePopular />
+  <HomeStory />
+  <HomeService />
+  <HomeNews />
 </template>
 
 <script>

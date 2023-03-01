@@ -41,3 +41,44 @@ export const filterProducts = (data:any,searchText:string):Product_Item[] => {
     })
     return result.filter((v,i,a)=>a.findIndex(v2=>(v2.title===v.title))===i)
 }
+
+
+
+export const setCookie = (name:string,hash:string|number,day:number) => {
+    let date=new Date()
+    date.setTime(date.getTime() + (day*24*60*60*1000))
+    document.cookie=`${name}=${hash};path=/;expires=${date}`
+}
+
+
+export const getCookie = (name:string) => {
+    return document.cookie.includes(name);
+}
+export const removeCookie = (name:string,day:number) => {
+    let date=new Date()
+    date.setTime(date.getTime() - (day*24*60*60*1000))
+    document.cookie=`${name}=;path=/;expires=${date}`
+}
+
+
+export function hashCode(val:string) {
+    let hash = 0,
+        i, chr;
+    if (val.length === 0) return hash;
+    for (i = 0; i < val.length; i++) {
+        chr = val.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0;
+    }
+    return hash;
+}
+
+export function makeRandomHash(length:number) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
