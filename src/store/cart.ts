@@ -42,7 +42,7 @@ export const Cart=defineStore('cart',{
         calculateTotalPrice(){
             let total=0
             this.cart.forEach(item=>{
-                total+=item.priceDetail.price * item.quantity
+                total+=Number(item.priceDetail.price)* item.quantity
             })
             this.totalPrice=total
             storeData({

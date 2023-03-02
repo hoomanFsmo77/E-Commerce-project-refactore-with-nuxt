@@ -1,21 +1,21 @@
 {
   "recentWork": [
     {
-      "link": {"name": "PRODUCT","params": {"name":"Australia-From-Dawn-to-Dusk"},"query": {"id": "BO-478569"},"hash": "#books"},
+      "link": {"name": "Products-name","params": {"name":"Australia-From-Dawn-to-Dusk"},"query": {"id": "BO-478569"},"hash": "#books"},
       "title": "Australia Book",
       "subTitle": "Debut Book Launch",
       "src": "//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?v=1662518568&width=480",
       "srcset": "//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?crop=center&height=240&v=1662518568&width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?crop=center&height=360&v=1662518568&width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?crop=center&height=420&v=1662518568&width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?crop=center&height=480&v=1662518568&width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?crop=center&height=640&v=1662518568&width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?crop=center&height=840&v=1662518568&width=840 840w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/australia-from-dawn-to-dusk-brentos.jpg?crop=center&height=1080&v=1662518568&width=1080 1080w"
     },
     {
-      "link":{"name":"MAIN_PAGES","params": {"name": "coopers-brewery"}},
+      "link":{"name":"Pages-name","params": {"name": "coopers-brewery"}},
       "title": "Coopers x Brentos",
       "subTitle": "Murals, Merch and Live Painting",
       "src": "//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?v=1663745425&width=480",
       "srcset": "//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?crop=center&height=240&v=1663745425&width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?crop=center&height=360&v=1663745425&width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?crop=center&height=420&v=1663745425&width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?crop=center&height=480&v=1663745425&width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?crop=center&height=640&v=1663745425&width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?crop=center&height=840&v=1663745425&width=840 840w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/insta1.jpg?crop=center&height=1080&v=1663745425&width=1080 1080w"
     },
     {
-      "link":{"name":"MAIN_PAGES","params": {"name": "Tawny-Grogmouth"}},
+      "link":{"name":"Pages-name","params": {"name": "Tawny-Grogmouth"}},
       "title": "Tawny Grogmouth 2",
       "subTitle": "Beer Fundraiser",
       "src": "//cdn.shopify.com/s/files/1/0272/9548/1943/files/tawnycan4.png?v=1663752018&width=480",

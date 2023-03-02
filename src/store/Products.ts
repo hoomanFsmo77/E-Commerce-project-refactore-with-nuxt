@@ -62,18 +62,6 @@ export const Products=defineStore('product',{
 
             }
         },
-        async fetchPopularProduct(){
-            const {public:{apiBase}}=useRuntimeConfig()
-            this.popularFetchFlag=false
-            try {
-                const data=await $fetch<Product_Item[]>(apiBase +'product/popularProducts.json')
-                this.popularProduct=data
-            }catch (err) {
-                console.log(err)
-            }finally {
-                this.popularFetchFlag=true
-            }
-        },
         async fetchProductDetail(id:string){
             const {public:{apiBase}}=useRuntimeConfig()
             this.productDetailFetchFlag=false
@@ -88,6 +76,18 @@ export const Products=defineStore('product',{
             }
         }
 
+    },
+   async hydrate(state) {
+        const {public:{apiBase,popularProduct}}=useRuntimeConfig()
+        state.popularFetchFlag=false
+        try {
+            const data=await $fetch<Product_Item[]>(apiBase +popularProduct)
+            state.popularProduct=data
+        }catch (err) {
+            console.log(err)
+        }finally {
+            state.popularFetchFlag=true
+        }
     }
 
 

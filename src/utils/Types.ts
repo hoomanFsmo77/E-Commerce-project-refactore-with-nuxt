@@ -116,3 +116,24 @@ export type Link={
         name:string
     }
 }
+
+
+////////////// recent work type
+export interface Recent_Work {
+    link:Link & {
+        query:{id:string},
+        hash:string
+    }
+    title:string
+    subTitle:string
+    src:string
+    srcset:string
+}
+
+//////////////// insta feed types
+export interface Instagram_Feed {
+    src:string
+    content:string
+    date:string
+    link:string
+}

@@ -32,13 +32,13 @@ export const Search=defineStore('search',{
     },
     actions:{
         async triggerNavbarSearch(value:string){
-            const {public:{apiBase}}=useRuntimeConfig()
+            const {public:{apiBase,productList}}=useRuntimeConfig()
             const collectionStore=Collection()
             this.navbarSearchFlag=false
             this.navbarSearchResult.product=null
             this.navbarSearchResult.collection=null
             try {
-                const product=await $fetch<Product_Item[]>(apiBase +'product/productListData.json')
+                const product=await $fetch<Product_Item[]>(apiBase +productList)
                 this.navbarSearchResult.collection=filterCollection(collectionStore.getAllList,value)
                 this.navbarSearchResult.product=filterProducts(product,value).slice(0,4)
                 this.navbarSearchFlag=true

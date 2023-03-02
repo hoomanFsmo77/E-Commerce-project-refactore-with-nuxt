@@ -4,6 +4,11 @@ export default defineNuxtConfig({
     runtimeConfig:{
       public:{
           apiBase:process.env.API_BASE,
+          collections:process.env.COLLECTIONS,
+          popularProduct:process.env.POPULAR_PRODUCT,
+          productList:process.env.POPULAR_LIST,
+          recentWork:process.env.RECENT_WORK,
+          instagramFeed:process.env.INSTAGRAM_FEED
       }
     },
     postcss:{

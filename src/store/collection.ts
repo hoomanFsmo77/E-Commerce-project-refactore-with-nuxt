@@ -34,20 +34,19 @@ export const Collection=defineStore('collection',{
 
         }
     },
-    actions:{
-        async setCollectionData(){
-            const searchStore=Search()
-            const {public:{apiBase}}=useRuntimeConfig()
-            this.fetchFlag=false
-            try {
-                const data=await $fetch<Collection_Item[]>(apiBase + 'collection/AllCollectionLists.json')
-                searchStore.setCollectionList(data)
-                this.collections=data
-            }catch (err) {
-                console.log(err)
-            }finally {
-                this.fetchFlag=true
-            }
+   async hydrate(state) {
+        const searchStore=Search()
+        const {public:{apiBase,collections}}=useRuntimeConfig()
+        state.fetchFlag=false
+        try {
+            const data=await $fetch<Collection_Item[]>(apiBase + collections)
+            searchStore.setCollectionList(data)
+            state.collections=data
+        }catch (err) {
+            console.log(err)
+        }finally {
+            state.fetchFlag=true
         }
+
     }
 })

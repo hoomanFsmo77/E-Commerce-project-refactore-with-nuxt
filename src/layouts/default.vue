@@ -1,9 +1,12 @@
 <template>
   <main>
     <LayoutsHeader/>
+
     <LayoutsNavbar/>
     <slot />
+
     <LayoutsFooter/>
+
   </main>
 </template>
 

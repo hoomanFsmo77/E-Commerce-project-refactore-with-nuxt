@@ -6,6 +6,8 @@
   <HomeStory />
   <HomeService />
   <HomeNews />
+  <HomeRecent />
+  <HomeInstagram />
 </template>
 
 <script>
