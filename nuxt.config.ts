@@ -2,14 +2,13 @@
 
 export default defineNuxtConfig({
     runtimeConfig:{
-      public:{
-          apiBase:process.env.API_BASE,
-          collections:process.env.COLLECTIONS,
-          popularProduct:process.env.POPULAR_PRODUCT,
-          productList:process.env.POPULAR_LIST,
-          recentWork:process.env.RECENT_WORK,
-          instagramFeed:process.env.INSTAGRAM_FEED
-      }
+        apiBase:process.env.API_BASE,
+        navbar:process.env.NAVBAR_DATA,
+        productList:process.env.PRODUCT_LIST,
+        popularProduct:process.env.POPULAR_PRODUCT,
+        collections:process.env.COLLECTIONS,
+        recentWork:process.env.RECENT_WORK,
+        instagramFeed:process.env.INSTAGRAM_FEED
     },
     postcss:{
         plugins: {

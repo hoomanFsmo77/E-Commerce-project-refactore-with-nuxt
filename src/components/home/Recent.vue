@@ -24,10 +24,10 @@
 import {Recent_Work} from "~/utils/Types";
 const fetchFlag=ref<boolean>(false)
 const recentWorkData=ref<Recent_Work[]>([])
-const {public:{apiBase,recentWork}}=useRuntimeConfig()
+
 onMounted(async ()=>{
   try {
-    const data=await $fetch<Recent_Work[]>(apiBase + recentWork)
+    const data=await $fetch<Recent_Work[]>('/api/recent')
     recentWorkData.value=data
   }catch (err) {
     console.log(err)

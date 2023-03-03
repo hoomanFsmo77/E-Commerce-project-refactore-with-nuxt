@@ -36,10 +36,9 @@ export const Collection=defineStore('collection',{
     },
    async hydrate(state) {
         const searchStore=Search()
-        const {public:{apiBase,collections}}=useRuntimeConfig()
         state.fetchFlag=false
         try {
-            const data=await $fetch<Collection_Item[]>(apiBase + collections)
+            const data=await $fetch<Collection_Item[]>('/api/collection')
             searchStore.setCollectionList(data)
             state.collections=data
         }catch (err) {

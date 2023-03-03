@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import navbarData from '~/static/data/NavbarData.json'
+const {data:navbarData}=await useFetch('/api/navbar')
 import {useMobileHeader} from "~/composables/useHeader";
 const {isOpen,closeMenu}=useMobileHeader()
 </script>

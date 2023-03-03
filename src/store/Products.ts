@@ -48,40 +48,39 @@ export const Products=defineStore('product',{
     },
     actions:{
         async fetchProductList(name:string){
-            const {public:{apiBase}}=useRuntimeConfig()
-            this.productListData=[]
-            this.productListFetchFlag=false
-            this.productListErrorFlag=false
-            try {
-                const data=await $fetch<Product_Item[]>(apiBase + `product/productListData/${name}.json`)
-                this.productListData=data
-            }catch (err) {
-                console.log(err)
-            }finally {
-                this.productListFetchFlag=true
-
-            }
+            // const {public:{apiBase}}=useRuntimeConfig()
+            // this.productListData=[]
+            // this.productListFetchFlag=false
+            // this.productListErrorFlag=false
+            // try {
+            //     const data=await $fetch<Product_Item[]>(apiBase + `product/productListData/${name}.json`)
+            //     this.productListData=data
+            // }catch (err) {
+            //     console.log(err)
+            // }finally {
+            //     this.productListFetchFlag=true
+            //
+            // }
         },
         async fetchProductDetail(id:string){
-            const {public:{apiBase}}=useRuntimeConfig()
-            this.productDetailFetchFlag=false
-            this.productDetail=null
-            try {
-                const data=await $fetch<Product_Item>(apiBase + `product/productDetailData/${id}.json`)
-                this.productDetail=data
-            }catch (err) {
-
-            }finally {
-                this.productDetailFetchFlag=true
-            }
+            // const {public:{apiBase}}=useRuntimeConfig()
+            // this.productDetailFetchFlag=false
+            // this.productDetail=null
+            // try {
+            //     const data=await $fetch<Product_Item>(apiBase + `product/productDetailData/${id}.json`)
+            //     this.productDetail=data
+            // }catch (err) {
+            //
+            // }finally {
+            //     this.productDetailFetchFlag=true
+            // }
         }
 
     },
    async hydrate(state) {
-        const {public:{apiBase,popularProduct}}=useRuntimeConfig()
         state.popularFetchFlag=false
         try {
-            const data=await $fetch<Product_Item[]>(apiBase +popularProduct)
+            const data=await $fetch<Product_Item[]>('/api/popular')
             state.popularProduct=data
         }catch (err) {
             console.log(err)

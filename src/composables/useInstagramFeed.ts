@@ -1,7 +1,6 @@
 import {Instagram_Feed} from "~/utils/Types";
 
 export default ()=>{
-    const {public:{apiBase,instagramFeed}}=useRuntimeConfig()
     const isOpen=useState<boolean>('isOpen',()=>false)
     const postIndex=useState<number>('postIndex',()=>0)
     let fetchFlag=useState<boolean>('fetchFlag',()=>false)
@@ -11,7 +10,7 @@ export default ()=>{
     onMounted(async ()=>{
         fetchFlag.value=false
         try {
-            const data=await $fetch<Instagram_Feed[]>(apiBase + instagramFeed)
+            const data=await $fetch<Instagram_Feed[]>('/api/instagram')
             instaFeedData.value=data
         }catch (err) {
             console.log(err)

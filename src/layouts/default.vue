@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <LayoutsHeader/>
 
     <LayoutsNavbar/>
@@ -7,7 +7,7 @@
 
     <LayoutsFooter/>
 
-  </main>
+  </div>
 </template>
 
 <script>
