@@ -8,9 +8,10 @@ export default ()=>{
 
 
     onMounted(async ()=>{
+        const token=useState<string>('x_token_x')
         fetchFlag.value=false
         try {
-            const data=await $fetch<Instagram_Feed[]>('/api/instagram')
+            const data=await $fetch<Instagram_Feed[]>('/api/instagram',{headers:{'Authentication':token.value}})
             instaFeedData.value=data
         }catch (err) {
             console.log(err)

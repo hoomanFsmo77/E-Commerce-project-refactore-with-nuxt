@@ -63,10 +63,11 @@ export default (props:Props)=>{
     }
 
     const addToCart = async () => {
+        const token=useState<string>('x_token_x')
         const {public:{apiBase}}=useRuntimeConfig()
         addToCartFlag.value=true
         try {
-            const data=await $fetch<Product_Item>(apiBase + `product/productDetailData/${props.id}.json`)
+            const data=await $fetch<Product_Item>(apiBase + `product/productDetailData/${props.id}.json`,{headers:{'Authentication':token.value}})
             cartStore.addToUserCart({
                 src:data.gallery[0].src,
                 available:data.available,

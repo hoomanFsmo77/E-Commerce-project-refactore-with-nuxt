@@ -26,8 +26,10 @@ const fetchFlag=ref<boolean>(false)
 const recentWorkData=ref<Recent_Work[]>([])
 
 onMounted(async ()=>{
+  const token=useState<string>('x_token_x')
+
   try {
-    const data=await $fetch<Recent_Work[]>('/api/recent')
+    const data=await $fetch<Recent_Work[]>('/api/recent',{headers:{'Authentication':token.value}})
     recentWorkData.value=data
   }catch (err) {
     console.log(err)

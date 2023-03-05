@@ -61,7 +61,7 @@
   }
   .checkbox{
     @apply appearance-none w-[18px] h-[18px] p-[6px] border-[1px] border-gray-300 rounded-6  focus:border-dark  transition-all checked:border-dark checked:bg-dark checked:text-white
-    checked:bg-[url("../../assets/check.svg")] checked:bg-center  checked:rounded-6 outline-0
+    checked:bg-[url("https://res.cloudinary.com/dhpxutwun/image/upload/v1678041110/brentos/check_v4x97j.svg")] checked:bg-center  checked:rounded-6 outline-0
   }
   .radio{
     @apply appearance-none w-[18px] h-[18px] rounded-full border-[1px] border-gray-400 focus:border-dark before:inline-block before:w-[6px] before:h-[6px] before:absolute relative before:top-[5px]  before:right-[5px] before:rounded-full before:bg-white

@@ -78,9 +78,10 @@ export const Products=defineStore('product',{
 
     },
    async hydrate(state) {
+       const token=useState<string>('x_token_x')
         state.popularFetchFlag=false
         try {
-            const data=await $fetch<Product_Item[]>('/api/popular')
+            const data=await $fetch<Product_Item[]>('/api/popular',{headers:{'Authentication':token.value}})
             state.popularProduct=data
         }catch (err) {
             console.log(err)

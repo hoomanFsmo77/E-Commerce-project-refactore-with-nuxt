@@ -26,7 +26,7 @@
 <!--      <<<<<<<<<<<<<<<< modal start >>>>>>>>>>>>>>>-->
       <Modal v-if="fetchFlag" row-class="!p-0 !m-0 h-full" class="w-full h-[100vh] !p-0" @closeModal="closeModal($event)" :is-active="isOpen" :preloader="true">
         <column col="12" lg="7" class="!m-0 !p-0 relative">
-          <img :src="instaFeedData[postIndex].src ?? null" class="object-cover h-full md:absolute top-0 left-0 w-full" alt="">
+          <nuxt-img provider="cloudinary" :src="instaFeedData[postIndex].src ?? null" class="object-cover h-full md:absolute top-0 left-0 w-full" alt="" />
         </column>
         <column col="12" class="p-1.5" lg="5">
           <div class="flex justify-between items-center">

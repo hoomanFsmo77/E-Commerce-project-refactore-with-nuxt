@@ -35,10 +35,12 @@ export const Collection=defineStore('collection',{
         }
     },
    async hydrate(state) {
-        const searchStore=Search()
+       const token=useState<string>('x_token_x')
+       const searchStore=Search()
         state.fetchFlag=false
         try {
-            const data=await $fetch<Collection_Item[]>('/api/collection')
+            const data=await $fetch<Collection_Item[]>('/api/collection',
+                {headers:{'Authentication':token.value}})
             searchStore.setCollectionList(data)
             state.collections=data
         }catch (err) {

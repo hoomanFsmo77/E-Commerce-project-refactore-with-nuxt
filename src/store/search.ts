@@ -32,14 +32,21 @@ export const Search=defineStore('search',{
     },
     actions:{
         async triggerNavbarSearch(value:string){
+            const token=useState<string>('x_token_x')
             const collectionStore=Collection()
             this.navbarSearchFlag=false
             this.navbarSearchResult.product=null
             this.navbarSearchResult.collection=null
             try {
-                const product=await $fetch<Product_Item[]>('/api/search')
+                const product=await $fetch<Product_Item[]>('/api/search',{
+                    headers:
+                        {'Authentication':token.value},
+                    query:{
+                        name:value
+                    }
+                })
                 this.navbarSearchResult.collection=filterCollection(collectionStore.getAllList,value)
-                this.navbarSearchResult.product=filterProducts(product,value).slice(0,4)
+                this.navbarSearchResult.product=product
                 this.navbarSearchFlag=true
             }catch (err) {
                 console.log(err)
