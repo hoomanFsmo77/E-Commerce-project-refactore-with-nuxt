@@ -6,9 +6,14 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import {useNavbar} from "~/composables/useNavbar";
+useNavbar()
 </script>
 
 <style scoped>
+
+
+
 
 </style>

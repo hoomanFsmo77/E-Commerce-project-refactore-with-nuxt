@@ -16,7 +16,7 @@
         </div>
       </div>
       <ul >
-        <NavbarMobileItem v-for="lvl1 in navbarData.navbarItems" :key="lvl1.id" :data="lvl1"/>
+        <NavbarMobileItem v-for="lvl1 in navbarData" :key="lvl1.id" :data="lvl1"/>
       </ul>
     </div>
   </Transition>
@@ -25,20 +25,8 @@
 
 <script setup lang="ts">
 import {useMobileHeader} from "~/composables/useHeader";
-const navbarData=ref<any[]>([])
-const flag=ref<boolean>(false)
-onMounted(async ()=>{
-  flag.value=false
-  const token=useState<string>('x_token_x')
-  try {
-    const data=await $fetch<any[]>('/api/navbar',{headers:{'Authentication':token.value}})
-    navbarData.value=data
-  }catch (err) {
-    console.log(err)
-  }finally {
-    flag.value=true
-  }
-})
+const navbarData=useState<any[]>('navbarData')
+const flag=useState<boolean>('navbarFlag')
 const {isOpen,closeMenu}=useMobileHeader()
 </script>
 

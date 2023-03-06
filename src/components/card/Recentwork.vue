@@ -2,10 +2,9 @@
   <div class="collection-card">
     <div class="collection-card-image"  :class="{'h-[400px]':isLoading}">
       <Skeletor v-if="isLoading" class="!absolute" width="100%" :shimmer="true" height="400"/>
-
-      <nuxt-img :src="src"
+      <img v-lazy="src"
            :srcset="srcset"
-           src=""
+           class="md:h-[380px]"
            sizes="(max-width: 767px) calc(100vw - 20px), (max-width: 1360px) 33vw, 420px"
            @load="imageLoad"
            alt="" />

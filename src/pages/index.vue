@@ -1,4 +1,5 @@
 <template>
+  <HomePreloader :show="false"/>
   <HomeBrand />
   <HomeIntro />
   <HomeShop />
@@ -10,8 +11,8 @@
   <HomeInstagram />
 </template>
 
-<script>
-
+<script setup lang="ts">
+const {isLoading}=useLoader()
 </script>
 
 <style scoped>

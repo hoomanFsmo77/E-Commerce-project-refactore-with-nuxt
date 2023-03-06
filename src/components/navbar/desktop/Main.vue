@@ -19,20 +19,8 @@
 </template>
 
 <script lang="ts" setup>
-const navbarData=ref<any[]>([])
-const flag=ref<boolean>(false)
-onMounted(async ()=>{
-  flag.value=false
-  const token=useState<string>('x_token_x')
-  try {
-    const data=await $fetch<any[]>('/api/navbar',{headers:{'Authentication':token.value}})
-    navbarData.value=data
-  }catch (err) {
-    console.log(err)
-  }finally {
-    flag.value=true
-  }
-})
+const navbarData=useState<any[]>('navbarData')
+const flag=useState<boolean>('navbarFlag')
 
 </script>
 

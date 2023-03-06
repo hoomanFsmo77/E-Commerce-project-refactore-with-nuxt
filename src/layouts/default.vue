@@ -1,13 +1,11 @@
 <template>
-  <main>
-    <LayoutsHeader/>
-
-    <LayoutsNavbar/>
-    <slot />
-
-    <LayoutsFooter/>
-
-  </main>
+  <div>
+    <LayoutHeader/>
+    <LayoutNavbar/>
+    <DiscountAlert />
+    <slot ></slot>
+    <LayoutFooter/>
+  </div>
 </template>
 
 <script>

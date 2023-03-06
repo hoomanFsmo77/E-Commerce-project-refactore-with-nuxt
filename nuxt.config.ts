@@ -8,7 +8,12 @@
 // https://res.cloudinary.com/dhpxutwun/image/upload/v1678041110/brentos/check_v4x97j.svg
 // https://res.cloudinary.com/dhpxutwun/image/upload/v1678041109/brentos/express_e3lizg.svg
 // https://res.cloudinary.com/dhpxutwun/image/upload/v1678041108/brentos/visa_yqrcps.svg
-
+// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083774/brentos/recent/recent2-srcset_wmsdhu.webp
+// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083771/brentos/recent/recent1-src_u2w1fk.webp
+// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083773/brentos/recent/recent3-srcset_u7kfon.webp
+// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083771/brentos/recent/recent1-srcset_gt0zui.webp
+// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083769/brentos/recent/recent3-src_j4jgiq.webp
+// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083769/brentos/recent/recent2-src_jnfsd4.webp
 
 export default defineNuxtConfig({
     image:{
