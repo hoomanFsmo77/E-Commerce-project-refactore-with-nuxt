@@ -39,7 +39,7 @@ export default defineNuxtConfig({
         },
     },
     build:{
-        transpile:[],
+        transpile:['vue-toastification'],
     },
     css:[
         '~/assets/style/App.scss',
