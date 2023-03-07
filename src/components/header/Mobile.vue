@@ -14,12 +14,12 @@
     </div>
     <div class="relative w-[95%] py-1 mx-auto">
       <FormSearch @input="initSearch" class="w-full" v-model="searchText" @on="showResult($event)"/>
-      <DarkOverlay z-index="999" @outside="closeResult($event)" :is-fire="isOn"/>
-      <HeaderSearchResult :is-fire="isOn" :search-text="searchText"/>
+      <DarkOverlay z-index="999" @outside="closeResult($event)" :is-fire="searchBoxFlag"/>
+      <HeaderSearchResult :is-fire="searchBoxFlag" :search-text="searchText"/>
     </div>
     <div class="flex w-full justify-start gap-1 items-center py-0.8 border-b-[1px] border-t-[1px] border-gray-200 px-0.7">
       <font-awesome-icon icon="fa-solid fa-truck-fast" size="lg" class="text-dark"/>
-      <div>
+      <div class="odd:hidden">
         <span class="text-0.6 block">Free Shipping in Australia</span>
         <span class="font-600 text-0.9  text-dark">Orders Over $70</span>
       </div>
@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-const {cartLength,isOn,showResult,searchText,totalPrice,closeResult,initSearch}=useDesktopHeader()
-
+const {searchBoxFlag,showResult,searchText,closeResult,initSearch}=useDesktopHeader()
+const {cartLength}=useCartStore()
 </script>
 
 <style scoped>

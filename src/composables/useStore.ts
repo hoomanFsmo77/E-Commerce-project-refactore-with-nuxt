@@ -28,9 +28,10 @@ export const useCollectionStore=()=>{
     const collectionStore=Collection()
     const randomCollection=computed<Collection_Item[]|null>(()=>collectionStore.getRandomCollection(8))
     const fetchFlag=computed<boolean>(()=>collectionStore.getFetchFlag)
+    const allCollectionList=computed<Collection_Item[]|null>(()=>collectionStore.getAllList)
 
     return {
-        collectionStore,randomCollection,fetchFlag
+        collectionStore,randomCollection,fetchFlag,allCollectionList
     }
 
 }

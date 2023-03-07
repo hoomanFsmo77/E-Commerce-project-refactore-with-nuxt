@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { HollowDotsSpinner } from 'epic-spinners'
-let props=defineProps<{show:boolean}>()
+let {show}=defineProps<{show:boolean}>()
 </script>
 
 <style scoped>

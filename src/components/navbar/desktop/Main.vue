@@ -8,7 +8,7 @@
     <column col="3">
       <div class="flex justify-end gap-1 items-center">
         <font-awesome-icon icon="fa-solid fa-truck-fast" size="2xl" class="text-dark"/>
-        <div>
+        <div class="odd:hidden">
           <span class="text-0.7 ">Free Shipping in Australia</span>
           <br>
           <span class=" text-dark">Orders Over $70</span>

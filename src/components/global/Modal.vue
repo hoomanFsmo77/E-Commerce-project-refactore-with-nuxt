@@ -1,7 +1,7 @@
 <template>
     <teleport to="body">
       <div  @click.self="closeModal" class="modal " v-fade:99999="isActive">
-        <LoaderPreloader class="!items-center !h-[100%] z-[999999]" :show="!preloader"/>
+        <LoaderPage class="!items-center !h-[100%] z-[999999]" :show="!preloader"/>
         <div @click.self="closeModal" class="v-modal-container">
           <div  v-bind="$attrs" class="modal-content">
             <row :class="rowClass">

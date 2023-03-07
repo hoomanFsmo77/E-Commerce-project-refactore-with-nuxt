@@ -1,12 +1,12 @@
 
 export default defineNuxtRouteMiddleware((to,from)=>{
     const route=useRoute()
-    const isOn=useState<boolean>('isOn')
+    const searchBoxFlag=useState<boolean>('searchBoxFlag')
     const searchText=useState<string>('searchText')
-    const isOpen=useState<boolean>('isOpen')
-    isOn.value=false
+    const navbarOpenFlag=useState<boolean>('navbarOpenFlag')
+    searchBoxFlag.value=false
     searchText.value=''
     if(route.name!=='HOME'){
-        isOpen.value=false
+        navbarOpenFlag.value=false
     }
 })

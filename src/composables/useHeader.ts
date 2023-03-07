@@ -5,15 +5,14 @@ let timeout:any=null;
 let delay=1500;
 export const useDesktopHeader=()=>{
     const {searchStore}=useSearchStore()
-    const {cartLength, totalPrice}=useCartStore()
-    const isOn=useState<boolean>('isOn',()=>false)
+    const searchBoxFlag=useState<boolean>('searchBoxFlag',()=>false)
     const searchText=useState<string>('searchText',()=> '')
 
     const showResult=(e:boolean)=>{
-        isOn.value=e
+        searchBoxFlag.value=e
     }
     const closeResult = (e:boolean) => {
-        isOn.value=e
+        searchBoxFlag.value=e
     }
     const initSearch = () => {
         searchStore.$patch({
@@ -35,15 +34,15 @@ export const useDesktopHeader=()=>{
     }
 
 
-    return {isOn,showResult,searchText,cartLength,totalPrice,closeResult,initSearch}
+    return {searchBoxFlag,showResult,searchText,closeResult,initSearch}
 }
 
 
 export  const useMobileHeader=()=>{
-    const isOpen=useState<boolean>('isOpen',()=>false)
+    const navbarOpenFlag=useState<boolean>('navbarOpenFlag',()=>false)
     const closeMenu = (e:boolean) => {
-      isOpen.value=e
+        navbarOpenFlag.value=e
     }
 
-    return{isOpen,closeMenu}
+    return{navbarOpenFlag,closeMenu}
 }

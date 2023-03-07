@@ -1,10 +1,10 @@
 import {Instagram_Feed} from "~/utils/Types";
 
-export default ()=>{
-    const isOpen=useState<boolean>('isOpen',()=>false)
+export const useInstagramFeed =()=>{
+    const isOpen=useState<boolean>('instagramFlag',()=>false)
     const postIndex=useState<number>('postIndex',()=>0)
-    let fetchFlag=useState<boolean>('fetchFlag',()=>false)
-    let instaFeedData=useState<Instagram_Feed[]>('instaFeedData',()=>[])
+    const fetchFlag=useState<boolean>('instagramFetchFlag',()=>false)
+    const instagramFeedData=useState<Instagram_Feed[]>('instagramFeedData',()=>[])
 
 
     onMounted(async ()=>{
@@ -12,7 +12,7 @@ export default ()=>{
         fetchFlag.value=false
         try {
             const data=await $fetch<Instagram_Feed[]>('/api/instagram',{headers:{'Authentication':token.value}})
-            instaFeedData.value=data
+            instagramFeedData.value=data
         }catch (err) {
             console.log(err)
         }finally {
@@ -32,7 +32,7 @@ export default ()=>{
 
     const next = () => {
         postIndex.value++
-        if(postIndex.value>instaFeedData.value.length-1){
+        if(postIndex.value>instagramFeedData.value.length-1){
             postIndex.value=0
         }
     }
@@ -40,11 +40,11 @@ export default ()=>{
     const prev = () => {
         postIndex.value--
         if(postIndex.value<0){
-            postIndex.value=instaFeedData.value.length-1
+            postIndex.value=instagramFeedData.value.length-1
         }
     }
 
     return{
-        isOpen,closeModal,next,prev,changePost,postIndex,fetchFlag,instaFeedData
+        isOpen,closeModal,next,prev,changePost,postIndex,fetchFlag,instagramFeedData
     }
 }

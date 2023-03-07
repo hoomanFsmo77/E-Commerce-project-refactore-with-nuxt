@@ -16,6 +16,8 @@ export const Collection=defineStore('collection',{
         getAllList(state){
             if(state.fetchFlag){
                 return state.collections
+            }else{
+                return null
             }
         },
         getRandomCollection:(state)=>(len:number):Collection_Item[]|null=>{

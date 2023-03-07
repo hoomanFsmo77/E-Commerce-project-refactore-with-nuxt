@@ -78,6 +78,7 @@ export const Products=defineStore('product',{
 
     },
    async hydrate(state) {
+       console.log('product hydration')
        const token=useState<string>('x_token_x')
         state.popularFetchFlag=false
         try {

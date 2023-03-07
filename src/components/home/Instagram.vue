@@ -7,7 +7,7 @@
         </column>
       </row>
       <row class="!p-0 !m-0 flex-wrap" v-if="fetchFlag">
-        <column v-for="(item,index) in instaFeedData" col="12" sm="6" md="4">
+        <column v-for="(item,index) in instagramFeedData" col="12" sm="6" md="4">
           <CardInstafeed
               :src="item.src"
               :content="item.content"
@@ -26,7 +26,7 @@
 <!--      <<<<<<<<<<<<<<<< modal start >>>>>>>>>>>>>>>-->
       <Modal v-if="fetchFlag" row-class="!p-0 !m-0 h-full" class="w-full h-[100vh] !p-0" @closeModal="closeModal($event)" :is-active="isOpen" :preloader="true">
         <column col="12" lg="7" class="!m-0 !p-0 relative">
-          <nuxt-img provider="cloudinary" :src="instaFeedData[postIndex].src ?? null" class="object-cover h-full md:absolute top-0 left-0 w-full" alt="" />
+          <nuxt-img provider="cloudinary" :src="instagramFeedData[postIndex].src ?? null" class="object-cover h-full md:absolute top-0 left-0 w-full" alt="" />
         </column>
         <column col="12" class="p-1.5" lg="5">
           <div class="flex justify-between items-center">
@@ -56,13 +56,13 @@
           </div>
           <div>
             <p class="mt-1 mb-3 !leading-1.7 text-0.8 text-gray-600">
-              {{instaFeedData[postIndex].content ?? null}}
+              {{instagramFeedData[postIndex].content ?? null}}
             </p>
           </div>
           <div class="divider !mb-0"></div>
           <div>
-            <span class="uppercase !text-0.7 text-gray-600">{{instaFeedData[postIndex].date ?? null}} •</span>
-            <a class="!text-0.7 text-dark font-600 ml-0.5" :href="instaFeedData[postIndex].link ?? null">
+            <span class="uppercase !text-0.7 text-gray-600">{{instagramFeedData[postIndex].date ?? null}} •</span>
+            <a class="!text-0.7 text-dark font-600 ml-0.5" :href="instagramFeedData[postIndex].link ?? null">
               View on instagram
             </a>
 
@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-const {closeModal,isOpen,prev,next,changePost,postIndex,instaFeedData,fetchFlag}=useInstagramFeed()
+const {closeModal,isOpen,prev,next,changePost,postIndex,instagramFeedData,fetchFlag}=useInstagramFeed()
 </script>
 
 <style scoped>
