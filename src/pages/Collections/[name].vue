@@ -3,8 +3,8 @@
     <row>
       <column col="12">
         <BreadCrumb
-            :pages="[{name:'Home',link:{name:'index'}},{name:'Collections',link:{name:'Collections-All'}},{name:$route.params.name.split('-').join(' ')}]"/>
-        <h1 class="font-600 text-left mb-1">{{ $route.params.name.split('-').join(' ') }}</h1>
+            :pages="[{name:'Home',link:{name:'index'}},{name:'Collections',link:{name:'Collections-All'}},{name:$route.params?.name?.split('-').join(' ') ?? ''}]"/>
+        <h1 class="font-600 text-left mb-1">{{ $route.params?.name?.split('-').join(' ') ?? '' }}</h1>
       </column>
     </row>
     <LoaderPage class="!static !items-center !h-[300px]" :show="!fetchFlag && !errorFlag"/>

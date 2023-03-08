@@ -12,6 +12,5 @@
 </template>
 
 <script setup lang="ts">
-const {fetchFlag,allCollectionList,collectionStore}=useCollectionStore()
-onMounted(()=>collectionStore.triggerFetchCollectionList())
+const {fetchFlag,allCollectionList}=useCollectionStore()
 </script>

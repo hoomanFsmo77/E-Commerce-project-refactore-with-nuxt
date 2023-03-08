@@ -49,12 +49,8 @@
 
 <script setup lang="ts">
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
-const {randomCollection,fetchFlag,collectionStore}=useCollectionStore()
+const {randomCollection,fetchFlag}=useCollectionStore()
 const {breakpoints,prev,next,carousel,settings}=useCarousel()
-onMounted(()=>{
-  collectionStore.triggerFetchCollectionList()
-})
-
 </script>
 
 <style lang="scss">

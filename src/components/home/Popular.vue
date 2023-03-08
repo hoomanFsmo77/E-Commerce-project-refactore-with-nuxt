@@ -27,10 +27,6 @@
 
 <script setup lang="ts">
 import {useProductStore} from "~/composables/useStore";
-const {popularProductFetchFlag,popularProducts,productStore}=useProductStore()
-onMounted(()=>{
-  productStore.triggerFetchPopularProductData()
-})
-
+const {popularProductFetchFlag,popularProducts}=useProductStore()
 </script>
 
