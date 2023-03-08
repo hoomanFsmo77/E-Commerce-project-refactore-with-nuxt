@@ -1,4 +1,8 @@
 <template>
+  <NuxtLink :to="{name:'Products-Item-name',params:{name:'rffrfr'}}">
+    item
+  </NuxtLink>
+  <br>
 pro art {{$route.params.name}}
 </template>
 

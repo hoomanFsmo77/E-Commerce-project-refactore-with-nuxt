@@ -75,18 +75,18 @@ export const Products=defineStore('product',{
                 this.productListErrorFlag=true
             }
         },
-        async fetchProductDetail(id:string){
-            // const {public:{apiBase}}=useRuntimeConfig()
-            // this.productDetailFetchFlag=false
-            // this.productDetail=null
-            // try {
-            //     const data=await $fetch<Product_Item>(apiBase + `product/productDetailData/${id}.json`)
-            //     this.productDetail=data
-            // }catch (err) {
-            //
-            // }finally {
-            //     this.productDetailFetchFlag=true
-            // }
+        async triggerFetchProductDetail(id:string){
+            const token=useState<string>('x_token_x')
+            this.productDetailFetchFlag=false
+            this.productDetail=null
+            try{
+                const data=await $fetch<Product_Item>(`/api/product/${id}`,{headers:{'Authentication':token.value}})
+                this.productDetail=data
+            }catch (err) {
+                console.log(err)
+            }finally {
+                this.productDetailFetchFlag=true
+            }
         }
 
     }

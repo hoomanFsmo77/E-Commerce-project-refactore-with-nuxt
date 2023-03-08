@@ -39,7 +39,7 @@ export default (props:Props)=>{
 
 
     const productLink=computed(()=>{
-        if(props.link.name==='PRODUCT'){
+        if(props.link.name==='Products-name'){
             return `/Products/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`
         }else{
             return `/Products/Art/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`

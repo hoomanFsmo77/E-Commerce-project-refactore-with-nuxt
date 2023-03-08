@@ -29,7 +29,8 @@ export default defineNuxtConfig({
         popularProduct:process.env.POPULAR_PRODUCT,
         collections:process.env.COLLECTIONS,
         recentWork:process.env.RECENT_WORK,
-        instagramFeed:process.env.INSTAGRAM_FEED
+        instagramFeed:process.env.INSTAGRAM_FEED,
+        productDetail:process.env.PRODUCT_DETAIL
     },
     postcss:{
         plugins: {

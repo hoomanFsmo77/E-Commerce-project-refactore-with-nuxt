@@ -2,7 +2,7 @@
   <teleport to="body">
     <Transition name="fade">
       <div v-if="isActive" id="zoom-area" class="fixed overflow-scroll z-[9999] top-0 left-0 w-[100vw] bg-light h-[100vh]">
-        <nuxt-img @load="imageLoad($event)" :src="src" class="relative" alt="" />
+        <img @load="imageLoad" v-lazy="src" class="relative" alt="" />
 
         <div class="w-3 h-3 flex justify-center items-center bg-light rounded-full fixed right-0 top-0 m-2">
           <font-awesome-icon @click="close" class="transition hover:!text-dark text-1.5 !text-dark/70 cursor-pointer" icon="fa-solid fa-magnifying-glass-minus" />
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-const props=defineProps<{
+const {src,isActive}=defineProps<{
   src:string,
   isActive:boolean
 }>();
@@ -26,11 +26,7 @@ const close = () => {
   emit('close',false)
   document.body.style.overflowY='scroll'
 }
-const imageLoad = (e:Event) => {
-  const el=e.target as HTMLImageElement
-  let cssProps=getComputedStyle(el)
-  el.style.width=cssProps.width
-  el.style.height=cssProps.height
+const imageLoad = () => {
   document.body.style.overflowY='hidden'
 }
 

@@ -3,7 +3,7 @@
     <div v-if="productDetailFlag">
       <Carousel  ref="carousel" :settings="settings" :wrap-around="true">
         <Slide v-for="(item,index) in productData.gallery" :key="index">
-          <ProductGalleryItem :zoom="item.zoom" :src="item.src" :srcset="item.srcset"/>
+          <ProductGallery :zoom="item.zoom" :src="item.src" :srcset="item.srcset"/>
         </Slide>
         <template #addons>
           <div class="flex gap-1 justify-center items-center my-1">
