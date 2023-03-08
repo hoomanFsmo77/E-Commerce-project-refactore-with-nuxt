@@ -43,10 +43,14 @@ export const useProductStore=()=>{
     const productDetailFlag=computed<boolean>(()=>productStore.getProductDetailDataFlag)
     const popularProducts = computed(() => productStore.getPopularProduct)
     const popularProductFetchFlag = computed(() => productStore.getPopularProductFetchFlag)
+    const productListData=computed<Product_Item[]|null>(()=>productStore.getProductList)
+    const fetchFlag=computed<boolean>(()=>productStore.getProductListFetchFlag)
+    const errorFlag=computed<boolean>(()=>productStore.getProductListErrorFlag)
 
     return{
         productStore,
         productData,
-        productDetailFlag,popularProducts,popularProductFetchFlag
+        productDetailFlag,popularProducts,popularProductFetchFlag,productListData,
+        fetchFlag, errorFlag
     }
 }

@@ -24,6 +24,8 @@ export const Products=defineStore('product',{
         getProductList(state){
             if(state.productListFetchFlag){
                 return state.productListData
+            }else{
+                return  null
             }
         },
 
@@ -47,20 +49,31 @@ export const Products=defineStore('product',{
         }
     },
     actions:{
-        async fetchProductList(name:string){
-            // const {public:{apiBase}}=useRuntimeConfig()
-            // this.productListData=[]
-            // this.productListFetchFlag=false
-            // this.productListErrorFlag=false
-            // try {
-            //     const data=await $fetch<Product_Item[]>(apiBase + `product/productListData/${name}.json`)
-            //     this.productListData=data
-            // }catch (err) {
-            //     console.log(err)
-            // }finally {
-            //     this.productListFetchFlag=true
-            //
-            // }
+        async triggerFetchPopularProductData(){
+            const token=useState<string>('x_token_x')
+            this.popularFetchFlag=false
+            try {
+                const data=await $fetch<Product_Item[]>('/api/popular',{headers:{'Authentication':token.value}})
+                this.popularProduct=data
+            }catch (err) {
+                console.log(err)
+            }finally {
+                this.popularFetchFlag=true
+            }
+
+        },
+        async triggerFetchProductList(name:string){
+            const token=useState<string>('x_token_x')
+            this.productListData=[]
+            this.productListFetchFlag=false
+            this.productListErrorFlag=false
+            try {
+                const data=await $fetch<Product_Item[]>(`/api/collection/${name}`,{headers:{'Authentication':token.value}})
+                this.productListData=data
+                this.productListFetchFlag=true
+            }catch (err) {
+                this.productListErrorFlag=true
+            }
         },
         async fetchProductDetail(id:string){
             // const {public:{apiBase}}=useRuntimeConfig()
@@ -76,19 +89,6 @@ export const Products=defineStore('product',{
             // }
         }
 
-    },
-   async hydrate(state) {
-       console.log('product hydration')
-       const token=useState<string>('x_token_x')
-        state.popularFetchFlag=false
-        try {
-            const data=await $fetch<Product_Item[]>('/api/popular',{headers:{'Authentication':token.value}})
-            state.popularProduct=data
-        }catch (err) {
-            console.log(err)
-        }finally {
-            state.popularFetchFlag=true
-        }
     }
 
 

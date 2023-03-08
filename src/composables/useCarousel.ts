@@ -1,7 +1,6 @@
-import {useCollectionStore} from "~/composables/useStore";
+
 
 export default ()=>{
-    const {randomCollection,fetchFlag}=useCollectionStore()
     const settings=reactive({
         itemsToShow: 1 as number,
         snapAlign: 'center' as string
@@ -27,6 +26,6 @@ export default ()=>{
         },
     }
     return {
-        randomCollection,settings,carousel,next,prev,breakpoints,fetchFlag
+        settings,carousel,next,prev,breakpoints
     }
 }

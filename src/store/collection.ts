@@ -36,20 +36,21 @@ export const Collection=defineStore('collection',{
 
         }
     },
-   async hydrate(state) {
-       const token=useState<string>('x_token_x')
-       const searchStore=Search()
-        state.fetchFlag=false
-        try {
-            const data=await $fetch<Collection_Item[]>('/api/collection',
-                {headers:{'Authentication':token.value}})
-            searchStore.setCollectionList(data)
-            state.collections=data
-        }catch (err) {
-            console.log(err)
-        }finally {
-            state.fetchFlag=true
+    actions:{
+        async triggerFetchCollectionList(){
+            const token=useState<string>('x_token_x')
+            const searchStore=Search()
+            this.fetchFlag=false
+            try {
+                const data=await $fetch<Collection_Item[]>('/api/collection/all',
+                    {headers:{'Authentication':token.value}})
+                searchStore.setCollectionList(data)
+                this.collections=data
+            }catch (err) {
+                console.log(err)
+            }finally {
+                this.fetchFlag=true
+            }
         }
-
-    }
+    },
 })
