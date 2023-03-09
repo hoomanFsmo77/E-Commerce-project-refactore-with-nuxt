@@ -54,4 +54,7 @@ const route=useRoute()
 onMounted(()=>{
   productStore.triggerFetchProductList(route.params.name as string)
 })
+useHead({
+  title:`${(route.params.name as string).split('-').join(' ')} – Brentos`
+})
 </script>

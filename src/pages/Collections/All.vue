@@ -13,4 +13,7 @@
 
 <script setup lang="ts">
 const {fetchFlag,allCollectionList}=useCollectionStore()
+useHead({
+  title:'Collections – Brentos'
+})
 </script>

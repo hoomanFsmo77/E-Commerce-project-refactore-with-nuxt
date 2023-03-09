@@ -1,7 +1,7 @@
 {
   "recentWork": [
     {
-      "link": {"name": "Products-name","params": {"name":"Australia-From-Dawn-to-Dusk"},"query": {"id": "BO-478569"},"hash": "#books"},
+      "link": {"name": "Product-Item-name","params": {"name":"Australia-From-Dawn-to-Dusk"},"query": {"id": "BO-478569"},"hash": "#books"},
       "title": "Australia Book",
       "subTitle": "Debut Book Launch",
       "src": "https://res.cloudinary.com/dhpxutwun/image/upload/v1678083771/brentos/recent/recent1-src_u2w1fk.webp",

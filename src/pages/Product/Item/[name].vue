@@ -145,7 +145,10 @@ import {useProductStore} from "~/composables/useStore";
 const {next,prev,settings,carousel}=useCarousel()
 const {productData,productDetailFlag,popularProducts,fetchFlag}=useProductStore()
 const {addToCart,decrement,increment,changeSize,totalPriceWithFrame,totalPriceWithOutFrame,setSelectedSize,helperData}=useProduct(carousel)
-
+const route=useRoute()
+useHead({
+  title:`${(route.params.name as string).split('-').join(' ')}}`
+})
 </script>
 
 <style lang="scss">

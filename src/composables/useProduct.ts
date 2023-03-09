@@ -27,7 +27,7 @@ export default (carousel:any)=>{
 
     const totalPriceWithFrame=computed<number|string>(()=>{
         if(productData.value && productData.value.option.sizes){
-            return productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number((productData.value.option.sizes[helperData.sizeIndex].price.toFixed(2)) ?? Number(productData.value.price).toFixed(2))
+            return productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) ?? Number(productData.value.price).toFixed(2)
         }else{
             return 0
         }
@@ -36,7 +36,7 @@ export default (carousel:any)=>{
     // const totalPriceWithOutFrame=computed(()=>productData.value?.option?.sizes ? productData.value.option.sizes[sizeIndex.value].price.toFixed(2) : productData.value.price.toFixed(2))
     const totalPriceWithOutFrame=computed<number|string>(()=>{
         if(productData.value){
-            return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price.toFixed(2)) : Number(productData.value.price).toFixed(2)
+            return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2)
         }else{
             return  0
         }

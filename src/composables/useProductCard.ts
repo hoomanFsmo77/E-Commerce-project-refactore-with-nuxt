@@ -39,10 +39,10 @@ export default (props:Props)=>{
 
 
     const productLink=computed(()=>{
-        if(props.link.name==='Products-name'){
-            return `/Products/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`
+        if(props.link.name==='Product-Item-name'){
+            return `/Product/Item/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`
         }else{
-            return `/Products/Art/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`
+            return `/Product/Art/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`
         }
     })
 
@@ -51,7 +51,7 @@ export default (props:Props)=>{
         isActive.value=!isActive.value
         document.body.style.overflow=isActive.value ? 'hidden' : 'auto'
         if(isActive.value){
-            productStore.fetchProductDetail(props.id)
+            // productStore.fetchProductDetail(props.id)
         }
     }
     const closeModal = (e:boolean) => {

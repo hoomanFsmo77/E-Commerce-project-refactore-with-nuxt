@@ -23,6 +23,9 @@ const returnHome = () => {
    redirect:'/'
  })
 }
+useHead({
+  title:`404 - Brentos`
+})
 
 </script>
 

@@ -8,7 +8,7 @@
       "isSoldOut":false,
       "isPeriod":true,
       "price":60,
-      "link":{"name":"Products-Art-name","params":{"name":"a-beautiful-day-art-print"}},
+      "link":{"name":"Product-Art-name","params":{"name":"a-beautiful-day-art-print"}},
       "coverSrc": "//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?v=1667381423&amp;width=480",
       "coverSrcset": "//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?crop=center&amp;height=339&amp;v=1667381423&amp;width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?crop=center&amp;height=509&amp;v=1667381423&amp;width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?crop=center&amp;height=594&amp;v=1667381423&amp;width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?crop=center&amp;height=679&amp;v=1667381423&amp;width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?crop=center&amp;height=905&amp;v=1667381423&amp;width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?crop=center&amp;height=1188&amp;v=1667381423&amp;width=840 840w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-a-beautiful-day.png?crop=center&amp;height=1527&amp;v=1667381423&amp;width=1080 1080w",
       "overlaySrc": "//cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-tropical-beach.png?v=1667381423&amp;width=480",
@@ -21,7 +21,7 @@
       "isSoldOut":false,
       "isPeriod":true,
       "price":60,
-      "link":{"name":"Products-Art-name","params":{"name":"Create-Your-Own-Surfing-Koala-Family-Print"}},
+      "link":{"name":"Product-Art-name","params":{"name":"Create-Your-Own-Surfing-Koala-Family-Print"}},
       "title":"Create Your Own Surfing Koala Family Print",
       "coverSrc":"https://cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-family.jpg?v=1626245918&width=480",
       "coverSrcset":"//cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-family.jpg?crop=center&height=339&v=1626245918&width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-family.jpg?crop=center&height=509&v=1626245918&width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-family.jpg?crop=center&height=594&v=1626245918&width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-family.jpg?crop=center&height=679&v=1626245918&width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-family.jpg?crop=center&height=905&v=1626245918&width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/surfing-koala-family.jpg?crop=center&height=1188&v=1626245918&width=840 840w",
@@ -36,7 +36,7 @@
       "isPeriod":true,
       "isPopular": true,
       "price":60,
-      "link":{"name":"Products-Art-name","params":{"name":"great-barrier-reef-art-print"}},
+      "link":{"name":"Product-Art-name","params":{"name":"great-barrier-reef-art-print"}},
       "coverSrc": "//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?v=1668663791&amp;width=480",
       "coverSrcset": "///cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?crop=center&amp;height=339&amp;v=1668663791&amp;width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?crop=center&amp;height=509&amp;v=1668663791&amp;width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?crop=center&amp;height=594&amp;v=1668663791&amp;width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?crop=center&amp;height=679&amp;v=1668663791&amp;width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?crop=center&amp;height=905&amp;v=1668663791&amp;width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?crop=center&amp;height=1188&amp;v=1668663791&amp;width=840 840w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-great-barrier-reef-art.png?crop=center&amp;height=1527&amp;v=1668663791&amp;width=1080 1080w",
       "overlaySrc": "//cdn.shopify.com/s/files/1/0272/9548/1943/products/reef-art-print.jpg?v=1668663791&amp;width=480",
@@ -52,7 +52,7 @@
       "isSoldOut":true,
       "isPeriod":false,
       "price":25,
-      "link":{"name":"Products-name","params":{"name":"Australia-From-Dawn-to-Dusk"}},
+      "link":{"name":"Product-Item-name","params":{"name":"Australia-From-Dawn-to-Dusk"}},
       "category": "books"
     },
     {
@@ -64,7 +64,7 @@
       "isSoldOut":false,
       "isPeriod":true,
       "price":60,
-      "link":{"name":"Products-Art-name","params":{"name":"Frothy-Cocky-Art-Print"}},
+      "link":{"name":"Product-Art-name","params":{"name":"Frothy-Cocky-Art-Print"}},
       "id": "U-45785469",
       "category": "up-late"
 
@@ -77,7 +77,7 @@
       "discount":20 ,
       "isPeriod":false,
       "price":35,
-      "link":{"name":"Products-name","params":{"name":"2023-Wildlife-Calenda"}},
+      "link":{"name":"Product-Item-name","params":{"name":"2023-Wildlife-Calenda"}},
       "title": "2023 Wildlife Calendar",
       "coverSrc": "//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=480",
       "coverSrcset": "//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=840 840w,//cdn.shopify.com/s/files/1/0272/9548/1943/products/brentos-calendar.jpg?v=1670314237&width=1080 1080w",
@@ -94,7 +94,7 @@
       "isSoldOut":true,
       "isPeriod":false,
       "price":80,
-      "link":{"name":"Products-name","params":{"name":"Bush-Beach-Jumbo-Beach-Towel"}},
+      "link":{"name":"Product-Item-name","params":{"name":"Bush-Beach-Jumbo-Beach-Towel"}},
       "category": "beach-towels"
     },
     {
@@ -107,7 +107,7 @@
       "isSoldOut":false,
       "isPeriod":false,
       "price":80,
-      "link":{"name":"Products-name","params":{"name":"Surfing-Koala-Jumbo-Beach-Towel"}},
+      "link":{"name":"Product-Item-name","params":{"name":"Surfing-Koala-Jumbo-Beach-Towel"}},
       "category": "beach-towels"
     },
     {
@@ -120,7 +120,7 @@
       "isSoldOut":false,
       "isPeriod":false,
       "price":40,
-      "link":{"name":"Products-name","params":{"name":"Koala-Forest-Tote-Bags"}},
+      "link":{"name":"Product-Item-name","params":{"name":"Koala-Forest-Tote-Bags"}},
       "category": "beach-totes"
     },
     {
@@ -133,7 +133,7 @@
       "isSoldOut":true,
       "isPeriod":false,
       "price":60,
-      "link":{"name":"Products-name","params":{"name":"Yeah-Nah-Tee"}},
+      "link":{"name":"Product-Item-name","params":{"name":"Yeah-Nah-Tee"}},
       "category": "t-shirts"
     },
     {
@@ -146,7 +146,7 @@
       "isSoldOut":true,
       "isPeriod":false,
       "price":10,
-      "link":{"name":"Products-name","params":{"name":"Surfing-Koala-Sticker-Pack"}},
+      "link":{"name":"Product-Item-name","params":{"name":"Surfing-Koala-Sticker-Pack"}},
       "category": "stickers"
     },
     {
@@ -159,7 +159,7 @@
       "isSoldOut":false,
       "isPeriod":false,
       "price":40,
-      "link":{"name":"Products-name","params":{"name":"Retro-Cockies-Tote-Bags"}},
+      "link":{"name":"Product-Item-name","params":{"name":"Retro-Cockies-Tote-Bags"}},
       "category": "beach-totes"
     }
   ]
