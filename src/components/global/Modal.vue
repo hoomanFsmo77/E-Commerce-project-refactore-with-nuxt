@@ -1,16 +1,18 @@
 <template>
+  <client-only>
     <teleport to="body">
       <div  @click.self="closeModal" class="modal " v-fade:99999="isActive">
         <LoaderPage class="!items-center !h-[100%] z-[999999]" :show="!preloader"/>
         <div @click.self="closeModal" class="v-modal-container">
           <div  v-bind="$attrs" class="modal-content">
             <row :class="rowClass">
-             <slot></slot>
+              <slot></slot>
             </row>
           </div>
         </div>
       </div>
     </teleport>
+  </client-only>
   <DarkOverlay :is-fire="isActive" z-index="9999"/>
 </template>
 

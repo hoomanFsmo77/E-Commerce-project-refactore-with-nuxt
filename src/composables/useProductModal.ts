@@ -33,7 +33,7 @@ export default (carousel:any,props:Props)=>{
     
     const totalPriceWithFrame=computed<number|string>(()=>{
         if(productData.value && productData.value.option.sizes){
-            return productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number((productData.value.option.sizes[helperData.sizeIndex].price.toFixed(2)) ?? Number(productData.value.price).toFixed(2))
+            return productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) ?? Number(productData.value.price).toFixed(2)
         }else{
             return 0
         }
@@ -43,7 +43,7 @@ export default (carousel:any,props:Props)=>{
 
     const totalPriceWithOutFrame=computed<number|string>(()=>{
         if(productData.value){
-            return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price.toFixed(2)) : Number(productData.value.price).toFixed(2)
+            return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2)
         }else{
             return  0
         }
@@ -117,6 +117,6 @@ export default (carousel:any,props:Props)=>{
 
 
     return {
-        productData,productDetailFlag,totalPriceWithOutFrame,totalPriceWithFrame,increment,decrement,addToCart,changeFrame,changeFamily,changeSize,setSelectedSize,helperData
+        totalPriceWithOutFrame,totalPriceWithFrame,increment,decrement,addToCart,changeFrame,changeFamily,changeSize,setSelectedSize,helperData
     }
 }

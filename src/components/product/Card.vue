@@ -78,8 +78,17 @@
       <template v-if="!isSoldOut">
         <template v-if="isPeriod">
           <button @click="toggleModal" class="btn w-full mt-1 btn-dark-outline">Buy now</button>
-          <Modal class="w-full sm:h-[calc(100vh-7rem)] h-[100vh]" @closeModal="closeModal($event)" :is-active="isActive" :preloader="productDetailFlag">
-            <ProductDetailModal v-if="isActive" :category="category" :link="props.link" :id="id" @closeModal="closeModal($event)"/>
+          <Modal class="w-full sm:h-[calc(100vh-7rem)] h-[100vh] rounded-4"
+                 @closeModal="closeModal($event)"
+                 :is-active="isModalActive"
+                 :preloader="productDetailFlag">
+
+            <ProductDetailModal
+                v-if="isModalActive"
+                :category="category"
+                :link="props.link"
+                :id="id"
+                @closeModal="closeModal($event)"/>
           </Modal>
         </template>
         <template v-else>
@@ -105,7 +114,6 @@
 <script setup lang="ts">
 import { HollowDotsSpinner } from 'epic-spinners'
 import {useProductStore} from "~/composables/useStore";
-
 type Link={
   name:string,
   params:{
@@ -126,8 +134,7 @@ let props=defineProps<{
   category?:string
   discount?:number
 }>()
-const {isActive,closeModal,toggleModal,discountPercent,isLoading,imageLoad,addToCart,saveProductState,
-  productLink,addToCartFlag}=useProductCard(props)
+const {isModalActive,closeModal,toggleModal,discountPercent,isLoading,imageLoad,addToCart,saveProductState, productLink,addToCartFlag}=useProductCard(props)
 const {productDetailFlag}=useProductStore()
 </script>
 

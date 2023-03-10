@@ -143,8 +143,8 @@
 
 <script setup lang="ts">
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
-////////////////////////////////////////////////////////////
-let props=defineProps<{
+import {useProductStore} from "~/composables/useStore";
+const props=defineProps<{
   id:string
   category:string
   link:{
@@ -154,12 +154,16 @@ let props=defineProps<{
     }
   }
 }>();
-let emit=defineEmits(['closeModal'])
+const emit=defineEmits<{
+  (e:'closeModal',val:boolean):void
+}>();
+////////////////////////////////////////////////////////////
+const {productDetailFlag,productData}=useProductStore()
 const closeModal = () => {
   emit('closeModal',false)
 }
 const {next,prev,settings,carousel}=useCarousel()
-const {productDetailFlag,productData,totalPriceWithFrame,totalPriceWithOutFrame,decrement,increment,addToCart,changeFamily,changeFrame,changeSize,setSelectedSize,helperData}=useProductModal(carousel,props)
+const {totalPriceWithFrame,totalPriceWithOutFrame,decrement,increment,addToCart,changeFamily,changeFrame,changeSize,setSelectedSize,helperData}=useProductModal(carousel,props)
 
 </script>
 

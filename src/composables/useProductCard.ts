@@ -24,14 +24,12 @@ type Link={
 }
 
 export default (props:Props)=>{
-    const route=useRoute()
     const {productStore}=useProductStore()
     const {cartStore}=useCartStore()
 
-
     const addToCartFlag=useState<boolean>('addToCartFlag',()=>false)
-    let isLoading=ref<boolean>(true)
-    let isActive=ref<boolean>(false)
+    const isLoading=ref<boolean>(true)
+    const isModalActive=ref<boolean>(false)
 
     const productIdState=useState<string>('productIdState')
     const productCategoryState=useState<string>('productCategoryState')
@@ -56,15 +54,20 @@ export default (props:Props)=>{
 
 
     const toggleModal = () => {
-        isActive.value=!isActive.value
-        document.body.style.overflow=isActive.value ? 'hidden' : 'auto'
-        if(isActive.value){
-            // productStore.fetchProductDetail(props.id)
+        isModalActive.value=!isModalActive.value
+        if(process.client){
+            document.body.style.overflow=isModalActive.value ? 'hidden' : 'auto'
+        }
+        if(isModalActive.value){
+            productStore.triggerFetchProductDetail(props.id)
         }
     }
     const closeModal = (e:boolean) => {
-        isActive.value=e
-        document.body.style.overflow=isActive.value ? 'hidden' : 'auto'
+        isModalActive.value=e
+        productStore.$patch({productDetailFetchFlag:false, productDetail:null})
+        if(process.client){
+            document.body.style.overflow=isModalActive.value ? 'hidden' : 'auto'
+        }
     }
     const imageLoad = () => {
         isLoading.value=false
@@ -100,5 +103,5 @@ export default (props:Props)=>{
 
     }
 
-    return {discountPercent,toggleModal,closeModal,isActive,isLoading,imageLoad,addToCart,saveProductState,addToCartFlag,productLink}
+    return {discountPercent,toggleModal,closeModal,isModalActive,isLoading,imageLoad,addToCart,saveProductState,addToCartFlag,productLink}
 }
