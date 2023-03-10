@@ -1,13 +1,13 @@
 <template>
-  <section  :id="`product-show-id-${helperData.productId}`">
+  <section  :id="`product-show-id-${productIdState}`">
     <container>
       <row>
         <column col="12">
           <BreadCrumb :pages="
             [{name:'Home',link:{name:'index'}},
             {name:'Collections',link:{name:'Collections-All'}},
-            {name:$route.hash.slice(1).split('-').join(' '),link:{name:'Collections-name',params:{name:$route.hash.slice(1)}}},
-            {name:$route.params.name.split('-').join(' ')}]"
+            {name:productCategoryState?.split('-')?.join(' ') ?? '',link:{name:'Collections-name',params:{name:productCategoryState}}},
+            {name:$route?.params?.name.split('-').join(' ') ?? ''}]"
           />
         </column>
       </row>
@@ -121,9 +121,21 @@
       <row class="my-2">
         <column col="12">
           <h4 class="text-left font-600 mb-1 md:pl-1 pl-0">You may also like</h4>
-          <template v-if="fetchFlag">
+          <template v-if="popularProductFetchFlag">
             <div  class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-1.3">
-              <ProductCard class="mb-1" v-for="item in popularProducts.slice(0,4)" :price="item.price" :title="item.title" :link="item.link" :discount="item.discount" :cover-src="item.coverSrc" :cover-srcset="item.coverSrcset" :overlay-src="item.overlaySrc" :overlay-srcset="item.overlaySrcset" :is-period="item.isPeriod" :id="item.id" :is-sold-out="item.isSoldOut"/>
+              <ProductCard class="mb-1" v-for="item in popularProducts.slice(0,4)"
+                           :price="item.price"
+                           :title="item.title"
+                           :link="item.link"
+                           :discount="item.discount"
+                           :cover-src="item.coverSrc"
+                           :cover-srcset="item.coverSrcset"
+                           :overlay-src="item.overlaySrc"
+                           :overlay-srcset="item.overlaySrcset"
+                           :is-period="item.isPeriod"
+                           :id="item.id"
+                           :category="item.category"
+                           :is-sold-out="item.isSoldOut"/>
             </div>
           </template>
           <template v-else>
@@ -142,13 +154,14 @@
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import {useProductStore} from "~/composables/useStore";
 //////////////////////////////////////
-const {next,prev,settings,carousel}=useCarousel()
-const {productData,productDetailFlag,popularProducts,fetchFlag}=useProductStore()
-const {addToCart,decrement,increment,changeSize,totalPriceWithFrame,totalPriceWithOutFrame,setSelectedSize,helperData}=useProduct(carousel)
 const route=useRoute()
-useHead({
-  title:`${(route.params.name as string).split('-').join(' ')}}`
-})
+const productCategoryState=useState<string>('productCategoryState')
+const productIdState=useState<string>('productIdState')
+const {next,prev,settings,carousel}=useCarousel()
+const {productData,productDetailFlag,popularProducts,popularProductFetchFlag}=useProductStore()
+const {addToCart,decrement,increment,changeSize,totalPriceWithFrame,totalPriceWithOutFrame,setSelectedSize,helperData}=useProduct(carousel)
+useHead({title:`${(route.params.name as string).split('-').join(' ')}}`})
+definePageMeta({middleware:'product'})
 </script>
 
 <style lang="scss">

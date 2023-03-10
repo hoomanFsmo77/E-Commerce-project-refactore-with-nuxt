@@ -1,16 +1,16 @@
 import {Cart_Item,Collection_Item,Product_Item} from "~/utils/Types";
-import axios from "axios";
 
-export const storeData = <T>(data:T):void => {
+
+export const storeData = <T>(name:string,data:T):void => {
     if(process.client){
-        localStorage.setItem(process.env.STORAGE_NAME as string,JSON.stringify(data))
+        localStorage.setItem(name,JSON.stringify(data))
     }
 
 }
 
-export const getData = ():{cart:Cart_Item[],totalPrice:number}|null => {
+export const getData = (name:string):{cart:Cart_Item[],totalPrice:number}|null => {
     if(process.client){
-        const data=localStorage.getItem(process.env.STORAGE_NAME as string)
+        const data=localStorage.getItem(name)
         if(data){
             return JSON.parse(data)
         }else{

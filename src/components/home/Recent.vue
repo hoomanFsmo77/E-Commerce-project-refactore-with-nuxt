@@ -8,7 +8,12 @@
       </row>
       <row v-if="fetchFlag">
         <column class="pr-1" v-for="item in recentWorkData" col="12" md="4">
-          <CardRecentwork :title="item.title" :srcset="item.srcset" :src="item.src" :sub-title="item.subTitle" :link="item.link"/>
+          <CardRecentwork :title="item.title"
+                          :srcset="item.srcset"
+                          :src="item.src"
+                          :sub-title="item.subTitle"
+                          :link="item.link"
+          />
         </column>
       </row>
       <row v-else>
@@ -27,7 +32,6 @@ const recentWorkData=ref<Recent_Work[]>([])
 
 onMounted(async ()=>{
   const token=useState<string>('x_token_x')
-
   try {
     const data=await $fetch<Recent_Work[]>('/api/recent',{headers:{'Authentication':token.value}})
     recentWorkData.value=data

@@ -18,6 +18,7 @@
       <NuxtLink
           :class="{'peer':!isLoading}"
           class="stretch-link"
+          @click="saveProductState"
           :to="productLink"
       ></NuxtLink>
       <div v-if="overlaySrc" class="product-card-image-overlay peer-hover:opacity-100 peer-hover:visible">
@@ -67,6 +68,7 @@
 <!--      <<<<<<<<<<< title start >>>>>>>>>>>>>-->
       <NuxtLink
           class="btn-link !text-1.4 !font-700  "
+          @click="saveProductState"
           :to="productLink"
       >
         {{title}}
@@ -124,7 +126,8 @@ let props=defineProps<{
   category?:string
   discount?:number
 }>()
-const {isActive,closeModal,toggleModal,discountPercent,isLoading,imageLoad,addToCart,productLink,addToCartFlag}=useProductCard(props)
+const {isActive,closeModal,toggleModal,discountPercent,isLoading,imageLoad,addToCart,saveProductState,
+  productLink,addToCartFlag}=useProductCard(props)
 const {productDetailFlag}=useProductStore()
 </script>
 

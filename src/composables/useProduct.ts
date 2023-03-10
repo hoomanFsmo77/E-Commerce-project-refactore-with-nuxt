@@ -5,6 +5,7 @@ import {Cart_Item} from "~/utils/Types";
 export default (carousel:any)=>{
     const {productStore,productData,popularProductFetchFlag}=useProductStore()
     const {cartStore}=useCartStore()
+    const productIdState=useState<string>('productIdState')
     const route=useRoute()
 
 
@@ -103,21 +104,8 @@ export default (carousel:any)=>{
     })
 
 
-    // watch(
-    //     ()=>route.path,
-    //     ()=>{
-    //         if(route.name==='ART' || route.name==='PRODUCT'){
-    //             productStore.fetchPopularProduct()
-    //             productStore.fetchProductDetail(helperData.productId)
-    //         }
-    //     },
-    //     {
-    //         immediate:true
-    //     }
-    // )
-
     onMounted(()=>{
-        productStore.triggerFetchProductDetail(helperData.productId)
+        productStore.triggerFetchProductDetail(productIdState.value)
     })
 
 

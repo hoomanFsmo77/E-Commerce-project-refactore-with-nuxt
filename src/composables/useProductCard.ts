@@ -33,18 +33,26 @@ export default (props:Props)=>{
     let isLoading=ref<boolean>(true)
     let isActive=ref<boolean>(false)
 
+    const productIdState=useState<string>('productIdState')
+    const productCategoryState=useState<string>('productCategoryState')
 
     let discountPercent=computed<number|undefined>(()=>props.discount && Math.ceil((1-(props.discount / props.price))*100))
 
 
 
-    const productLink=computed(()=>{
+    const productLink=computed<string>(()=>{
         if(props.link.name==='Product-Item-name'){
-            return `/Product/Item/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`
+            return `/Product/Item/${props.link.params.name}`
         }else{
-            return `/Product/Art/${props.link.params.name}?id=${props.id}#${route.params.name ?? props.category}`
+            return `/Product/Art/${props.link.params.name}`
         }
     })
+
+    const saveProductState = () => {
+        productIdState.value=props.id
+        productCategoryState.value=props.category as string
+    }
+
 
 
     const toggleModal = () => {
@@ -92,5 +100,5 @@ export default (props:Props)=>{
 
     }
 
-    return {discountPercent,toggleModal,closeModal,isActive,isLoading,imageLoad,addToCart,productLink,addToCartFlag}
+    return {discountPercent,toggleModal,closeModal,isActive,isLoading,imageLoad,addToCart,saveProductState,addToCartFlag,productLink}
 }

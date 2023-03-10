@@ -13,10 +13,20 @@
         <row>
           <column col="12">
             <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-1.5">
-              <ProductCard class="mb-1" v-for="item in list" :price="item.price" :title="item.title" :link="item.link"
-                           :discount="item.discount" :cover-src="item.coverSrc" :cover-srcset="item.coverSrcset"
-                           :overlay-src="item.overlaySrc" :overlay-srcset="item.overlaySrcset"
-                           :is-period="item.isPeriod" :id="item.id" :is-sold-out="item.isSoldOut"/>
+              <ProductCard class="mb-1"
+                           v-for="item in list"
+                           :category="item.category"
+                           :price="item.price"
+                           :title="item.title"
+                           :link="item.link"
+                           :discount="item.discount"
+                           :cover-src="item.coverSrc"
+                           :cover-srcset="item.coverSrcset"
+                           :overlay-src="item.overlaySrc"
+                           :overlay-srcset="item.overlaySrcset"
+                           :is-period="item.isPeriod"
+                           :id="item.id"
+                           :is-sold-out="item.isSoldOut"/>
             </div>
           </column>
         </row>
@@ -31,9 +41,14 @@
           <column col="12">
             <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-1.5">
               <ProductCard class="mb-1" v-for="item in productListData" :price="item.price" :title="item.title"
-                           :link="item.link" :discount="item.discount" :cover-src="item.coverSrc"
-                           :cover-srcset="item.coverSrcset" :overlay-src="item.overlaySrc"
-                           :overlay-srcset="item.overlaySrcset" :is-period="item.isPeriod" :id="item.id"
+                           :category="item.category"
+                           :link="item.link"
+                           :discount="item.discount"
+                           :cover-src="item.coverSrc"
+                           :cover-srcset="item.coverSrcset"
+                           :overlay-src="item.overlaySrc"
+                           :overlay-srcset="item.overlaySrcset"
+                           :is-period="item.isPeriod" :id="item.id"
                            :is-sold-out="item.isSoldOut"/>
             </div>
           </column>

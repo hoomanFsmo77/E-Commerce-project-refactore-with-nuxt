@@ -69,7 +69,7 @@ export const Products=defineStore('product',{
             this.productListErrorFlag=false
             try {
                 const data=await $fetch<Product_Item[]>(`/api/collection/${name}`,{headers:{'Authentication':token.value}})
-                this.productListData=data
+                this.productListData=data.map(item=>{return {...item,category:name}})
                 this.productListFetchFlag=true
             }catch (err) {
                 this.productListErrorFlag=true

@@ -8,8 +8,8 @@ const toast = useToast()
 export const Cart=defineStore('cart',{
     state:():Cart_Store=>{
         return {
-            cart:getData()?.cart ?? [],
-            totalPrice:getData()?.totalPrice ?? 0
+            cart:getData(process.env.STORAGE_NAME as string)?.cart ?? [],
+            totalPrice:getData(process.env.STORAGE_NAME as string)?.totalPrice ?? 0
         }
     },
     getters:{
@@ -45,7 +45,7 @@ export const Cart=defineStore('cart',{
                 total+=Number(item.priceDetail.price)* item.quantity
             })
             this.totalPrice=total
-            storeData({
+            storeData(process.env.STORAGE_NAME as string,{
                 cart:this.cart,
                 totalPrice:this.totalPrice
             })

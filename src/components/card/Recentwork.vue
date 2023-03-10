@@ -13,7 +13,8 @@
       <h6 class="">{{subTitle}}</h6>
       <h3 class="font-700 my-0.5">{{title}}</h3>
       <NuxtLink class="btn btn-dark-outline block my-1 w-full !py-0.6"
-      :to="link"
+                :to="recentWorkLink"
+                @click="saveStateIfProduct"
       >
         Show more
       </NuxtLink>
@@ -21,22 +22,43 @@
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "@vue/runtime-core";
-export default defineComponent({
-  name: "RecentWorkCard",
-  props:['src','srcset','subTitle','title','link'],
-  data(){
-    return{
-      isLoading:true as boolean
-    }
+<script lang="ts" setup>
+type Link={
+  name:string,
+  params:{
+    name:string
   },
-  methods:{
-    imageLoad(){
-      this.isLoading=false
-    }
+  query:{id:string},
+  hash:string
+}
+const props=defineProps<{
+  src:string
+  srcset:string
+  subTitle:string
+  title:string
+  link:Link
+}>()
+const isLoading=ref<boolean>(true)
+const productIdState=useState<string>('productIdState')
+const productCategoryState=useState<string>('productCategoryState')
+const imageLoad = () => {
+  isLoading.value=false
+}
+const recentWorkLink = computed<string|Link>(()=>{
+  if(props.link.name==='Product-Item-name'){
+    return `/Product/Item/${props.link.params.name}`
+  }else if(props.link.name==='Product-Art-name'){
+    return `/Product/Art/${props.link.params.name}`
+  }else{
+    return  props.link
   }
 })
+const saveStateIfProduct = () => {
+  if(props.link.name.includes('Product')){
+    productIdState.value=props.link.query.id
+    productCategoryState.value=props.link.hash.slice(1)
+  }
+}
 </script>
 
 <style scoped>
