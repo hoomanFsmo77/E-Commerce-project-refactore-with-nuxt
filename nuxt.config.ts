@@ -30,7 +30,8 @@ export default defineNuxtConfig({
         collections:process.env.COLLECTIONS,
         recentWork:process.env.RECENT_WORK,
         instagramFeed:process.env.INSTAGRAM_FEED,
-        productDetail:process.env.PRODUCT_DETAIL
+        productDetail:process.env.PRODUCT_DETAIL,
+        pagesData:process.env.PAGES
     },
     postcss:{
         plugins: {

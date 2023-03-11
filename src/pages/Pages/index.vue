@@ -1,10 +1,10 @@
 <template>
-pages {{$route.params.name}}
+  <NuxtPage />
 </template>
 
 <script>
 export default {
-  name: "[name]"
+  name: "index"
 }
 </script>
 

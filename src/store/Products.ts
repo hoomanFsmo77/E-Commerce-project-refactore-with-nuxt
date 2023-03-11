@@ -12,7 +12,7 @@ export const Products=defineStore('product',{
             popularFetchFlag:false,
 
             productDetail:null,
-            productDetailFetchFlag:false
+            productDetailFetchFlag:false,
         }
     },getters:{
         getProductListFetchFlag(state){
@@ -69,7 +69,7 @@ export const Products=defineStore('product',{
             this.productListErrorFlag=false
             try {
                 const data=await $fetch<Product_Item[]>(`/api/collection/${name}`,{headers:{'Authentication':token.value}})
-                this.productListData=data.map(item=>{return {...item,category:name}})
+                this.productListData=data
                 this.productListFetchFlag=true
             }catch (err) {
                 this.productListErrorFlag=true
@@ -84,6 +84,7 @@ export const Products=defineStore('product',{
                 this.productDetail=data
             }catch (err) {
                 console.log(err)
+                navigateTo('/')
             }finally {
                 this.productDetailFetchFlag=true
             }

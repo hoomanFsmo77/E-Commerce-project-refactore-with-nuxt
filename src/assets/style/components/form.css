@@ -15,7 +15,7 @@
     @apply py-1.2 px-2 text-1.2
   }
   .btn-dark-fill{
-    @apply bg-dark text-light [&_*]:text-light hover:bg-[#444] transition-all;
+    @apply !bg-dark text-light [&_*]:text-light hover:!bg-[#444] transition-all;
   }
   .btn-dark-outline{
     @apply bg-light border-[1px] border-dark  font-700 !text-1.1 text-dark  hover:bg-dark hover:text-light transition-all;

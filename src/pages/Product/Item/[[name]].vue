@@ -1,13 +1,13 @@
 <template>
-  <section  :id="`product-show-id-${productIdState}`">
+  <section  :id="`product-show-id-${helperData.productId}`">
     <container>
       <row>
         <column col="12">
           <BreadCrumb :pages="
             [{name:'Home',link:{name:'index'}},
             {name:'Collections',link:{name:'Collections-All'}},
-            {name:productCategoryState?.split('-')?.join(' ') ?? '',link:{name:'Collections-name',params:{name:productCategoryState}}},
-            {name:$route?.params?.name.split('-').join(' ') ?? ''}]"
+            {name:helperData?.category?.split('-')?.join(' ') ?? '',link:{name:'Collections-name',params:{name:helperData?.category ?? ''}}},
+            {name:productData?.title?.split('-').join(' ') ?? ''}]"
           />
         </column>
       </row>
@@ -155,12 +155,10 @@ import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import {useProductStore} from "~/composables/useStore";
 //////////////////////////////////////
 const route=useRoute()
-const productCategoryState=useState<string>('productCategoryState')
-const productIdState=useState<string>('productIdState')
 const {next,prev,settings,carousel}=useCarousel()
 const {productData,productDetailFlag,popularProducts,popularProductFetchFlag}=useProductStore()
 const {addToCart,decrement,increment,changeSize,totalPriceWithFrame,totalPriceWithOutFrame,setSelectedSize,helperData}=useProduct(carousel)
-useHead({title:`${(route.params.name as string).split('-').join(' ')}}`})
+useHead({title:`${(route.params.name as string).split('-').join(' ')}`})
 definePageMeta({middleware:'product'})
 </script>
 

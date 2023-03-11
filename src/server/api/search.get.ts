@@ -1,18 +1,11 @@
-import {getCookie, getQuery, H3Event} from "h3";
+import {getQuery, H3Event} from "h3";
 import {filterProducts} from "~/utils/Helper";
 
 // @ts-ignore
 export default defineEventHandler(async (ev:H3Event)=>{
     const query=await getQuery(ev)
-    const {apiBase,productList,cookieName}=useRuntimeConfig()
-    const headerToken=ev.node.req.headers.authentication
-    const cookie=getCookie(ev,cookieName)
-    if (typeof cookie==='undefined' || typeof headerToken==='undefined' && cookie!==headerToken){
-        return createError({
-            statusCode:501,
-            statusMessage:'unauthorized token!'
-        })
-    }else if(!query.name){
+    const {apiBase,productList}=useRuntimeConfig()
+    if(!query.name){
         return createError({
             statusCode:402,
             statusMessage:'missing query name!'

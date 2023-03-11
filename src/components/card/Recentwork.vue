@@ -14,7 +14,6 @@
       <h3 class="font-700 my-0.5">{{title}}</h3>
       <NuxtLink class="btn btn-dark-outline block my-1 w-full !py-0.6"
                 :to="recentWorkLink"
-                @click="saveStateIfProduct"
       >
         Show more
       </NuxtLink>
@@ -39,26 +38,19 @@ const props=defineProps<{
   link:Link
 }>()
 const isLoading=ref<boolean>(true)
-const productIdState=useState<string>('productIdState')
-const productCategoryState=useState<string>('productCategoryState')
 const imageLoad = () => {
   isLoading.value=false
 }
 const recentWorkLink = computed<string|Link>(()=>{
   if(props.link.name==='Product-Item-name'){
-    return `/Product/Item/${props.link.params.name}`
+    return `/Product/Item/${props.link.params.name}?id=${props.link.query.id}${props.link.hash}`
   }else if(props.link.name==='Product-Art-name'){
-    return `/Product/Art/${props.link.params.name}`
+    return `/Product/Art/${props.link.params.name}?id=${props.link.query.id}${props.link.hash}`
   }else{
     return  props.link
   }
 })
-const saveStateIfProduct = () => {
-  if(props.link.name.includes('Product')){
-    productIdState.value=props.link.query.id
-    productCategoryState.value=props.link.hash.slice(1)
-  }
-}
+
 </script>
 
 <style scoped>

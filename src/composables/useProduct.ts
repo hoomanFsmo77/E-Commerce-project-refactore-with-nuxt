@@ -5,17 +5,10 @@ import {Cart_Item} from "~/utils/Types";
 export default (carousel:any)=>{
     const {productStore,productData,popularProductFetchFlag}=useProductStore()
     const {cartStore}=useCartStore()
-    const productIdState=useState<string>('productIdState')
     const route=useRoute()
-
-
-    // const productId=ref(route.query.id)
-    // const quantity=ref(1)
-    // const sizeIndex=ref(0)
-    // const familyIndex=ref(0)
-    // const whichFrame=ref(0)
     const helperData=reactive({
         productId:route.query.id as string,
+        category:route.hash.slice(1),
         quantity:1 as number,
         sizeIndex:0 as number,
         familyIndex:0 as number,
@@ -70,7 +63,7 @@ export default (carousel:any)=>{
     const userProductDetail=computed<Cart_Item|null>(()=>{
         if(productData.value){
             return{
-                category:route.hash,
+                category:helperData.category,
                 src:productData.value.gallery[0].src,
                 available:productData.value.available,
                 link:route.fullPath,
@@ -105,8 +98,9 @@ export default (carousel:any)=>{
 
 
     onMounted(()=>{
-        productStore.triggerFetchProductDetail(productIdState.value)
+        productStore.triggerFetchProductDetail(helperData.productId)
     })
+
 
 
 

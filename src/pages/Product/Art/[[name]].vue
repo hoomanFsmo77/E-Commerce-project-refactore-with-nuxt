@@ -1,13 +1,13 @@
 <template>
-  <section class="relative" :id="`product-show-id-${productIdState}`">
+  <section class="relative" :id="`product-show-id-${helperData.productId}`">
     <container >
       <row>
         <column col="12">
           <BreadCrumb :pages="
             [{name:'Home',link:{name:'index'}},
             {name:'Collections',link:{name:'Collections-All'}},
-            {name:productCategoryState?.split('-')?.join(' ') ?? '',link:{name:'Collections-name',params:{name:productCategoryState}}},
-            {name:$route?.params?.name.split('-').join(' ') ?? ''}]"
+            {name:helperData?.category?.split('-')?.join(' ') ?? '',link:{name:'Collections-name',params:{name:helperData?.category ?? ''}}},
+            {name:productData?.title?.split('-').join(' ') ?? ''}]"
           />
         </column>
       </row>
@@ -349,8 +349,6 @@ let faqData=[
   },
 ]
 const route=useRoute()
-const productCategoryState=useState<string>('productCategoryState')
-const productIdState=useState<string>('productIdState')
 const {productData,productDetailFlag,popularProducts,popularProductFetchFlag}=useProductStore()
 const {next,prev,settings,carousel}=useCarousel()
 const {addToCart,decrement,increment,changeSize,totalPriceWithFrame,totalPriceWithOutFrame,helperData,changeFrame,changeFamily}=useProduct(carousel)

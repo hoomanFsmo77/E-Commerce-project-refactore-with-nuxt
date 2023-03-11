@@ -31,25 +31,17 @@ export default (props:Props)=>{
     const isLoading=ref<boolean>(true)
     const isModalActive=ref<boolean>(false)
 
-    const productIdState=useState<string>('productIdState')
-    const productCategoryState=useState<string>('productCategoryState')
 
     let discountPercent=computed<number|undefined>(()=>props.discount && Math.ceil((1-(props.discount / props.price))*100))
 
-
-
     const productLink=computed<string>(()=>{
         if(props.link.name==='Product-Item-name'){
-            return `/Product/Item/${props.link.params.name}`
+            return `/Product/Item/${props.link.params.name}?id=${props.id}#${props.category}`
         }else{
-            return `/Product/Art/${props.link.params.name}`
+            return `/Product/Art/${props.link.params.name}?id=${props.id}#${props.category}`
         }
     })
 
-    const saveProductState = () => {
-        productIdState.value=props.id
-        productCategoryState.value=props.category as string
-    }
 
 
 
@@ -103,5 +95,5 @@ export default (props:Props)=>{
 
     }
 
-    return {discountPercent,toggleModal,closeModal,isModalActive,isLoading,imageLoad,addToCart,saveProductState,addToCartFlag,productLink}
+    return {discountPercent,toggleModal,closeModal,isModalActive,isLoading,imageLoad,addToCart,addToCartFlag,productLink}
 }
