@@ -24,9 +24,10 @@ const policyData = ref<any[]>([])
 const fetchFlag = ref<boolean>(false)
 const route = useRoute()
 onMounted(async ()=>{
+  const token=useState<string>('x_token_x')
   fetchFlag.value=false
   try {
-    const data=await $fetch(`/api/policy/${route.params.name}`)
+    const data=await $fetch(`/api/policy/${route.params.name}`,{headers:{'Authentication':token.value}})
     policyData.value=data
   }catch (err) {
     createError({
