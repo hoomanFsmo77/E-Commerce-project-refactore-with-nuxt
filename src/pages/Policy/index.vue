@@ -1,5 +1,5 @@
 <template>
-policy index
+  <NuxtPage />
 </template>
 
 <script>
