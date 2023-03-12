@@ -18,7 +18,7 @@
       <NuxtLink
           :class="{'peer':!isLoading}"
           class="stretch-link"
-          :to="productLink"
+          :to="$link(link,id,category)"
       ></NuxtLink>
       <div v-if="overlaySrc" class="product-card-image-overlay peer-hover:opacity-100 peer-hover:visible">
         <nuxt-img
@@ -67,7 +67,7 @@
 <!--      <<<<<<<<<<< title start >>>>>>>>>>>>>-->
       <NuxtLink
           class="btn-link !text-1.4 !font-700  "
-          :to="productLink"
+          :to="$link(link,id,category)"
       >
         {{title}}
       </NuxtLink>
@@ -112,6 +112,7 @@
 <script setup lang="ts">
 import { HollowDotsSpinner } from 'epic-spinners'
 import {useProductStore} from "~/composables/useStore";
+const {$link}=useNuxtApp()
 type Link={
   name:string,
   params:{
@@ -132,7 +133,7 @@ let props=defineProps<{
   category?:string
   discount?:number
 }>()
-const {isModalActive,closeModal,toggleModal,discountPercent,isLoading,imageLoad,addToCart, productLink,addToCartFlag}=useProductCard(props)
+const {isModalActive,closeModal,toggleModal,discountPercent,isLoading,imageLoad,addToCart,addToCartFlag}=useProductCard(props)
 const {productDetailFlag}=useProductStore()
 </script>
 

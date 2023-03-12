@@ -27,12 +27,14 @@ export const corePagination= (props:Props,emit:Emit)=>{
     const paginating = (index:number) => {
       currentPage.value=index
         updateSource(currentPage.value)
+        if(process.client){window.scrollTo(0,0)}
     }
     const next = () => {
       currentPage.value++
         if(currentPage.value>pages.value){
             currentPage.value=1
         }
+        if(process.client){window.scrollTo(0,0)}
         updateSource(currentPage.value)
     }
     const prev = () => {
@@ -40,6 +42,7 @@ export const corePagination= (props:Props,emit:Emit)=>{
         if(currentPage.value<1){
             currentPage.value=pages.value
         }
+        if(process.client){window.scrollTo(0,0)}
         updateSource(currentPage.value)
     }
 

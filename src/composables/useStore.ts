@@ -8,8 +8,12 @@ export const useSearchStore=()=>{
     const searchStore=Search()
     const searchFlag=computed<boolean>(()=>searchStore.getNavbarSearchFlag)
     const searchResult=computed(()=>searchStore.getNavbarSearchResult)
+    const searchLen=computed(()=>searchStore.searchLength)
+    const mainSearchResult=computed(()=>searchStore.getMainSearchResult)
+    const mainSearchFlag=computed(()=>searchStore.getMainSearchFlag)
 
-    return {searchStore,searchFlag,searchResult}
+
+    return {searchStore,searchFlag,searchResult,searchLen,mainSearchFlag,mainSearchResult}
 }
 
 export const useCartStore=()=>{

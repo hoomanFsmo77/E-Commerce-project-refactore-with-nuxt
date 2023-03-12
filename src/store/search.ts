@@ -45,7 +45,7 @@ export const Search=defineStore('search',{
                         name:value
                     }
                 })
-                this.navbarSearchResult.collection=filterCollection(collectionStore.getAllList,value)
+                this.navbarSearchResult.collection=filterCollection(collectionStore.getAllList ?? undefined,value)
                 this.navbarSearchResult.product=product
                 this.navbarSearchFlag=true
             }catch (err) {
@@ -54,6 +54,27 @@ export const Search=defineStore('search',{
         },
         setCollectionList(data:Collection_Item[]){
             this.navbarSearchResult.collection=data
+        },
+        async triggerMainSearch(value:string){
+            const token=useState<string>('x_token_x')
+            this.mainSearchResult=[]
+            this.mainSearchFlag=false
+            try {
+                const product=await $fetch<Product_Item[]>('/api/search',{
+                    headers: {'Authentication':token.value},
+                    query:{name:value}
+                })
+                this.mainSearchResult=product
+            }catch (err) {
+                console.log(err)
+                createError({
+                    statusCode:500,
+                    statusMessage:'server error!',
+                    message:'server error!'
+                })
+            }finally {
+                this.mainSearchFlag=true
+            }
         }
     }
 })

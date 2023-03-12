@@ -26,7 +26,7 @@ type Link={
 export default (props:Props)=>{
     const {productStore}=useProductStore()
     const {cartStore}=useCartStore()
-
+    const {$link}=useNuxtApp()
     const addToCartFlag=useState<boolean>('addToCartFlag',()=>false)
     const isLoading=ref<boolean>(true)
     const isModalActive=ref<boolean>(false)
@@ -34,13 +34,6 @@ export default (props:Props)=>{
 
     let discountPercent=computed<number|undefined>(()=>props.discount && Math.ceil((1-(props.discount / props.price))*100))
 
-    const productLink=computed<string>(()=>{
-        if(props.link.name==='Product-Item-name'){
-            return `/Product/Item/${props.link.params.name}?id=${props.id}#${props.category}`
-        }else{
-            return `/Product/Art/${props.link.params.name}?id=${props.id}#${props.category}`
-        }
-    })
 
 
 
@@ -74,7 +67,7 @@ export default (props:Props)=>{
             cartStore.addToUserCart({
                 src:data.gallery[0].src,
                 available:data.available,
-                link:productLink.value,
+                link:$link(props.link,props.id,props.category),
                 srcset:data.gallery[0].srcset,
                 title:data.title,
                 productId:props.id,
@@ -95,5 +88,5 @@ export default (props:Props)=>{
 
     }
 
-    return {discountPercent,toggleModal,closeModal,isModalActive,isLoading,imageLoad,addToCart,addToCartFlag,productLink}
+    return {discountPercent,toggleModal,closeModal,isModalActive,isLoading,imageLoad,addToCart,addToCartFlag}
 }

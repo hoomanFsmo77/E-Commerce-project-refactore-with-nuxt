@@ -116,7 +116,14 @@ export type Link={
         name:string
     }
 }
-
+export interface Ex_Link {
+    name:string,
+    params:{
+        name:string
+    }
+    query:{id:string},
+    hash:string
+}
 
 ////////////// recent work type
 export interface Recent_Work {

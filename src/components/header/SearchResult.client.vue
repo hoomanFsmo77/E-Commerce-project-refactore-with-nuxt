@@ -15,7 +15,8 @@
                   :srcset="item.coverSrcset"
                   :src="item.coverSrc" height="110"  class="responsive-image rounded-8" alt="" />
               <span class="mt-0.5 block font-600">$45.00</span>
-              <NuxtLink :to="{name:item.link.name,params:{name:item.link.params.name},query:{id:item.id},hash:`#${item.category}`}" class="font-600 btn-stretch btn-link">{{item.title}}</NuxtLink>
+
+              <NuxtLink :to="$link(item.link,item.id,item.category)" class="font-600 btn-stretch btn-link">{{item.title}}</NuxtLink>
             </div>
           </template>
           <template v-else>
@@ -48,7 +49,7 @@
           </ul>
         </div>
         <div class="flex sticky bottom-0 bg-light justify-center mt-1 shadow-[0_0_40px_rgba(0,0,0,0.2)] p-1">
-          <NuxtLink class="btn btn-dark-fill w-full text-center" :to="{name:'search',query:{search:searchText}}">
+          <NuxtLink class="btn btn-dark-fill w-full text-center" :to="{name:'search',query:{name:searchText}}">
             Search for "{{searchText}}"
           </NuxtLink>
         </div>
@@ -58,14 +59,12 @@
 </template>
 
 <script setup lang="ts">
+const {$link}=useNuxtApp()
 let props=defineProps<{
   searchText:string,
   isFire:boolean
 }>();
 const {searchResult,searchFlag}=useSearchStore()
-
-
-
 </script>
 
 <style scoped>
