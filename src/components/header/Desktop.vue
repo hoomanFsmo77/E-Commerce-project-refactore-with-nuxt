@@ -14,9 +14,9 @@
         <DarkOverlay z-index="999" @outside="closeResult($event)" :is-fire="searchBoxFlag"/>
         <HeaderSearchResult :is-fire="searchBoxFlag" :search-text="searchText"/>
       </div>
-      <NuxtLink :to="{name:'cart'}" class="btn btn-dark-fill">
+      <NuxtLink to="/cart" class="btn btn-dark-fill">
         <font-awesome-icon size="lg" icon="fa-solid fa-cart-shopping" />
-        <span class="odd:hidden">${{totalPrice}} ({{cartLength}})</span>
+        <span class="even:hidden">${{totalPrice}} ({{cartLength}})</span>
       </NuxtLink>
     </column>
   </row>

@@ -20,11 +20,12 @@ export const useCartStore=()=>{
     const cartStore=Cart()
     const cartLength=computed<number>(()=>cartStore.cartLength)
     const totalPrice=computed<number|string>(()=>cartStore.getTotalPrice)
+    const cartList=computed(()=>cartStore.getCart)
 
     return{
         cartStore,
         cartLength,
-        totalPrice
+        totalPrice,cartList
     }
 }
 

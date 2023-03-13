@@ -21,7 +21,7 @@ export const getData = (name:string):{cart:Cart_Item[],totalPrice:number}|null =
     }
 
 }
-
+export const generateRandomNumber=():number=>Math.floor(Math.random()*1000000000)
 
 export const filterCollection = (data:Collection_Item[]|undefined,searchText:string) => {
     if(data){

@@ -84,7 +84,7 @@ export const Products=defineStore('product',{
                 this.productDetail=data
             }catch (err) {
                 console.log(err)
-                navigateTo('/')
+                showError({message:'Product not found!',statusCode:404,fatal:true})
             }finally {
                 this.productDetailFetchFlag=true
             }

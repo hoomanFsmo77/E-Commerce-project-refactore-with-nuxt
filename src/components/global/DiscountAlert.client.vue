@@ -40,9 +40,10 @@
 </template>
 
 <script setup lang="ts">
-const isDiscountActive=ref<boolean>(false)
+const storedData:boolean=!!JSON.parse(localStorage?.getItem('visitedDiscount') ?? 'false') ?? false;
+const isDiscountActive=ref<boolean>(storedData)
 const isSignUp=ref<boolean>(false)
-const hideDiscount=ref<boolean>(false)
+const hideDiscount=ref<boolean>(storedData)
 const isValid=ref<boolean>(false)
 const email=ref<string>('')
 const emailRegex=/^(\w+)(\@)(\w{4,6})(\.)(\w{2,3})$/g
@@ -51,10 +52,11 @@ const toggleDiscount = () => {
   isDiscountActive.value=!isDiscountActive.value
 }
 const submitDiscount = () => {
-  if(emailRegex.test(email.value)){
+  if(emailRegex.test(email.value) && process.client){
     isValid.value=true
     isSignUp.value=true
     hideDiscount.value=true
+    localStorage.setItem('visitedDiscount',JSON.stringify(true))
   }else{
     isValid.value=false
   }

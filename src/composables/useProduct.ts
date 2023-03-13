@@ -15,10 +15,6 @@ export default (carousel:any)=>{
         whichFrame:0 as number
     })
 
-
-
-    // const totalPriceWithFrame=computed(()=>productData.value.option.sizes[sizeIndex.value].frame ? (productData.value.option.sizes[sizeIndex.value].price + productData.value.option.sizes[sizeIndex.value].frame.price).toFixed(2) :  (productData.value.option.sizes[sizeIndex.value].price.toFixed(2) ?? productData.value.price.toFixed(2)));
-
     const totalPriceWithFrame=computed<number|string>(()=>{
         if(productData.value && productData.value.option.sizes){
             return productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) ?? Number(productData.value.price).toFixed(2)
@@ -27,12 +23,15 @@ export default (carousel:any)=>{
         }
     });
     /////////////////////////////////////////////
-    // const totalPriceWithOutFrame=computed(()=>productData.value?.option?.sizes ? productData.value.option.sizes[sizeIndex.value].price.toFixed(2) : productData.value.price.toFixed(2))
     const totalPriceWithOutFrame=computed<number|string>(()=>{
         if(productData.value){
-            return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2)
+            if(helperData.sizeIndex>-1){
+                return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2)
+            }else{
+                return  productData.value.price
+            }
         }else{
-            return  0
+            return 0
         }
     })
 
@@ -45,9 +44,6 @@ export default (carousel:any)=>{
     }
     const increment = () => {
         helperData.quantity++
-        // if(helperData.quantity>productData.value.available){
-        //     helperData.quantity=productData.value.available
-        // }
         if(productData.value && helperData.quantity>productData.value.available){
             helperData.quantity=productData?.value.available
         }
@@ -85,12 +81,11 @@ export default (carousel:any)=>{
 
     })
     const addToCart = () => {
-        // cartStore.addToUserCart(userProductDetail.value)
         if(userProductDetail.value){
             cartStore.addToUserCart(userProductDetail.value)
         }
     }
-    const setSelectedSize = computed(() => {
+    const setSelectedSize = computed(():void => {
         if(popularProductFetchFlag.value && productData.value && productData.value.option.sizes){
             helperData.sizeIndex=productData.value.option.sizes.findIndex(item=>item.available)
         }
@@ -100,9 +95,6 @@ export default (carousel:any)=>{
     onMounted(()=>{
         productStore.triggerFetchProductDetail(helperData.productId)
     })
-
-
-
 
 
     const changeFrame = (index:number) => {

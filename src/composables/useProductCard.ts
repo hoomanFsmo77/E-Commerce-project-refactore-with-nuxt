@@ -27,16 +27,10 @@ export default (props:Props)=>{
     const {productStore}=useProductStore()
     const {cartStore}=useCartStore()
     const {$link}=useNuxtApp()
-    const addToCartFlag=useState<boolean>('addToCartFlag',()=>false)
+    const addToCartFlag=ref<boolean>(false)
     const isLoading=ref<boolean>(true)
     const isModalActive=ref<boolean>(false)
-
-
-    let discountPercent=computed<number|undefined>(()=>props.discount && Math.ceil((1-(props.discount / props.price))*100))
-
-
-
-
+    const discountPercent=computed<number|undefined>(()=>props.discount && Math.ceil((1-(props.discount / props.price))*100))
 
     const toggleModal = () => {
         isModalActive.value=!isModalActive.value
@@ -60,32 +54,31 @@ export default (props:Props)=>{
 
     const addToCart = async () => {
         const token=useState<string>('x_token_x')
-        const {public:{apiBase}}=useRuntimeConfig()
         addToCartFlag.value=true
         try {
-            const data=await $fetch<Product_Item>(apiBase + `product/productDetailData/${props.id}.json`,{headers:{'Authentication':token.value}})
+            const data=await $fetch<Product_Item>(`/api/product/${props.id}`,{headers:{'Authentication':token.value}})
             cartStore.addToUserCart({
-                src:data.gallery[0].src,
-                available:data.available,
-                link:$link(props.link,props.id,props.category),
-                srcset:data.gallery[0].srcset,
-                title:data.title,
-                productId:props.id,
-                quantity:1,
-                priceDetail:{
-                    size: null,
-                    frame: null,
-                    price:data.price,
-                    family: null
-                },
-                discount:data.discount || null,
-                category:undefined
+                        src:data.gallery[0].src,
+                        available:data.available,
+                        link:$link(props.link,props.id,props.category),
+                        srcset:data.gallery[0].srcset,
+                        title:data.title,
+                        productId:props.id,
+                        quantity:1,
+                        priceDetail:{
+                            size: null,
+                            frame: null,
+                            price:data.price,
+                            family: null
+                        },
+                        discount:data.discount || null,
+                        category:undefined
             })
-            addToCartFlag.value=false
         }catch (err) {
             console.log(err)
+        }finally {
+            addToCartFlag.value=false
         }
-
     }
 
     return {discountPercent,toggleModal,closeModal,isModalActive,isLoading,imageLoad,addToCart,addToCartFlag}

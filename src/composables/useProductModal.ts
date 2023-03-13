@@ -15,14 +15,10 @@ interface Props {
 
 export default (carousel:any,props:Props)=>{
     const {productDetailFlag,productData}=useProductStore()
+    const {$link}=useNuxtApp()
     const {cartStore}=useCartStore()
     const route=useRoute()
 
-    // const productId=ref(props.id)
-    // const quantity=ref(1)
-    // const sizeIndex=ref(0)
-    // const familyIndex=ref(0)
-    // const whichFrame=ref(0)
     const helperData=reactive({
         productId:props.id as string,
         quantity:1 as number,
@@ -38,16 +34,18 @@ export default (carousel:any,props:Props)=>{
             return 0
         }
     });
-
-    
-
     const totalPriceWithOutFrame=computed<number|string>(()=>{
         if(productData.value){
-            return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2)
-        }else{
-            return  0
+            if(helperData.sizeIndex>-1){
+                return productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2)
+            }else{
+                return  productData.value.price
+            }
+        }else {
+            return 0
         }
     })
+
 
 
     const changeSize = (target:{available:number,size:string},index:number) => {
@@ -78,7 +76,7 @@ export default (carousel:any,props:Props)=>{
                 available:productData.value.available,
                 title:productData.value.title,
                 productId:helperData.productId,
-                link:props.link,
+                link:$link(props.link,props.id,props.category),
                 category:props.category ?? route.params.name as string,
                 quantity:helperData.quantity,
                 priceDetail:{
