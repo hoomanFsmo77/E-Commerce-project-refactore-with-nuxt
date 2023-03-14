@@ -2,10 +2,9 @@
   :id/checkout/information/:token
 </template>
 
-<script>
-export default {
-  name: "[token]"
-}
+<script lang="ts" setup>
+definePageMeta({layout:false})
+
 </script>
 
 <style scoped>

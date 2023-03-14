@@ -2,6 +2,7 @@ import {Cart} from "~/store/cart";
 import {Search} from "~/store/search";
 import {Collection} from "~/store/collection";
 import {Products} from "~/store/Products";
+import {Checkout} from "~/store/checkout";
 import {Product_Item,Collection_Item} from "~/utils/Types";
 
 export const useSearchStore=()=>{
@@ -57,5 +58,16 @@ export const useProductStore=()=>{
         productData,
         productDetailFlag,popularProducts,popularProductFetchFlag,productListData,
         fetchFlag, errorFlag
+    }
+}
+
+export const useCheckoutStore=()=>{
+    const checkoutStore=Checkout()
+    const userInformationShippingStore=computed(()=>checkoutStore.getUserInformationShipping)
+    const hasShippingStore=computed(()=>checkoutStore.hasShippingMethod)
+
+
+    return{
+        checkoutStore,userInformationShippingStore,hasShippingStore
     }
 }

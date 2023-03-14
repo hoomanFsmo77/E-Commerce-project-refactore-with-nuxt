@@ -14,6 +14,8 @@ export default defineEventHandler(async ev=>{
         url==='/api/search' ||
         url==='/api/recent' ||
         url==='/api/instagram' ||
+        url==='/api/cart' ||
+        url?.includes('/api/checkout') ||
         url?.includes('/api/collection') ||
         url?.includes('/api/product') ||
         url?.includes('/api/pages') ||

@@ -144,3 +144,13 @@ export interface Instagram_Feed {
     date:string
     link:string
 }
+
+/////// checkout store
+export interface Checkout_Store {
+    userInfo:{
+        contact:any,
+        shipping:any,
+        card:any,
+        rememberMe:any
+    }
+}

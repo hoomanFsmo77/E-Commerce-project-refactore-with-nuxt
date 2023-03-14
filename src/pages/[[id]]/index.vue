@@ -1,10 +1,10 @@
 <template>
-  :id/checkout/information/:token
+  <NuxtPage />
 </template>
 
 <script>
 export default {
-  name: "[token]"
+  name: "index"
 }
 </script>
 

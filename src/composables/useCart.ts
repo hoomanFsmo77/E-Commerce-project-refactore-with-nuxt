@@ -1,7 +1,7 @@
 import {Link,Cart_Item} from "~/utils/Types";
 import {useCartStore} from "~/composables/useStore";
 import {useToast} from "vue-toastification";
-import {makeRandomHash,generateRandomNumber} from '~/utils/Helper'
+import {RouteLocationRaw} from "vue-router";
 interface Props {
     src:string
     srcset:string
@@ -62,31 +62,20 @@ export const useCart=()=>{
 
     const toast = useToast()
 
-    const goToCheckout = () => {
-        const cookie=process.client ? document.cookie.includes('secure_session_id') : null
+    const goToCheckout = async () => {
+        const token=useState<string>('x_token_x')
         if(cartLength.value>0){
-            if(cookie){
-                // let id=getCookie('checkout_token').id
-                // let hash=getCookie('checkout_token').hash
-                // navigateTo(`/${id}/checkout/information/${hash}`)
-
-            }else{
-                let hash=makeRandomHash(20)
-                let id=generateRandomNumber()
-                let randomHashUrl=makeRandomHash(15)
-                // setCookie('secure_session_id',makeRandomHash(10),`/`,30)
-                // setCookie('checkout_token', JSON.stringify({id:id,hash:randomHashUrl}),`/`,30)
-                // setCookie('checkout',hash,`/${id}/checkout/${randomHashUrl}`,30)
-                // setCookie('tracked_start_session',randomHashUrl,`/${id}`,30)
-                navigateTo(`/${id}/checkout/information/${randomHashUrl}`)
-
+            try {
+                const informationLink=await $fetch<RouteLocationRaw>('/api/cart',
+                    {method:'POST',headers:{'Authentication':token.value}})
+                navigateTo(informationLink)
+            }catch (err) {
+                console.log(err)
             }
         }else{
             toast.error(`There is no item in your cart!`)
         }
     }
-
-
 
     return{
             goToCheckout
