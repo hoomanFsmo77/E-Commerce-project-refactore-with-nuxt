@@ -69,6 +69,10 @@ export default defineNuxtConfig({
     },
     srcDir: './src',
     modules: [
-        '@pinia/nuxt','@nuxt/image-edge'
+        '@pinia/nuxt','@nuxt/image-edge','@formkit/nuxt'
     ],
+    formkit:{
+        defaultConfig:false,
+        configFile:'./formkit.config.ts'
+    }
 })

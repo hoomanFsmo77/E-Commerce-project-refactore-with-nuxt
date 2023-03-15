@@ -2,7 +2,7 @@
   <template v-if="windowWidth>768">
     <td class="w-[60%]">
       <div class="flex  table-content-left items-center">
-        <router-link class="w-6 h-6 overflow-hidden block rounded-6" :to="productLink">
+        <NuxtLink class="w-6 h-6 overflow-hidden block rounded-6" :to="productLink">
           <img
               class="object-cover w-full h-full hover:scale-[1.1] transition-all"
               v-lazy="src"
@@ -10,15 +10,15 @@
               src=""
               alt=""
           >
-        </router-link>
+        </NuxtLink>
         <div class="ml-1.5">
           <p class="font-600 mb-0.2">
             ${{priceDetail.price}}
           </p>
           <p class=" mb-0.2">
-            <router-link class="btn-link font-700" :to="productLink">
+            <NuxtLink class="btn-link font-700" :to="productLink">
               {{title}}
-            </router-link>
+            </NuxtLink>
           </p>
           <p class="text-gray-500 mb-0.2" v-if="priceDetail.family">
             Choose Your Family Members: {{priceDetail.family}}
@@ -67,7 +67,7 @@
   </template>
   <template v-else>
     <div class="flex  mb-1.5 items-center">
-      <router-link class="w-6 h-6 overflow-hidden block rounded-6" :to="productLink">
+      <NuxtLink class="w-6 h-6 overflow-hidden block rounded-6" :to="productLink">
         <img
             class="object-cover w-full h-full hover:scale-[1.1] transition-all"
             v-lazy="src"
@@ -75,15 +75,15 @@
             src=""
             alt=""
         >
-      </router-link>
+      </NuxtLink>
       <div class="ml-1.5">
         <p class="font-600 mb-0.2 !text-0.8">
           ${{priceDetail.price}}
         </p>
         <p class=" mb-0.2 !text-0.8">
-          <router-link class="btn-link font-700" :to="productLink">
+          <NuxtLink class="btn-link font-700" :to="productLink">
             {{title}}
-          </router-link>
+          </NuxtLink>
         </p>
         <p class="text-gray-500 mb-0.2 !text-0.8"  v-if="priceDetail.family">
           Choose Your Family Members: {{priceDetail.family}}
