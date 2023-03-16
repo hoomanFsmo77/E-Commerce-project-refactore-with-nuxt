@@ -11,7 +11,7 @@ interface Props {
     category:string
     quantity:number
     priceDetail:Cart_Item['priceDetail']
-    discount:string
+    discount:number
     link:Link|string
     available:number
 }

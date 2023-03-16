@@ -82,3 +82,10 @@ export function makeRandomHash(length:number) {
     }
     return result;
 }
+
+
+
+export const Regex={
+    email:/^(\w+)(\@)(\w{4,6})(\.)(\w{2,3})$/g,
+    phone:/^\d{3}-\d{3}-\d{4}$/
+}as const;

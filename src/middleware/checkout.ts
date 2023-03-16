@@ -15,14 +15,11 @@ export default defineNuxtRouteMiddleware(async (to,from)=>{
                 'Authentication':token.value
             }
         })
-
-        console.log(checkValidation)
     }catch (err) {
-        console.log(err)
-        // abortNavigation({
-        //     statusCode:404,
-        //     statusMessage:'Page does not exist!'
-        // })
+        abortNavigation({
+            statusCode:404,
+            statusMessage:'Page does not exist!'
+        })
     }
 
 

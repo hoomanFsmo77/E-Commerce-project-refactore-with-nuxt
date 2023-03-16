@@ -13,41 +13,39 @@
       <row class="my-2">
         <column class="!pr-1.5 mb-2 md:mb-0" col="12" md="8">
           <template v-if="cartLength>0">
-            <template v-if="windowWidth>768">
-              <table cellspacing='0' cellpadding="0" class="table">
-                <thead >
-                <tr  >
-                  <th   class="text-left">
-                    <div class="table-head-left"><p>Product</p></div>
-                  </th>
-                  <th >
-                    <div class="table-head-center"><p>Quantity</p></div>
-                  </th>
-                  <th class="text-right">
-                    <div class="table-head-right"><p>Total</p></div>
-                  </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="cart in cartList">
-                  <CartItem
-                      :src="cart.src"
-                      :srcset="cart.srcset"
-                      :title="cart.title"
-                      :productId="cart.productId"
-                      :category="cart.category"
-                      :quantity="cart.quantity"
-                      :priceDetail="cart.priceDetail"
-                      :discount="cart.discount"
-                      :link="cart.link"
-                      :available="cart.available"
-                  />
-                </tr>
-                </tbody>
-              </table>
-            </template>
-            <template v-else>
-              <CartItem
+            <table  cellspacing='0' cellpadding="0" class="table md:block hidden">
+              <thead >
+              <tr  >
+                <th   class="text-left">
+                  <div class="table-head-left"><p>Product</p></div>
+                </th>
+                <th >
+                  <div class="table-head-center"><p>Quantity</p></div>
+                </th>
+                <th class="text-right">
+                  <div class="table-head-right"><p>Total</p></div>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="cart in cartList">
+                <CartDesktopItem
+                    :src="cart.src"
+                    :srcset="cart.srcset"
+                    :title="cart.title"
+                    :productId="cart.productId"
+                    :category="cart.category"
+                    :quantity="cart.quantity"
+                    :priceDetail="cart.priceDetail"
+                    :discount="cart.discount"
+                    :link="cart.link"
+                    :available="cart.available"
+                />
+              </tr>
+              </tbody>
+            </table>
+            <div class="md:hidden block">
+              <CartMobileItem
                   v-for="cart in cartList"
                   :src="cart.src"
                   :srcset="cart.srcset"
@@ -60,7 +58,7 @@
                   :link="cart.link"
                   :available="cart.available"
               />
-            </template>
+            </div>
           </template>
           <template v-else>
             <div class="p-1 border-[1px] border-gray-200 rounded-6">
@@ -91,7 +89,6 @@
 import {useCartStore} from "~/composables/useStore";
 const {cartLength,totalPrice,cartList}=useCartStore()
 const {goToCheckout}=useCart()
-const windowWidth:number=process.client ? window.innerWidth : 0
 
 </script>
 

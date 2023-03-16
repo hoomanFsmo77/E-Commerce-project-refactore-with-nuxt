@@ -19,7 +19,7 @@
     </div>
     <div class="flex w-full justify-start gap-1 items-center py-0.8 border-b-[1px] border-t-[1px] border-gray-200 px-0.7">
       <font-awesome-icon icon="fa-solid fa-truck-fast" size="lg" class="text-dark"/>
-      <div class="even:hidden">
+      <div class="">
         <span class="text-0.6 block">Free Shipping in Australia</span>
         <span class="font-600 text-0.9  text-dark">Orders Over $70</span>
       </div>

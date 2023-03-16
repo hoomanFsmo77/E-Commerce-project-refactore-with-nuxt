@@ -32,7 +32,8 @@ export default defineNuxtConfig({
         instagramFeed:process.env.INSTAGRAM_FEED,
         productDetail:process.env.PRODUCT_DETAIL,
         pagesData:process.env.PAGES,
-        policyData:process.env.POLICY_DATA
+        policyData:process.env.POLICY_DATA,
+        countryApi:process.env.COUNTRY_API
     },
     postcss:{
         plugins: {

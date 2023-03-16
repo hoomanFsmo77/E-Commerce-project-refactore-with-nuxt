@@ -1,15 +1,13 @@
-
+import {Regex} from "~/utils/Helper";
 
 export const useCheckout=()=>{
     const isCollapse=useState<boolean>('isCollapse',()=>false)
     const token=useState<string>('x_token_x')
-
     //// modal
-    const isOpenModal=useState('isOpenCheckoutModal',()=>false)
+    const isOpenModal=ref<boolean>(false)
     const modalTarget=useState<string>('modalTarget',()=>'')
     const policyData=useState<any[]>('policyData',()=>[])
-    const fetchFlag=useState<boolean>('checkoutFetchFlag',()=>false)
-
+    const fetchFlag=ref<boolean>(false)
 
     ////
     const openModal = async (target:string) => {
@@ -149,13 +147,32 @@ export const useCheckout=()=>{
 
 
 export const useInformation=()=>{
-    const isAlertActive=useState<boolean>('isAlertActive',()=>false)
-    const contactInfo=useState<string>('contactInfo',()=>'')
+    const token=useState<string>('x_token_x')
     const route=useRoute()
+    const countryData=useState<any[]>('countryData',()=>[])
+    const stateData=useState<any[]>('stateData',()=>[])
+    const countryFlag=useState<boolean>('countryFlag',()=>false)
+    const isAlertActive=useState<boolean>('isAlertActive',()=>false)
     const formElement = ref<any>(null)
+    const isContactNumber=useState<boolean>('isContactNumber',()=>false)
 
-    onMounted(()=>{
+    function contactRule  (node:any)  {
+        const value=node.value
+        isContactNumber.value = !isNaN(value[0]);
+        if(Regex.phone.test(value)){return  true}else return Regex.email.test(value);
+    }
+
+    onMounted(async ()=>{
         isAlertActive.value=true
+        countryFlag.value=false
+        try {
+            const data=await $fetch<any[]>('/api/location/country',{headers:{'Authentication':token.value}})
+            countryData.value=data
+            countryFlag.value=true
+        }catch (err) {
+            console.log(err)
+        }
+        triggerStateChange('af')
     })
 
     const closeAlertModal = (e:boolean) => {
@@ -165,13 +182,26 @@ export const useInformation=()=>{
         const node = formElement.value.node
         node.submit()
     }
-    const goShipping = () => {
-        console.log('submitted')
+    const goShipping = (field:any) => {
+        console.log('submitted',field)
     }
 
+    const selectState = async (e:Event) => {
+        const value=(e.target as HTMLSelectElement).value
+        const targetCountry=countryData.value.filter(item=>{if(item.name===value){return item.code}})[0].code;
+      await triggerStateChange(targetCountry)
+    }
 
+    const triggerStateChange = async (targetCountry:string) => {
+        try {
+            const data=await $fetch<any[]>(`/api/location/${targetCountry}`,{headers:{'Authentication':token.value}})
+            stateData.value=data
+        }catch (err) {
+            console.log(err)
+        }
+    }
 
     return{
-        closeAlertModal,isAlertActive,goShipping,contactInfo,formElement,submitHandler
+        closeAlertModal,isAlertActive,goShipping,formElement,submitHandler,contactRule,isContactNumber,countryData,countryFlag,selectState,stateData
     }
 }

@@ -8,9 +8,8 @@ export default defineEventHandler(async ev=>{
     const cookie=getCookie(ev,cookieName)
     if(
         url==='/api/navbar' ||
-        url==='/api/collection/all' ||
         url==='/api/popular' ||
-        url==='/api/popular' ||
+        url?.includes('/api/location') ||
         url==='/api/search' ||
         url==='/api/recent' ||
         url==='/api/instagram' ||
