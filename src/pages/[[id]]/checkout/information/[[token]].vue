@@ -12,13 +12,14 @@
   </nav>
   <main>
     <h5 class="!font-500  mb-0.5">Contact Information</h5>
-    <FormKit @submit="goShipping" type="form" ref="formElement" :actions="false"  >
+    <FormKit v-if="userInformationContact" @submit="goShipping" type="form" ref="formElement" :actions="false"  >
       <FormKit
           :floating-label="true"
           label="Email or mobile phone number"
           label-class="!font-300 !text-0.9 !text-dark"
           name="contactInfo"
           type="text"
+          :value="userInformationContact?.contactInfo ?? ''"
           help-class="!font-300 !text-0.9 !text-dark"
           :delay="300"
           help="Hint: xxxx@gmail.com or  xxx-xxx-xxxx"
@@ -39,7 +40,7 @@
             inner-class="flex items-center"
             wrapper-class="flex items-center"
             name="news"
-            :value="false"
+            :value="userInformationContact?.news ?? false"
         />
       </template>
       <template v-else>
@@ -59,6 +60,7 @@
           label="Country/Region"
           input-class="w-full select"
           name="country"
+          :value="userInformationContact?.country ?? 'Afghanistan'"
           v-if="countryFlag"
           :options="countryData.map(item=>item.name)"
       >
@@ -77,6 +79,7 @@
               name="firstname"
               type="text"
               :delay="300"
+              :value="userInformationContact?.firstname ?? ''"
               validation="required"
               wrapper-class="my-0.5"
               input-class="input-float"
@@ -90,6 +93,7 @@
               label="Lastname"
               label-class="!font-300 !text-0.9 !text-dark"
               name="lastname"
+              :value="userInformationContact?.lastname ?? ''"
               type="text"
               :delay="300"
               validation="required"
@@ -108,6 +112,7 @@
                   label="Address"
                   label-class="!font-300 !text-0.9 !text-dark"
                   name="address"
+                  :value="userInformationContact?.address ?? ''"
                   type="text"
                   :delay="300"
                   validation="required"
@@ -125,6 +130,7 @@
                   label="Apartment, suite, etc. (optional)"
                   label-class="!font-300 !text-0.9 !text-dark"
                   name="addressType"
+                  :value="userInformationContact?.addressType ?? ''"
                   type="text"
                   :delay="300"
                   wrapper-class="my-0.5"
@@ -140,6 +146,7 @@
                label="City"
                label-class="!font-300 !text-0.9 !text-dark"
                name="city"
+               :value="userInformationContact?.city ?? ''"
                type="text"
                :delay="300"
                validation="required"
@@ -156,6 +163,7 @@
                label-class="select-label  absolute"
                type="select"
                label="State"
+               :value="userInformationContact?.state ?? 'lowa'"
                input-class="w-full select"
                validation="required"
                name="state"
@@ -177,6 +185,7 @@
                label="Zip code"
                label-class="!font-300 !text-0.9 !text-dark"
                name="zip"
+               :value="userInformationContact?.zip ?? ''"
                type="text"
                :delay="300"
                validation="required"
@@ -209,8 +218,9 @@
 
 <script setup lang="ts" >
 definePageMeta({layout:'checkout',middleware:'checkout'})
-const {closeModal,openModal,fetchFlag,policyData,modalTarget,isOpenModal}=useCheckout()
-const {goShipping,isAlertActive,closeAlertModal,formElement,submitHandler,contactRule,isContactNumber,countryData,countryFlag,selectState,stateData}=useInformation()
+const {userInformationContact}=useCheckoutStore();
+const {closeModal,openModal,fetchFlag,policyData,modalTarget,isOpenModal}=useCheckout();
+const {goShipping,isAlertActive,closeAlertModal,formElement,submitHandler,contactRule,isContactNumber,countryData,countryFlag,selectState,stateData}=useInformation();
 </script>
 
 <style>

@@ -3,7 +3,7 @@ import {Search} from "~/store/search";
 import {Collection} from "~/store/collection";
 import {Products} from "~/store/Products";
 import {Checkout} from "~/store/checkout";
-import {Product_Item,Collection_Item} from "~/utils/Types";
+import {Product_Item, Collection_Item, User_Information} from "~/utils/Types";
 
 export const useSearchStore=()=>{
     const searchStore=Search()
@@ -65,9 +65,9 @@ export const useCheckoutStore=()=>{
     const checkoutStore=Checkout()
     const userInformationShippingStore=computed(()=>checkoutStore.getUserInformationShipping)
     const hasShippingStore=computed(()=>checkoutStore.hasShippingMethod)
-
+    const userInformationContact=computed<User_Information|null>(()=>checkoutStore.getUserInformationContact)
 
     return{
-        checkoutStore,userInformationShippingStore,hasShippingStore
+        checkoutStore,userInformationShippingStore,hasShippingStore,userInformationContact
     }
 }

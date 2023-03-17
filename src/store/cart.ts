@@ -81,8 +81,8 @@ export const Cart=defineStore('cart',{
     },
 
     hydrate(state) {
-        state.cart=getData('_x_brentos_cart_')?.cart ?? []
-        state.totalPrice=getData('_x_brentos_cart_')?.totalPrice ?? 0
+        state.cart=getData<Cart_Store>('_x_brentos_cart_')?.cart ?? []
+        state.totalPrice=getData<Cart_Store>('_x_brentos_cart_')?.totalPrice ?? 0
     }
 
 

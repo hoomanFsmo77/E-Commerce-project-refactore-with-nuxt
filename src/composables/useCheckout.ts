@@ -1,4 +1,5 @@
 import {Regex} from "~/utils/Helper";
+import {User_Information,Shipping_Method} from "~/utils/Types";
 
 export const useCheckout=()=>{
     const isCollapse=useState<boolean>('isCollapse',()=>false)
@@ -35,120 +36,9 @@ export const useCheckout=()=>{
 
 
 
-// export const useCheckoutCollection=()=>{
-//     //// country
-//     const country=ref({
-//         code:'us',
-//         name:'United State of America'
-//     })
-//     const countryData=ref([])
-//     const countryFlag=ref(false)
-//
-//     //// state
-//     const stateFlag=ref(false)
-//     const state=ref({code:''})
-//     const stateData=ref([])
-//
-//     ///// form
-//     const contactInfo=ref('')
-//     const news=ref(false)
-//     const firstname=ref('')
-//     const lastname=ref('')
-//     const address=ref('')
-//     const addressType=ref('')
-//     const city=ref('')
-//     const zip=ref('')
-//
-//     const userInfo=computed(()=>{
-//         return{
-//             contactInfo:{
-//                 value:contactInfo.value,
-//                 valid:false
-//             },
-//             news:news.value,
-//             country:{
-//                 value:country.value,
-//                 valid:false
-//             },
-//             firstname:{
-//                 value:firstname.value,
-//                 valid:false
-//             },
-//             lastname:{
-//                 value:lastname.value,
-//                 valid:false
-//             },
-//             address:{
-//                 value:address.value,
-//                 valid:false
-//             },
-//             addressType:addressType.value,
-//             state:{
-//                 value:state.value,
-//                 valid:false
-//             },
-//             zip:{
-//                 value:zip.value,
-//                 valid:false
-//             },
-//             city:{
-//                 value:city.value,
-//                 valid:false
-//             }
-//         }
-//     })
-//
-//     watch(
-//         ()=>country.value,
-//         ()=>{
-//             state.value.code=''
-//             stateData.value=[]
-//             axios.get(`https://battuta.medunes.net/api/region/${country.value.code}/all/?key=470af792c1181f18e0ec0ec9cf03e091`).then(response=>{
-//                 stateData.value=response.data
-//                 stateFlag.value=true
-//             })
-//         },{
-//             immediate:true
-//         }
-//     )
-//     onMounted(()=>{
-//         axios.get('https://battuta.medunes.net/api/country/all/?key=470af792c1181f18e0ec0ec9cf03e091').then(response=>{
-//             countryData.value=response.data
-//             countryFlag.value=true
-//         })
-//     })
-//     const validation = (condition,target) => {
-//         if(condition){
-//             userInfo.value[target].valid=true
-//             return false;
-//         }else{
-//             userInfo.value[target].valid=false
-//             return true;
-//         }
-//     }
-//
-//     const setUserInformation = info => {
-//         country.value.code=info.country.value.code
-//         country.value.name=info.country.value.name
-//         state.value.code=info.state.value.code
-//         contactInfo.value=info.contactInfo.value
-//         news.value=info.news
-//         firstname.value=info.firstname.value
-//         lastname.value=info.lastname.value
-//         address.value=info.address.value
-//         addressType.value=info.addressType
-//         city.value=info.city.value
-//         zip.value=info.zip.value
-//     }
-//     return{
-//         country,countryData,countryFlag,state,stateData,contactInfo,news,firstname,lastname,address,addressType,city,zip,stateFlag,userInfo,validation,setUserInformation
-//     }
-// }
-
-
 export const useInformation=()=>{
+    const {checkoutStore,userInformationContact}=useCheckoutStore()
     const token=useState<string>('x_token_x')
-    const route=useRoute()
     const countryData=useState<any[]>('countryData',()=>[])
     const stateData=useState<any[]>('stateData',()=>[])
     const countryFlag=useState<boolean>('countryFlag',()=>false)
@@ -164,15 +54,9 @@ export const useInformation=()=>{
 
     onMounted(async ()=>{
         isAlertActive.value=true
-        countryFlag.value=false
-        try {
-            const data=await $fetch<any[]>('/api/location/country',{headers:{'Authentication':token.value}})
-            countryData.value=data
-            countryFlag.value=true
-        }catch (err) {
-            console.log(err)
-        }
-        triggerStateChange('af')
+        checkoutStore.setUserStoredInformation()
+        await triggerCountryFetchList()
+        await selectState(null,userInformationContact?.value?.country ?? 'Afghanistan')
     })
 
     const closeAlertModal = (e:boolean) => {
@@ -182,13 +66,31 @@ export const useInformation=()=>{
         const node = formElement.value.node
         node.submit()
     }
-    const goShipping = (field:any) => {
-        console.log('submitted',field)
+    const goShipping =async (field:User_Information) => {
+        try {
+            const data=await $fetch('/api/checkout/info',{
+                method:'POST',
+                headers:{'Authentication':token.value}
+            })
+            checkoutStore.setUserInformationContact(field)
+            navigateTo(data)
+        }catch (err) {
+            showError({
+                statusCode:404,
+                statusMessage:'You are not allowed to this page! try again.'
+            })
+        }
+
     }
 
-    const selectState = async (e:Event) => {
-        const value=(e.target as HTMLSelectElement).value
-        const targetCountry=countryData.value.filter(item=>{if(item.name===value){return item.code}})[0].code;
+    const selectState = async (e?:Event|null,country?:string) => {
+        let targetCountry;
+        if(country){
+            targetCountry=countryData.value.filter(item=>{if(item.name===country){return item.code}})[0].code;
+        }else if(e){
+            const value=(e.target as HTMLSelectElement).value
+            targetCountry=countryData.value.filter(item=>{if(item.name===value){return item.code}})[0].code;
+        }
       await triggerStateChange(targetCountry)
     }
 
@@ -200,8 +102,83 @@ export const useInformation=()=>{
             console.log(err)
         }
     }
+    const triggerCountryFetchList = async () => {
+        countryFlag.value=false
+        try {
+            const data=await $fetch<any[]>('/api/location/country',{headers:{'Authentication':token.value}})
+            countryData.value=data
+            countryFlag.value=true
+        }catch (err) {
+            console.log(err)
+        }
+    }
 
     return{
         closeAlertModal,isAlertActive,goShipping,formElement,submitHandler,contactRule,isContactNumber,countryData,countryFlag,selectState,stateData
+    }
+}
+
+
+export const useShipping=()=>{
+    const informationPageLink=useState<string>('informationPageLink',()=>'')
+    const token=useState<string>('x_token_x')
+    const {checkoutStore,userInformationShippingStore}=useCheckoutStore()
+    const methodIndex=useState<number>('methodIndex',()=> 0)
+    const selectedMethod=(index:number)=>{
+        methodIndex.value=index
+        console.log(index,methodIndex.value)
+        checkoutStore.setUserInformationShipping(shippingMethods[index])
+    }
+
+    onMounted(async ()=>{
+        if(userInformationShippingStore.value){
+            selectedMethod(userInformationShippingStore.value.id-1)
+        }else{
+            selectedMethod(0)
+        }
+        try {
+            const data=await $fetch<string>('/api/cart',{method:'POST',headers:{'Authentication':token.value}})
+            informationPageLink.value=data
+        }catch (err) {
+            showError({
+                statusCode:404,
+                statusMessage:'You are not allowed to this page!'
+            })
+        }
+    })
+    const shippingMethods:Shipping_Method[]=[
+        {
+            id:1,
+            name:'Standard International',
+            time:'6 to 27 business days',
+            price:30
+        }
+    ]
+
+
+
+
+
+    return {
+        informationPageLink,shippingMethods,selectedMethod,methodIndex
+    }
+}
+
+
+export const useCheckoutLinks=()=>{
+    const {userInformationContact}=useCheckoutStore()
+
+    const calculateShippingAddress=computed<string>(()=>{
+        if(userInformationContact.value){
+            return `${userInformationContact.value.address}, ${userInformationContact.value.city}, ${userInformationContact.value.state} ${userInformationContact.value.zip}, ${userInformationContact.value.country}`
+        }else{
+            return  ''
+        }
+    })
+
+
+
+    return{
+        calculateShippingAddress
     }
 }

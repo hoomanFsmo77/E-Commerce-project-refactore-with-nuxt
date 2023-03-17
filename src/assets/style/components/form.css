@@ -65,7 +65,10 @@
   }
   .radio{
     @apply appearance-none w-[18px] h-[18px] rounded-full border-[1px] border-gray-400 focus:border-dark before:inline-block before:w-[6px] before:h-[6px] before:absolute relative before:top-[5px]  before:right-[5px] before:rounded-full before:bg-white
-    checked:bg-dark checked:before:right-[5px] checked:border-dark checked:before:top-[5px];
+    checked:bg-dark focus:bg-dark checked:before:right-[5px] focus:before:right-[5px] checked:border-dark checked:before:top-[5px] focus:before:top-[5px];
+  }
+  .radio-focus{
+    @apply !border-dark before:!top-[5px] before:!top-[5px] !bg-dark;
   }
   .select-wrap{
     @apply my-0.5  rounded-6 overflow-hidden relative

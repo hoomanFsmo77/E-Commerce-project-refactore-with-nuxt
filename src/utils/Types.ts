@@ -148,9 +148,29 @@ export interface Instagram_Feed {
 /////// checkout store
 export interface Checkout_Store {
     userInfo:{
-        contact:any,
-        shipping:any,
+        contact:User_Information|null,
+        shipping:Shipping_Method|null,
         card:any,
         rememberMe:any
     }
+}
+
+export interface Shipping_Method {
+    id:number,
+    name:string,
+    time:string,
+    price:number
+}
+///// user info
+export interface User_Information {
+    address:string
+    addressType:string|undefined
+    city:string
+    contactInfo:string
+    country:string
+    firstname:string
+    lastname:string
+    news:boolean
+    state:string
+    zip:string
 }

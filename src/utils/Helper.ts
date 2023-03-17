@@ -8,7 +8,7 @@ export const storeData = <T>(name:string,data:T):void => {
 
 }
 
-export const getData = (name:string):{cart:Cart_Item[],totalPrice:number}|null => {
+export const getData = <T>(name:string):T|null => {
     if(process.client){
         const data=localStorage.getItem(name)
         if(data){

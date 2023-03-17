@@ -1,5 +1,5 @@
 import {Link,Cart_Item} from "~/utils/Types";
-import {useCartStore} from "~/composables/useStore";
+import {useCartStore, useCheckoutStore} from "~/composables/useStore";
 import {useToast} from "vue-toastification";
 import {RouteLocationRaw} from "vue-router";
 interface Props {
@@ -59,7 +59,7 @@ export const useCartItem=(props:Props)=>{
 
 export const useCart=()=>{
     const {cartLength}=useCartStore()
-
+    const {checkoutStore}=useCheckoutStore()
     const toast = useToast()
 
     const goToCheckout = async () => {

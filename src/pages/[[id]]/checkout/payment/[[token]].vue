@@ -3,7 +3,8 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({layout:false})
+definePageMeta({layout:'checkout',middleware:'checkout'})
+
 
 </script>
 
