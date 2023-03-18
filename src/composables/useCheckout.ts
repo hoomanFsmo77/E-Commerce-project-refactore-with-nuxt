@@ -1,5 +1,5 @@
 import {Regex} from "~/utils/Helper";
-import {User_Information,Shipping_Method} from "~/utils/Types";
+import {User_Information,Shipping_Method,UserCardInfo} from "~/utils/Types";
 
 export const useCheckout=()=>{
     const isCollapse=useState<boolean>('isCollapse',()=>false)
@@ -33,9 +33,6 @@ export const useCheckout=()=>{
         isCollapse,isOpenModal,modalTarget,policyData,fetchFlag,openModal,closeModal
     }
 }
-
-
-
 export const useInformation=()=>{
     const {checkoutStore,userInformationContact}=useCheckoutStore()
     const token=useState<string>('x_token_x')
@@ -54,7 +51,6 @@ export const useInformation=()=>{
 
     onMounted(async ()=>{
         isAlertActive.value=true
-        checkoutStore.setUserStoredInformation()
         await triggerCountryFetchList()
         await selectState(null,userInformationContact?.value?.country ?? 'Afghanistan')
     })
@@ -117,16 +113,12 @@ export const useInformation=()=>{
         closeAlertModal,isAlertActive,goShipping,formElement,submitHandler,contactRule,isContactNumber,countryData,countryFlag,selectState,stateData
     }
 }
-
-
 export const useShipping=()=>{
-    const informationPageLink=useState<string>('informationPageLink',()=>'')
     const token=useState<string>('x_token_x')
     const {checkoutStore,userInformationShippingStore}=useCheckoutStore()
     const methodIndex=useState<number>('methodIndex',()=> 0)
     const selectedMethod=(index:number)=>{
         methodIndex.value=index
-        console.log(index,methodIndex.value)
         checkoutStore.setUserInformationShipping(shippingMethods[index])
     }
 
@@ -135,15 +127,6 @@ export const useShipping=()=>{
             selectedMethod(userInformationShippingStore.value.id-1)
         }else{
             selectedMethod(0)
-        }
-        try {
-            const data=await $fetch<string>('/api/cart',{method:'POST',headers:{'Authentication':token.value}})
-            informationPageLink.value=data
-        }catch (err) {
-            showError({
-                statusCode:404,
-                statusMessage:'You are not allowed to this page!'
-            })
         }
     })
     const shippingMethods:Shipping_Method[]=[
@@ -155,18 +138,32 @@ export const useShipping=()=>{
         }
     ]
 
+    const goPayment = async () => {
+        try {
+            const data=await $fetch('/api/checkout/shipping',{
+                method:'POST',
+                headers:{'Authentication':token.value}
+            })
+            return navigateTo(data)
+        }catch (err) {
+            showError({
+                statusCode:404,
+                statusMessage:'You are not allowed to this page! try again.'
+            })
+        }
+    }
 
 
 
 
     return {
-        informationPageLink,shippingMethods,selectedMethod,methodIndex
+        shippingMethods,selectedMethod,methodIndex,goPayment
     }
 }
-
-
 export const useCheckoutLinks=()=>{
     const {userInformationContact}=useCheckoutStore()
+    const token=useState<string>('x_token_x')
+    const informationPageLink=useState<string>('informationPageLink',()=>'')
 
     const calculateShippingAddress=computed<string>(()=>{
         if(userInformationContact.value){
@@ -176,9 +173,81 @@ export const useCheckoutLinks=()=>{
         }
     })
 
+    onMounted(async ()=>{
+        try {
+            const data=await $fetch<string>('/api/cart',{method:'POST',headers:{'Authentication':token.value}})
+            informationPageLink.value=data
+        }catch (err) {
+            showError({
+                statusCode:404,
+                statusMessage:'You are not allowed to this page!'
+            })
+        }
+    })
+
 
 
     return{
-        calculateShippingAddress
+        calculateShippingAddress,informationPageLink
+    }
+}
+
+export const usePayment=()=>{
+    const token=useState<string>('x_token_x')
+    const shippingPageLink=useState('shippingPageLink',()=>'')
+    const helperInfo=reactive({
+        wantRemember:false as boolean,
+        wantChangeMethod:false as boolean
+    })
+
+    const userCardInfo=reactive<UserCardInfo>({
+        cardNumber:{
+            value:'',
+            valid:false
+        },
+        cardName:{
+            value:'',
+            valid:false
+        },
+        expireDay:{
+            value:'',
+            valid:false
+        },
+        securityCode:{
+            value:'',
+            valid:false
+        }
+    })
+    const setValue = (e:string,prop:keyof UserCardInfo) => {
+        userCardInfo[prop].value=e
+        userCardInfo[prop].valid=true
+    }
+
+    onMounted(async ()=>{
+        try {
+            const data=await $fetch('/api/checkout/info',{
+                method:'POST',
+                headers:{'Authentication':token.value}
+            })
+            shippingPageLink.value=data
+        }catch (err) {
+            showError({
+                statusCode:404,
+                statusMessage:'You are not allowed to this page! try again.'
+            })
+        }
+
+    })
+
+
+    const finishPayment = () => {
+        console.log(userCardInfo)
+    }
+
+
+
+
+    return{
+        shippingPageLink,finishPayment,setValue,userCardInfo,helperInfo
     }
 }

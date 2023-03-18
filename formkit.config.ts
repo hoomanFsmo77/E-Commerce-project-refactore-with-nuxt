@@ -5,7 +5,9 @@ const config: DefaultConfigOptions = defaultConfig({
     plugins:[
         createFloatingLabelsPlugin({      useAsDefault: true, // defaults to false
         }),
-    ]
+
+    ],
+
 })
 
 

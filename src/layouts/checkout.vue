@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <section class="lg:block hidden"  id="information">
+    <section v-if="windowWidth>968" class="lg:block hidden"  id="information">
       <container-full>
         <row class="!m-0 !p-0">
           <column class="lg:!pt-3 lg:!px-4 pt-1 px-1 !m-0" lg="7" col="12">
@@ -78,12 +78,12 @@
                       <font-awesome-icon size="sm" icon="fa-solid fa-question" />
                 </span>
               </span>
-                <span class="font-400 text-gray-600">{{hasShippingStore ? '$'+userInformationShippingStore.price.toFixed(2) : 'Calculated at next step'}}</span>
+                <span class="font-400 text-gray-600">{{hasShippingStore ? '$'+userInformationShippingStore?.price?.toFixed(2) : 'Calculated at next step'}}</span>
               </div>
               <div class="divider"></div>
               <div class="flex justify-between items-center mb-0.5">
                 <span class="font-400 text-1 text-gray-600">Total</span>
-                <span class="font-400 text-gray-600 ">AUD <span class="text-1.5 text-gray-600">${{hasShippingStore ? Number(totalPrice)+Number(userInformationShippingStore.price.toFixed(2)) : totalPrice}}</span></span>
+                <span class="font-400 text-gray-600 ">AUD <span class="text-1.5 text-gray-600">${{hasShippingStore ? Number(totalPrice)+Number(userInformationShippingStore?.price?.toFixed(2)) : totalPrice}}</span></span>
               </div>
 
             </div>
@@ -91,7 +91,7 @@
         </row>
       </container-full>
     </section>
-    <section class="lg:hidden block" id="information">
+    <section v-else class="lg:hidden block" id="information">
       <container-full>
         <row class="!m-0 !p-0 ">
           <column  class="!p-1 !m-0"  col="12">
@@ -172,12 +172,12 @@
                       <font-awesome-icon size="sm" icon="fa-solid fa-question" />
                 </span>
               </span>
-                <span class="font-400 text-gray-600">{{hasShippingStore ? '$'+userInformationShippingStore.price.toFixed(2) : 'Calculated at next step'}}</span>
+                <span class="font-400 text-gray-600">{{hasShippingStore ? '$'+userInformationShippingStore?.price?.toFixed(2) : 'Calculated at next step'}}</span>
               </div>
               <div class="divider"></div>
               <div class="flex justify-between items-center mb-0.5">
                 <span class="font-400 text-1 text-gray-600">Total</span>
-                <span class="font-400 text-gray-600 ">AUD <span class="text-1.5 text-gray-600">${{hasShippingStore ? Number(totalPrice)+Number(userInformationShippingStore.price.toFixed(2)) : totalPrice}}</span></span>
+                <span class="font-400 text-gray-600 ">AUD <span class="text-1.5 text-gray-600">${{hasShippingStore ? Number(totalPrice)+Number(userInformationShippingStore?.price?.toFixed(2)) : totalPrice}}</span></span>
               </div>
 
             </div>
@@ -203,8 +203,16 @@
         </row>
       </container-full>
     </section>
-    <Modal row-class="!p-0 !m-0" class="w-full sm:h-[calc(100vh-7rem)] rounded-6 h-[100vh]" @closeModal="closeModal($event)" :is-active="isOpenModal" :preloader="!fetchFlag">
-      <CheckoutModal @closeModal="closeModal($event)" v-if="isOpenModal" :title="modalTarget" :data="policyData"/>
+    <Modal row-class="!p-0 !m-0" class="w-full sm:h-[calc(100vh-7rem)] rounded-6 h-[100vh]"                  @closeModal="closeModal($event)"
+           :is-active="isOpenModal"
+           :preloader="!fetchFlag"
+    >
+      <CheckoutModal
+          @closeModal="closeModal($event)"
+          v-if="isOpenModal"
+          :title="modalTarget"
+          :data="policyData"
+      />
     </Modal>
   </client-only>
 
@@ -213,7 +221,10 @@
 const {isCollapse,closeModal,openModal,fetchFlag,policyData,modalTarget,isOpenModal}=useCheckout()
 const {hasShippingStore,userInformationShippingStore}=useCheckoutStore()
 const {cartList,totalPrice}=useCartStore()
-
+let windowWidth=99999
+onMounted(()=>{
+  windowWidth=window.innerWidth
+})
 </script>
 
 <style lang="scss">

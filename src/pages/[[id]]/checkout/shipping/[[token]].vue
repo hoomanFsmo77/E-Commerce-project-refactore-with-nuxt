@@ -10,7 +10,7 @@
     />
   </nav>
   <main class="mt-1.5">
-    <div class="p-0.7 border-[1px] border-gray-200 rounded-6">
+    <div v-if="userInformationContact" class="p-0.7 border-[1px] border-gray-200 rounded-6">
       <div class="flex justify-between items-center">
         <p class="flex flex-col lg:block">
           <span class="text-gray-500 font-400 mb-0.5 lg:mb-0">Contact</span>
@@ -42,33 +42,23 @@
         <p class="text-gray-700 font-400">${{item.price}}</p>
       </div>
     </div>
-
-
-<!--    <div class="flex justify-between items-center mt-1">-->
-<!--      <NuxtLink :to="calculateContactInfoLink">-->
-<!--        <font-awesome-icon   class="!text-[0.7rem] font-400" size="l" icon="fa-solid fa-chevron-left" />-->
-<!--        <span class="text-0.9 ml-0.5 font-400">Return to information</span>-->
-<!--      </NuxtLink>-->
-<!--      <NuxtLink :to="{name:'PAYMENT',params:{id:cookieId,token:cookieHash},query:{previous_step:'shipping_method',current_step:'payment_method'}}"  class="btn  btn-dark-fill">-->
-<!--        Continue to payment-->
-<!--      </NuxtLink>-->
-<!--    </div>-->
-
-
+    <div class="flex justify-between items-center mt-1">
+      <NuxtLink :to="informationPageLink">
+        <font-awesome-icon   class="!text-[0.7rem] font-400" size="l" icon="fa-solid fa-chevron-left" />
+        <span class="text-0.9 ml-0.5 font-400">Return to information</span>
+      </NuxtLink>
+      <button @click="goPayment"   class="btn  btn-dark-fill">
+        Continue to payment
+      </button>
+    </div>
   </main>
 </template>
 
 <script setup lang="ts">
 definePageMeta({layout:'checkout',middleware:'checkout'})
-const {informationPageLink,shippingMethods, methodIndex,selectedMethod}=useShipping()
+const {shippingMethods, methodIndex,selectedMethod,goPayment}=useShipping()
 const {userInformationContact}=useCheckoutStore()
-const {calculateShippingAddress}=useCheckoutLinks()
-
-// import {useShipping,useCheckoutLinks,useCheckoutPageValidation} from "../../composables/useCheckout.js";
-// const {userInformationContactStore,shippingMethods,selectedMethod,cookieId,cookieHash,methodIndex}=useShipping()
-// const {calculateShippingAddress,calculateShippingMethodLink,calculateContactInfoLink}=useCheckoutLinks()
-// useCheckoutPageValidation()
-
+const {calculateShippingAddress,informationPageLink}=useCheckoutLinks()
 </script>
 
 <style scoped>

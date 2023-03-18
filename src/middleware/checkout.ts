@@ -1,8 +1,7 @@
 
-
 export default defineNuxtRouteMiddleware(async (to,from)=>{
     const token=useState<string>('x_token_x')
-
+    const {checkoutStore}=useCheckoutStore()
     try {
         const checkValidation=await $fetch('/api/checkout/auth',{
             method:'POST',
@@ -15,11 +14,13 @@ export default defineNuxtRouteMiddleware(async (to,from)=>{
                 'Authentication':token.value
             }
         })
+        console.log(checkValidation)
     }catch (err) {
-        abortNavigation({
-            statusCode:404,
-            statusMessage:'Page does not exist!'
-        })
+        // checkoutStore.resetCheckout()
+        // abortNavigation({
+        //     statusCode:404,
+        //     statusMessage:'Page does not exist!'
+        // })
     }
 
 

@@ -174,3 +174,22 @@ export interface User_Information {
     state:string
     zip:string
 }
+
+export interface UserCardInfo {
+    cardNumber:{
+        value:string,
+        valid:boolean
+    }
+    cardName:{
+        value:string,
+        valid:boolean
+    }
+    expireDay:{
+        value:string,
+        valid:boolean
+    }
+    securityCode:{
+        value:string,
+        valid:boolean
+    }
+}

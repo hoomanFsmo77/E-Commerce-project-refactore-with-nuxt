@@ -30,7 +30,9 @@ export const Checkout=defineStore('checkout',{
             return state.userInfo.card
         },
         hasShippingMethod(state){
-            return !!state.userInfo.shipping
+            if(state.userInfo.shipping){
+                return 'price' in state.userInfo.shipping
+            }
         }
     },
     actions:{
@@ -40,15 +42,30 @@ export const Checkout=defineStore('checkout',{
         },
         setUserStoredInformation(){
             const storedData=getData<Checkout_Store['userInfo']>('_brentos_checkout_')
-            this.userInfo.contact=storedData?.contact ?? null
-            this.userInfo.card=storedData?.card ?? null
-            this.userInfo.shipping=storedData?.shipping ?? null
-            this.userInfo.rememberMe=storedData?.rememberMe ?? null
+            if(storedData){
+                this.userInfo.contact=storedData.contact
+                this.userInfo.card=storedData.card
+                this.userInfo.shipping=storedData.shipping
+                this.userInfo.rememberMe=storedData.rememberMe
+            }else{
+                this.userInfo.contact={} as any
+                this.userInfo.card={} as any
+                this.userInfo.shipping={} as any
+                this.userInfo.rememberMe={} as any
+            }
+
         },
         setUserInformationShipping(data:Shipping_Method){
             this.userInfo.shipping=data
             storeData('_brentos_checkout_',this.userInfo)
         },
+        resetCheckout(){
+            this.userInfo.contact=null
+            this.userInfo.shipping=null
+            this.userInfo.card=null
+            this.userInfo.rememberMe=null
+            storeData('_brentos_checkout_',this.userInfo)
+        }
     },
 
 })
