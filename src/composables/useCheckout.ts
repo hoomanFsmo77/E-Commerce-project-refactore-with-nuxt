@@ -1,5 +1,5 @@
 import {Regex} from "~/utils/Helper";
-import {User_Information,Shipping_Method,UserCardInfo} from "~/utils/Types";
+import {User_Information, Shipping_Method, UserCartInfo} from "~/utils/Types";
 
 export const useCheckout=()=>{
     const isCollapse=useState<boolean>('isCollapse',()=>false)
@@ -34,11 +34,9 @@ export const useCheckout=()=>{
     }
 }
 export const useInformation=()=>{
+    const {stateData,selectState,countryFlag,countryData}=useCountry()
     const {checkoutStore,userInformationContact}=useCheckoutStore()
     const token=useState<string>('x_token_x')
-    const countryData=useState<any[]>('countryData',()=>[])
-    const stateData=useState<any[]>('stateData',()=>[])
-    const countryFlag=useState<boolean>('countryFlag',()=>false)
     const isAlertActive=useState<boolean>('isAlertActive',()=>false)
     const formElement = ref<any>(null)
     const isContactNumber=useState<boolean>('isContactNumber',()=>false)
@@ -51,9 +49,13 @@ export const useInformation=()=>{
 
     onMounted(async ()=>{
         isAlertActive.value=true
-        await triggerCountryFetchList()
-        await selectState(null,userInformationContact?.value?.country ?? 'Afghanistan')
     })
+    watch(
+        ()=>countryFlag.value,
+        async ()=>{
+            await selectState(null,userInformationContact?.value?.country ?? 'Afghanistan')
+        }
+    )
 
     const closeAlertModal = (e:boolean) => {
         isAlertActive.value=e
@@ -79,38 +81,8 @@ export const useInformation=()=>{
 
     }
 
-    const selectState = async (e?:Event|null,country?:string) => {
-        let targetCountry;
-        if(country){
-            targetCountry=countryData.value.filter(item=>{if(item.name===country){return item.code}})[0].code;
-        }else if(e){
-            const value=(e.target as HTMLSelectElement).value
-            targetCountry=countryData.value.filter(item=>{if(item.name===value){return item.code}})[0].code;
-        }
-      await triggerStateChange(targetCountry)
-    }
-
-    const triggerStateChange = async (targetCountry:string) => {
-        try {
-            const data=await $fetch<any[]>(`/api/location/${targetCountry}`,{headers:{'Authentication':token.value}})
-            stateData.value=data
-        }catch (err) {
-            console.log(err)
-        }
-    }
-    const triggerCountryFetchList = async () => {
-        countryFlag.value=false
-        try {
-            const data=await $fetch<any[]>('/api/location/country',{headers:{'Authentication':token.value}})
-            countryData.value=data
-            countryFlag.value=true
-        }catch (err) {
-            console.log(err)
-        }
-    }
-
     return{
-        closeAlertModal,isAlertActive,goShipping,formElement,submitHandler,contactRule,isContactNumber,countryData,countryFlag,selectState,stateData
+        closeAlertModal,isAlertActive,goShipping,formElement,submitHandler,contactRule,isContactNumber,selectState,stateData
     }
 }
 export const useShipping=()=>{
@@ -122,8 +94,9 @@ export const useShipping=()=>{
         checkoutStore.setUserInformationShipping(shippingMethods[index])
     }
 
-    onMounted(async ()=>{
+    onMounted( ()=>{
         if(userInformationShippingStore.value){
+            console.log('1')
             selectedMethod(userInformationShippingStore.value.id-1)
         }else{
             selectedMethod(0)
@@ -193,14 +166,19 @@ export const useCheckoutLinks=()=>{
 }
 
 export const usePayment=()=>{
+    const {triggerStateChange}=useCountry()
+    const {checkoutStore}=useCheckoutStore()
     const token=useState<string>('x_token_x')
     const shippingPageLink=useState('shippingPageLink',()=>'')
+    const phoneNumber=useState<string>('phoneNumber',()=>'')
+    const formElement = ref<any>(null)
+    const isOpenModal=ref<boolean>(false)
     const helperInfo=reactive({
         wantRemember:false as boolean,
         wantChangeMethod:false as boolean
     })
 
-    const userCardInfo=reactive<UserCardInfo>({
+    const userCartInfo=reactive<UserCartInfo>({
         cardNumber:{
             value:'',
             valid:false
@@ -218,9 +196,9 @@ export const usePayment=()=>{
             valid:false
         }
     })
-    const setValue = (e:string,prop:keyof UserCardInfo) => {
-        userCardInfo[prop].value=e
-        userCardInfo[prop].valid=true
+    const setValue = (e:string,prop:keyof UserCartInfo) => {
+        userCartInfo[prop].value=e
+        userCartInfo[prop].valid=true
     }
 
     onMounted(async ()=>{
@@ -236,18 +214,42 @@ export const usePayment=()=>{
                 statusMessage:'You are not allowed to this page! try again.'
             })
         }
-
+        await triggerStateChange('af')
     })
 
 
-    const finishPayment = () => {
-        console.log(userCardInfo)
+    const finishPaymentWithoutChangeAddress = () => {
+        let result:any[]=[]
+        Object.entries(userCartInfo).forEach(item=>{typeof item[1]?.valid === 'boolean' && result.push(item[1]?.valid)})
+        if(result.every(item=>item===true)){
+            checkoutStore.setUserInformationCart(userCartInfo)
+            if(helperInfo.wantRemember){
+                checkoutStore.setUserInformationRemember(phoneNumber.value)
+            }
+            isOpenModal.value=!isOpenModal.value
+        }
+
+    }
+    const changeShippingAddress = () => {
+        const node = formElement.value.node
+        node.submit()
+    }
+    const finishPaymentWithChangingAddress = (field:User_Information) => {
+        let result:any[]=[]
+        Object.entries(userCartInfo).forEach(item=>{typeof item[1]?.valid === 'boolean' && result.push(item[1]?.valid)})
+        if(result.every(item=>item===true)){
+            checkoutStore.changeAddress(field)
+            checkoutStore.setUserInformationCart(userCartInfo)
+            if(helperInfo.wantRemember){
+                checkoutStore.setUserInformationRemember(phoneNumber.value)
+            }
+            isOpenModal.value=!isOpenModal.value
+        }
     }
 
 
 
-
     return{
-        shippingPageLink,finishPayment,setValue,userCardInfo,helperInfo
+        shippingPageLink,setValue,userCartInfo,helperInfo,changeShippingAddress,finishPaymentWithoutChangeAddress,finishPaymentWithChangingAddress,formElement,phoneNumber,isOpenModal
     }
 }

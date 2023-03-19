@@ -221,10 +221,13 @@
 const {isCollapse,closeModal,openModal,fetchFlag,policyData,modalTarget,isOpenModal}=useCheckout()
 const {hasShippingStore,userInformationShippingStore}=useCheckoutStore()
 const {cartList,totalPrice}=useCartStore()
+const {triggerCountryFetchList}=useCountry()
 let windowWidth=99999
 onMounted(()=>{
   windowWidth=window.innerWidth
+  triggerCountryFetchList()
 })
+
 </script>
 
 <style lang="scss">

@@ -65,7 +65,7 @@
           <column col="12">
             <input
                 @input="setValue($event.target.value,'cardName')"
-                v-model="userCardInfo.cardName.value"
+                v-model="userCartInfo.cardName.value"
                 type="text" placeholder="Name on card"
                 class="input-light  input-sm !font-400 !rounded-6 placeholder:!font-400 !border-gray-400 w-full"
             >
@@ -89,129 +89,217 @@
     </div>
 
 
-<!--    <div class="payment-card">-->
-<!--      <div class="payment-card-header">-->
-<!--        <div class="flex items-center">-->
-<!--          <input  @click="helperInfo.wantChangeMethod=false" checked id="same" name="method" type="radio" class="radio">-->
-<!--          <label for="same" class="!font-400 !text-0.9 ml-0.5 cursor-pointer">Same as shipping address  </label>-->
-<!--        </div>-->
+    <div class="payment-card">
+      <div class="payment-card-header">
+        <div class="flex items-center">
+          <input  @click="helperInfo.wantChangeMethod=false" checked id="same" name="method" type="radio" class="radio">
+          <label for="same" class="!font-400 !text-0.9 ml-0.5 cursor-pointer">Same as shipping address  </label>
+        </div>
 
-<!--      </div>-->
-<!--      <div class="payment-card-header">-->
-<!--        <div class="flex items-center">-->
-<!--          <input @click="helperInfo.wantChangeMethod=true" id="different" name="method" type="radio" class="radio">-->
-<!--          <label for="different" class="!font-400 !text-0.9 ml-0.5 cursor-pointer">Use a different billing address   </label>-->
-<!--        </div>-->
+      </div>
+      <div class="payment-card-header">
+        <div class="flex items-center">
+          <input @click="helperInfo.wantChangeMethod=true" id="different" name="method" type="radio" class="radio">
+          <label for="different" class="!font-400 !text-0.9 ml-0.5 cursor-pointer">Use a different billing address   </label>
+        </div>
 
-<!--      </div>-->
-<!--      <div class="payment-card-body" v-show="helperInfo.wantChangeMethod">-->
-<!--        <SelectBox  :error-flag="validation(country.code.length>0,'country')" error-message="Select a country" class="!my-1" label="Country/Region" :flag="countryFlag" v-model="country" :option="countryData" />-->
-<!--        <row class="!p-0 !m-0">-->
-<!--          <column class="sm:pr-1" col="12" sm="6">-->
-<!--            <FloatInput error-message="Enter a firstname" :error-flag="validation(firstname.length>0,'firstname')"  v-model="firstname" placeholder="First name"/>-->
-<!--          </column>-->
-<!--          <column col="12" sm="6">-->
-<!--            <FloatInput error-message="Enter a lastname" :error-flag="validation(lastname.length>0,'lastname')" v-model="lastname" placeholder="Last name"/>-->
-<!--          </column>-->
-<!--        </row>-->
-<!--        <row class="!p-0 !m-0">-->
-<!--          <column col="12" >-->
-<!--            <FloatInput error-message="Enter a address" :error-flag="validation(address.length>0,'address')" v-model="address" placeholder="Address"/>-->
-<!--          </column>-->
-<!--        </row>-->
-<!--        <row class="!p-0 !m-0">-->
-<!--          <column col="12" >-->
-<!--            <FloatInput  v-model="addressType" placeholder="Apartment, suite, etc. (optional)"/>-->
-<!--          </column>-->
-<!--        </row>-->
-<!--        <row class="!p-0 !m-0">-->
-<!--          <column  class="sm:pr-0.5"  col="12" sm="4" >-->
-<!--            <FloatInput error-message="Enter a city" :error-flag="validation(city.length>0,'city')" v-model="city" placeholder="City"/>-->
-<!--          </column>-->
-<!--          <column class="sm:pr-0.5" col="12" sm="4" >-->
-<!--            <SelectBox error-message="Select a state" :error-flag="validation(state.code.length>0,'state')" :state="true" :flag="stateFlag" select-class="!pt-1.1" label="State" v-model="state" :option="stateData"/>-->
-<!--          </column>-->
-<!--          <column  col="12" sm="4" >-->
-<!--            <FloatInput error-message="Enter a zip" :error-flag="validation(zip.length>0,'zip')" v-model="zip" placeholder="Zip code"/>-->
-<!--          </column>-->
-<!--        </row>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class=" my-1.5">-->
-<!--      <h5 class="!font-500 mt-2.5">Remember me</h5>-->
-<!--    </div>-->
-<!--    <div class="payment-card">-->
-<!--      <div class="payment-card-header">-->
-<!--        <div class="flex items-center">-->
-<!--          <input  @click="helperInfo.wantRemember=!helperInfo.wantRemember"  id="remember" name="remember" type="checkbox" class="checkbox">-->
-<!--          <label for="remember" class="!font-400 !text-0.9 ml-0.5 cursor-pointer">-->
-<!--            Save my information for a faster checkout   </label>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div v-show="helperInfo.wantRemember" class="payment-card-body">-->
-<!--        <row class="!py-0">-->
-<!--          <column col="12" md="6">-->
-<!--            <PhoneNumberSelect v-model="phoneNumber" label="Mobile phone number"/>-->
-<!--          </column>-->
-<!--        </row>-->
-<!--        <p class="font-400 text-gray-600 ">Next time you check out here or on other stores powered by Shopify, you’ll receive a code by text message to securely purchase with Shop Pay. </p>-->
-<!--      </div>-->
-<!--    </div>-->
+      </div>
+      <div class="payment-card-body" v-show="helperInfo.wantChangeMethod">
+        <FormKit  @submit="finishPaymentWithChangingAddress" type="form" ref="formElement" :actions="false"  >
+          <FormKit
+              class="!my-1"
+              @change="selectState($event)"
+              wrapper-class="select-wrap"
+              label-class="select-label  absolute"
+              type="select"
+              label="Country/Region"
+              input-class="w-full select"
+              name="country"
+              :value="'Afghanistan'"
+              v-if="countryFlag"
+              :options="countryData.map(item=>item.name)"
+          >
+            <template #selectIcon="context">
+              <div  class="absolute right-[3%] pl-[10px] border-l-[1px] border-gray-500 bottom-[26%]">
+                <font-awesome-icon class="text-gray-500 " icon="fa-solid fa-caret-down" />
+              </div>
+            </template>
+        </FormKit>
+          <row class="!p-0 !mt-0.8 !my-0.5">
+            <column class="sm:pr-1" col="12" sm="6">
+              <FormKit
+                  :floating-label="true"
+                  label="Firstname"
+                  label-class="!font-300 !text-0.9 !text-dark"
+                  name="firstname"
+                  type="text"
+                  :delay="300"
+                  validation="required"
+                  wrapper-class="my-0.5"
+                  input-class="input-float"
+                  validation-visibility="live"
+                  validation-messages="Enter a firstname"
+              />
+            </column>
+            <column col="12" sm="6">
+              <FormKit
+                  :floating-label="true"
+                  label="Lastname"
+                  label-class="!font-300 !text-0.9 !text-dark"
+                  name="lastname"
+                  type="text"
+                  :delay="300"
+                  validation="required"
+                  wrapper-class="my-0.5"
+                  input-class="input-float"
+                  validation-visibility="live"
+                  validation-messages="Enter a lastname"
+              />
 
+            </column>
+          </row>
+          <row class="!p-0 !my-0.5">
+            <column col="12" >
+              <FormKit
+                  :floating-label="true"
+                  label="Address"
+                  label-class="!font-300 !text-0.9 !text-dark"
+                  name="address"
+                  type="text"
+                  :delay="300"
+                  validation="required"
+                  wrapper-class="my-0.5"
+                  input-class="input-float"
+                  validation-visibility="live"
+                  validation-messages="Enter a address"
+              />
+            </column>
+          </row>
+          <row class="!p-0 !my-0.5">
+            <column col="12" >
+              <FormKit
+                  :floating-label="true"
+                  label="Apartment, suite, etc. (optional)"
+                  label-class="!font-300 !text-0.9 !text-dark"
+                  name="addressType"
+                  type="text"
+                  :delay="300"
+                  wrapper-class="my-0.5"
+                  input-class="input-float"
+                  validation-visibility="live"
+              />
+            </column>
+          </row>
+          <row class="!p-0 !my-0.5">
+            <column  class="sm:pr-0.5"  col="12" sm="4" >
+              <FormKit
+                  :floating-label="true"
+                  label="City"
+                  label-class="!font-300 !text-0.9 !text-dark"
+                  name="city"
+                  type="text"
+                  :delay="300"
+                  validation="required"
+                  wrapper-class="my-0.5"
+                  input-class="input-float"
+                  validation-visibility="live"
+                  validation-messages="Enter a city"
+              />
 
+            </column>
+            <column class="sm:pr-0.5" col="12" sm="4" >
+              <FormKit
+                  wrapper-class="select-wrap"
+                  label-class="select-label  absolute"
+                  type="select"
+                  label="State"
+                  input-class="w-full select"
+                  validation="required"
+                  name="state"
+                  validation-messages="Select a state"
+                  v-if="countryFlag"
+                  :options="stateData.map(item=>item.region)"
+              >
+                <template #selectIcon="context">
+                  <div  class="absolute right-[3%] pl-[10px] border-l-[1px] border-gray-500 bottom-[26%]">
+                    <font-awesome-icon class="text-gray-500 " icon="fa-solid fa-caret-down" />
+                  </div>
+                </template>
+              </FormKit>
 
+            </column>
+            <column  col="12" sm="4" >
+              <FormKit
+                  :floating-label="true"
+                  label="Zip code"
+                  label-class="!font-300 !text-0.9 !text-dark"
+                  name="zip"
+                  type="text"
+                  :delay="300"
+                  validation="required"
+                  wrapper-class="my-0.5"
+                  input-class="input-float"
+                  validation-visibility="live"
+                  validation-messages="Enter a zip"
+              />
+
+            </column>
+          </row>
+        </FormKit>
+      </div>
+    </div>
+    <div class=" my-1.5">
+      <h5 class="!font-500 mt-2.5">Remember me</h5>
+    </div>
+    <div class="payment-card">
+      <div class="payment-card-header">
+        <div class="flex items-center">
+          <input  @click="helperInfo.wantRemember=!helperInfo.wantRemember"  id="remember" name="remember" type="checkbox" class="checkbox">
+          <label for="remember" class="!font-400 !text-0.9 ml-0.5 cursor-pointer">
+            Save my information for a faster checkout   </label>
+        </div>
+      </div>
+      <div v-show="helperInfo.wantRemember" class="payment-card-body">
+        <row class="!py-0">
+          <column col="12" md="6">
+            <FormPhoneNumber v-model="phoneNumber" label="Mobile phone number"/>
+          </column>
+        </row>
+        <p class="font-400 text-gray-600 ">Next time you check out here or on other stores powered by Shopify, you’ll receive a code by text message to securely purchase with Shop Pay. </p>
+      </div>
+    </div>
     <div class="flex justify-between items-center mt-1.5">
       <NuxtLink :to="shippingPageLink">
         <font-awesome-icon   class="!text-[0.7rem] font-400" size="l" icon="fa-solid fa-chevron-left" />
         <span class="text-0.9 ml-0.5 font-400">Return to shipping</span>
       </NuxtLink>
-      <button type="button" @click="finishPayment" class="btn btn-dark-fill">
+      <button v-if="helperInfo.wantChangeMethod" type="button" @click="changeShippingAddress" class="btn btn-dark-fill">
+        Pay now
+      </button>
+      <button v-else type="button" @click="finishPaymentWithoutChangeAddress" class="btn btn-dark-fill">
         Pay now
       </button>
     </div>
 
   </main>
-
-
-  <Modal row-class="!p-0 !m-0" class="sm:w-[400px] w-[100vw] m-auto sm:h-[400px] rounded-6 h-[100vh]"  :is-active="isOpenModal" :preloader="true">
+  <Modal row-class="!p-0 !m-0" class="sm:w-[400px] w-[100vw] m-auto sm:h-[350px] rounded-6 h-[100vh]"  :is-active="isOpenModal" :preloader="true">
     <CheckoutSummary v-if="isOpenModal"/>
   </Modal>
 </template>
 <script lang="ts" setup>
-
-definePageMeta({layout:'checkout',middleware:'checkout'})
-
-// import SelectBox from "../../components/Form/SelectBox.vue";
-// import FloatInput from "../../components/Form/FloatInput.vue";
-//
-//
-// import BreadCrumb from "../../components/Checkout/BreadCrumb.vue";
-// import InputTooltip from '../../components/Form/InputTooltip.vue';
-// import PhoneNumberSelect from "../../components/Form/PhoneNumberSelect.vue";
-// import CheckoutSummary from "../../components/Checkout/CheckoutSummary.vue";
-
-const {informationPageLink,calculateShippingAddress}=useCheckoutLinks()
-const {isOpenModal}=useCheckout()
-const {shippingPageLink,finishPayment,userCardInfo,setValue,helperInfo}=usePayment()
-const {userInformationContact,userInformationShippingStore}=useCheckoutStore()
-// import {
-//   usePayment,
-//   useCheckoutLinks,
-//   useCheckoutCollection,
-//   useCheckoutPageValidation
-// } from "../../composables/useCheckout.js";
-// let props=defineProps(['id','token'])
-// const {stateData,zip,state,contactInfo,stateFlag,country,firstname,lastname,address,validation,countryFlag,city,addressType,countryData,userInfo}=useCheckoutCollection()
-// const {userInformationContactStore,userInformationShippingStore,wantChangeMethod,wantRemember,phoneNumber,cardName,finishPayment,setValue,isOpenModal}=usePayment(userInfo)
-// const {calculateContactInfoLink,calculateShippingMethodLink,calculateShippingAddress}=useCheckoutLinks()
-// useCheckoutPageValidation()
-
-
+definePageMeta({layout:'checkout',middleware:'checkout'});
+const {informationPageLink,calculateShippingAddress}=useCheckoutLinks();
+const {shippingPageLink,finishPaymentWithoutChangeAddress,userCartInfo,setValue,helperInfo,changeShippingAddress,finishPaymentWithChangingAddress,formElement,phoneNumber,isOpenModal}=usePayment();
+const {userInformationContact,userInformationShippingStore}=useCheckoutStore();
+const {countryData,countryFlag,stateData,selectState}=useCountry();
 </script>
 
-<style scoped >
+<style  >
 @tailwind components;
-.formkit-message{
+[data-invalid] .formkit-inner input{
+  @apply !border-red-600;
+}
+.formkit-messages{
   @apply text-red-600 font-400 text-0.9 mb-0.5;
 }
 </style>

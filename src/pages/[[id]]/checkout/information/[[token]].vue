@@ -220,7 +220,8 @@
 definePageMeta({layout:'checkout',middleware:'checkout'})
 const {userInformationContact}=useCheckoutStore();
 const {closeModal,openModal,fetchFlag,policyData,modalTarget,isOpenModal}=useCheckout();
-const {goShipping,isAlertActive,closeAlertModal,formElement,submitHandler,contactRule,isContactNumber,countryData,countryFlag,selectState,stateData}=useInformation();
+const {goShipping,isAlertActive,closeAlertModal,formElement,submitHandler,contactRule,isContactNumber}=useInformation();
+const {countryData,countryFlag,stateData,selectState}=useCountry()
 </script>
 
 <style>

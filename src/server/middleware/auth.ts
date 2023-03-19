@@ -11,6 +11,7 @@ export default defineEventHandler(async ev=>{
         url==='/api/popular' ||
         url?.includes('/api/location') ||
         url==='/api/search' ||
+        url==='/api/phoneNumber' ||
         url==='/api/recent' ||
         url==='/api/instagram' ||
         url==='/api/cart' ||

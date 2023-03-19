@@ -150,8 +150,8 @@ export interface Checkout_Store {
     userInfo:{
         contact:User_Information|null,
         shipping:Shipping_Method|null,
-        card:any,
-        rememberMe:any
+        cart:UserCartInfo|null,
+        rememberMe:string|null
     }
 }
 
@@ -175,7 +175,7 @@ export interface User_Information {
     zip:string
 }
 
-export interface UserCardInfo {
+export interface UserCartInfo {
     cardNumber:{
         value:string,
         valid:boolean

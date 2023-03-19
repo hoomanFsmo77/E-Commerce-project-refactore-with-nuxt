@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {Checkout_Store, Shipping_Method, User_Information} from "~/utils/Types";
+import {Checkout_Store, Shipping_Method, User_Information, UserCartInfo} from "~/utils/Types";
 import {storeData,getData} from "~/utils/Helper";
 
 export const Checkout=defineStore('checkout',{
@@ -7,7 +7,7 @@ export const Checkout=defineStore('checkout',{
         return {
             userInfo:{
                 contact:null,
-                card:null,
+                cart:null,
                 rememberMe:null,
                 shipping:null
             }
@@ -27,7 +27,7 @@ export const Checkout=defineStore('checkout',{
             return state.userInfo.shipping
         },
         getUserInformationCart(state){
-            return state.userInfo.card
+            return state.userInfo.cart
         },
         hasShippingMethod(state){
             if(state.userInfo.shipping){
@@ -36,6 +36,14 @@ export const Checkout=defineStore('checkout',{
         }
     },
     actions:{
+        setUserInformationCart(data:UserCartInfo){
+            this.userInfo.cart=data
+            storeData('_brentos_checkout_',this.userInfo)
+        },
+        setUserInformationRemember(data:string){
+            this.userInfo.rememberMe=data
+            storeData('_brentos_checkout_',this.userInfo)
+        },
         setUserInformationContact(userInfo:User_Information){
             this.userInfo.contact=userInfo
             storeData('_brentos_checkout_',this.userInfo)
@@ -44,12 +52,12 @@ export const Checkout=defineStore('checkout',{
             const storedData=getData<Checkout_Store['userInfo']>('_brentos_checkout_')
             if(storedData){
                 this.userInfo.contact=storedData.contact
-                this.userInfo.card=storedData.card
+                this.userInfo.cart=storedData.cart
                 this.userInfo.shipping=storedData.shipping
                 this.userInfo.rememberMe=storedData.rememberMe
             }else{
                 this.userInfo.contact={} as any
-                this.userInfo.card={} as any
+                this.userInfo.cart={} as any
                 this.userInfo.shipping={} as any
                 this.userInfo.rememberMe={} as any
             }
@@ -62,9 +70,22 @@ export const Checkout=defineStore('checkout',{
         resetCheckout(){
             this.userInfo.contact=null
             this.userInfo.shipping=null
-            this.userInfo.card=null
+            this.userInfo.cart=null
             this.userInfo.rememberMe=null
             storeData('_brentos_checkout_',this.userInfo)
+        },
+        changeAddress(data:User_Information){
+            if(this.userInfo.contact){
+                this.userInfo.contact.address=data.address
+                this.userInfo.contact.addressType=data.addressType
+                this.userInfo.contact.city=data.city
+                this.userInfo.contact.country=data.country
+                this.userInfo.contact.firstname=data.firstname
+                this.userInfo.contact.lastname=data.lastname
+                this.userInfo.contact.state=data.state
+                this.userInfo.contact.zip=data.zip
+            }
+
         }
     },
 
