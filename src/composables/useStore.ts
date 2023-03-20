@@ -66,8 +66,9 @@ export const useCheckoutStore=()=>{
     const userInformationShippingStore=computed(()=>checkoutStore.getUserInformationShipping)
     const hasShippingStore=computed(()=>checkoutStore.hasShippingMethod)
     const userInformationContact=computed<User_Information|null>(()=>checkoutStore.getUserInformationContact)
+    const allInformation=computed(()=>checkoutStore.getAllInformation)
 
     return{
-        checkoutStore,userInformationShippingStore,hasShippingStore,userInformationContact
+        checkoutStore,userInformationShippingStore,hasShippingStore,userInformationContact,allInformation
     }
 }

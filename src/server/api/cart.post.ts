@@ -11,16 +11,13 @@ export default defineEventHandler(async ev=>{
         let hash=makeRandomHash(20)
         let id=generateRandomNumber()
         let randomHashUrl=makeRandomHash(15)
-        setCookie(ev,'secure_session_id',makeRandomHash(10),{
+        setCookie(ev,'x_secure_session_id',makeRandomHash(10),{
             path:'/', secure:true, httpOnly:true, maxAge:60*60
         })
-        setCookie(ev,'checkout_token',JSON.stringify({id:id,hash:randomHashUrl}),{
+        setCookie(ev,'x_checkout_token',JSON.stringify({id:id,hash:randomHashUrl}),{
             path:'/', secure:true, httpOnly:true, maxAge:60*60
         })
-        setCookie(ev,'checkout',hash,{
-            path:`/${id}/checkout/${randomHashUrl}`, secure:true, httpOnly:true, maxAge:60*60
-        })
-        setCookie(ev,'tracked_start_session',randomHashUrl,{
+        setCookie(ev,'x_tracked_start_session',randomHashUrl,{
             path:'/', secure:true, httpOnly:true, maxAge:60*60
         })
         return `/${id}/checkout/information/${randomHashUrl}`

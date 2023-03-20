@@ -4,7 +4,7 @@
       <container>
         <row>
           <column col="12">
-            <h1 class="font-700 ">Code {{error.statusCode}}: {{error.message}}</h1>
+            <h1 class="font-700 ">Error {{error?.statusCode}}: {{error?.message}}</h1>
             <p class="mt-1 mb-2">The page you are looking for cannot be found</p>
             <button class="btn btn-lg btn-dark-fill " @click="returnHome">
               Continue Browsing

@@ -9,12 +9,12 @@ export default defineEventHandler(async ev=>{
     if(
         url==='/api/navbar' ||
         url==='/api/popular' ||
-        url?.includes('/api/location') ||
         url==='/api/search' ||
         url==='/api/phoneNumber' ||
         url==='/api/recent' ||
         url==='/api/instagram' ||
         url==='/api/cart' ||
+        url?.includes('/api/location') ||
         url?.includes('/api/checkout') ||
         url?.includes('/api/collection') ||
         url?.includes('/api/product') ||

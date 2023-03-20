@@ -12,7 +12,7 @@
   </nav>
   <main>
     <h5 class="!font-500  mb-0.5">Contact Information</h5>
-    <FormKit v-if="userInformationContact" @submit="goShipping" type="form" ref="formElement" :actions="false"  >
+    <FormKit  @submit="goShipping" type="form" ref="formElement" :actions="false"  >
       <FormKit
           :floating-label="true"
           label="Email or mobile phone number"

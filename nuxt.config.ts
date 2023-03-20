@@ -1,19 +1,3 @@
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041349/brentos/instagram/1_mb6fhs.jpg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041348/brentos/instagram/6_gzlljd.jpg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041347/brentos/instagram/4_ylhxml.jpg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041347/brentos/instagram/5_bvezml.jpg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041345/brentos/instagram/2_mmxbu7.jpg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041343/brentos/instagram/3_juv5rv.jpg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041112/brentos/master_ar5mpd.svg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041110/brentos/check_v4x97j.svg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041109/brentos/express_e3lizg.svg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678041108/brentos/visa_yqrcps.svg
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083774/brentos/recent/recent2-srcset_wmsdhu.webp
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083771/brentos/recent/recent1-src_u2w1fk.webp
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083773/brentos/recent/recent3-srcset_u7kfon.webp
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083771/brentos/recent/recent1-srcset_gt0zui.webp
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083769/brentos/recent/recent3-src_j4jgiq.webp
-// https://res.cloudinary.com/dhpxutwun/image/upload/v1678083769/brentos/recent/recent2-src_jnfsd4.webp
 
 export default defineNuxtConfig({
     image:{
@@ -46,10 +30,10 @@ export default defineNuxtConfig({
         transpile:['vue-toastification'],
     },
     css:[
-        '~/assets/style/App.scss',
-        '~/assets/style/Tailwind.config/Tailwind.base.scss',
-        '~/assets/style/Tailwind.config/Tailwind.component.scss',
-        '~/assets/style/Tailwind.config/Tailwind.utilities.scss',
+        '~/assets/style/App.css',
+        '~/assets/style/Tailwind.config/Tailwind.base.css',
+        '~/assets/style/Tailwind.config/Tailwind.component.css',
+        '~/assets/style/Tailwind.config/Tailwind.utilities.css',
     ],
     app:{
         rootId:'v-app',

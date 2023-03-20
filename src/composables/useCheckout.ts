@@ -66,7 +66,7 @@ export const useInformation=()=>{
     }
     const goShipping =async (field:User_Information) => {
         try {
-            const data=await $fetch('/api/checkout/info',{
+            const data=await $fetch('/api/checkout/shipping',{
                 method:'POST',
                 headers:{'Authentication':token.value}
             })
@@ -113,7 +113,7 @@ export const useShipping=()=>{
 
     const goPayment = async () => {
         try {
-            const data=await $fetch('/api/checkout/shipping',{
+            const data=await $fetch('/api/checkout/payment',{
                 method:'POST',
                 headers:{'Authentication':token.value}
             })
@@ -148,7 +148,7 @@ export const useCheckoutLinks=()=>{
 
     onMounted(async ()=>{
         try {
-            const data=await $fetch<string>('/api/cart',{method:'POST',headers:{'Authentication':token.value}})
+            const data=await $fetch<string>('/api/checkout/info',{method:'POST',headers:{'Authentication':token.value}})
             informationPageLink.value=data
         }catch (err) {
             showError({
@@ -203,7 +203,7 @@ export const usePayment=()=>{
 
     onMounted(async ()=>{
         try {
-            const data=await $fetch('/api/checkout/info',{
+            const data=await $fetch('/api/checkout/shipping',{
                 method:'POST',
                 headers:{'Authentication':token.value}
             })
