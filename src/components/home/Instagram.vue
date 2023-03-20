@@ -76,6 +76,7 @@
 </template>
 
 <script setup lang="ts">
+import {useInstagramFeed} from "~/composables/useInstagramFeed";
 const {closeModal,isOpen,prev,next,changePost,postIndex,instagramFeedData,fetchFlag}=useInstagramFeed()
 </script>
 

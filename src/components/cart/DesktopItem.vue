@@ -66,6 +66,7 @@
 </template>
 
 <script setup lang="ts">
+import {useCartItem} from "~/composables/useCart";
 import {Cart_Item, Link} from "~/utils/Types";
 const props=defineProps<{
   src:string

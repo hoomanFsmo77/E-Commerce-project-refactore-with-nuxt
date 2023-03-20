@@ -13,7 +13,7 @@ interface Props {
     }
 }
 
-export default (carousel:any,props:Props)=>{
+export const useProductModal= (carousel:any,props:Props)=>{
     const {productDetailFlag,productData}=useProductStore()
     const {$link}=useNuxtApp()
     const {cartStore}=useCartStore()

@@ -1,4 +1,4 @@
-import {useCartStore, useSearchStore} from "~/composables/useStore";
+import { useSearchStore} from "~/composables/useStore";
 
 
 let timeout:any=null;

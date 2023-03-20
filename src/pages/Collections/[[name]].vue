@@ -63,6 +63,8 @@
 </template>
 
 <script setup lang="ts">
+import {usePaginating} from "~/composables/usePagination";
+import {useProductStore} from "~/composables/useStore";
 const {updatePage, list} = usePaginating()
 const {productStore,productListData, fetchFlag, errorFlag}=useProductStore()
 const route=useRoute()

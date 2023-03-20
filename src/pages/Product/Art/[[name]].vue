@@ -326,6 +326,8 @@
 <script setup lang="ts">
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import {useProductStore} from "~/composables/useStore";
+import {useCarousel} from "~/composables/useCarousel";
+import {useProduct} from "~/composables/useProduct";
 //////////////////////////////////////
 let props=defineProps(['name'])
 let faqData=[

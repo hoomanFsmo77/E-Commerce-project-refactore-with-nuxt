@@ -10,10 +10,12 @@
       </div>
       <div class="flex w-full justify-start gap-1 items-center py-0.8 border-b-[1px] border-t-[1px] border-gray-200 bg-gray-100 px-0.7">
         <font-awesome-icon icon="fa-solid fa-truck-fast" size="lg" class="text-dark"/>
-        <div >
-          <span class="text-0.7 block">Free Shipping in Australia</span>
-          <span class=" text-0.9  text-dark">Orders Over $70</span>
-        </div>
+        <client-only>
+          <div >
+            <span class="text-0.7 block">Free Shipping in Australia</span>
+            <span class=" text-0.9  text-dark">Orders Over $70</span>
+          </div>
+        </client-only>
       </div>
       <ul >
         <NavbarMobileItem v-for="lvl1 in navbarData" :key="lvl1.id" :data="lvl1"/>

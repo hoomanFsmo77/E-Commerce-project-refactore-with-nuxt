@@ -26,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import {useDesktopHeader} from "~/composables/useHeader";
+import {useCartStore} from "~/composables/useStore";
 const {closeResult,searchText,showResult,searchBoxFlag,initSearch}=useDesktopHeader()
 const {cartLength, totalPrice}=useCartStore()
 </script>

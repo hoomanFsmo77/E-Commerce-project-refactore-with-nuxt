@@ -87,6 +87,7 @@
 
 <script setup lang="ts">
 import {useCartStore} from "~/composables/useStore";
+import {useCart} from "~/composables/useCart";
 const {cartLength,totalPrice,cartList}=useCartStore()
 const {goToCheckout}=useCart()
 

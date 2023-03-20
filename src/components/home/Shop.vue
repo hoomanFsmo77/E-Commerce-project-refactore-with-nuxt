@@ -48,6 +48,8 @@
 </template>
 
 <script setup lang="ts">
+import {useCollectionStore} from "~/composables/useStore";
+import {useCarousel} from "~/composables/useCarousel";
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
 const {randomCollection,fetchFlag}=useCollectionStore()
 const {breakpoints,prev,next,carousel,settings}=useCarousel()

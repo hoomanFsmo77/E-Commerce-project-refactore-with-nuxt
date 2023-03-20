@@ -23,7 +23,7 @@ type Link={
     }
 }
 
-export default (props:Props)=>{
+export const useProductCard = (props:Props)=>{
     const {productStore}=useProductStore()
     const {cartStore}=useCartStore()
     const {$link}=useNuxtApp()

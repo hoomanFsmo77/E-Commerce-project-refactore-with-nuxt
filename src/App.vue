@@ -5,6 +5,7 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
+import {usePreloader} from "~/composables/usePreloader";
 const {isLoading}=usePreloader()
 
 useHead({

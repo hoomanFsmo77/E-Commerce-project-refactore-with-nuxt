@@ -112,6 +112,7 @@
 <script setup lang="ts">
 import { HollowDotsSpinner } from 'epic-spinners'
 import {useProductStore} from "~/composables/useStore";
+import {useProductCard} from "~/composables/useProductCard";
 const {$link}=useNuxtApp()
 type Link={
   name:string,

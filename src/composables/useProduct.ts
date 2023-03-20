@@ -2,7 +2,7 @@ import {useProductStore} from "~/composables/useStore";
 import {useCartStore} from "~/composables/useStore";
 import {Cart_Item} from "~/utils/Types";
 
-export default (carousel:any)=>{
+export const useProduct= (carousel:any)=>{
     const {productStore,productData,popularProductFetchFlag}=useProductStore()
     const {cartStore}=useCartStore()
     const route=useRoute()

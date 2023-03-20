@@ -144,6 +144,9 @@
 <script setup lang="ts">
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import {useProductStore} from "~/composables/useStore";
+import {useCarousel} from "~/composables/useCarousel";
+import {useProductModal} from "~/composables/useProductModal";
+
 const props=defineProps<{
   id:string
   category:string

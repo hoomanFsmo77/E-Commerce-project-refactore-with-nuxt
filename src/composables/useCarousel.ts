@@ -1,6 +1,6 @@
 
 
-export default ()=>{
+export const useCarousel= ()=>{
     const settings=reactive({
         itemsToShow: 1 as number,
         snapAlign: 'center' as string

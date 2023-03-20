@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import {useCollectionStore} from "~/composables/useStore";
 const {fetchFlag,allCollectionList}=useCollectionStore()
 useHead({
   title:'Collections – Brentos'

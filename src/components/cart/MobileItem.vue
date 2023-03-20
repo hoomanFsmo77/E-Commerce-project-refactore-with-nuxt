@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 import {Cart_Item, Link} from "~/utils/Types";
+import {useCartItem} from "~/composables/useCart";
 const props=defineProps<{
   src:string
   srcset:string

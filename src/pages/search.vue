@@ -62,6 +62,8 @@
 
 <script setup lang="ts">
 import {useSearchStore} from "~/composables/useStore";
+import {usePaginating} from "~/composables/usePagination";
+import {useSearch} from "~/composables/useSearch";
 const {searchLen,mainSearchFlag,mainSearchResult}=useSearchStore()
 const {searchText,triggerSearch,updatePaginationPeriod,paginationBoundry}=useSearch()
 const {updatePage,list}=usePaginating()

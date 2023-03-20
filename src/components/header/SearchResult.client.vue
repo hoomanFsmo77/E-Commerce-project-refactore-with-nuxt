@@ -59,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import {useSearchStore} from "~/composables/useStore";
 const {$link}=useNuxtApp()
 let props=defineProps<{
   searchText:string,
