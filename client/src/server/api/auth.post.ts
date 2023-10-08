@@ -8,7 +8,7 @@ export default defineEventHandler(async ev=>{
         if(headerToken){
             setCookie(ev,cookieName,headerToken,{
                 httpOnly:true,
-                secure:true,
+                secure:false,
                 path:'/',
                 maxAge:60*60
             })

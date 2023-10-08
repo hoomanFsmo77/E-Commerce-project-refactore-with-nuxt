@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const dbURL=process.env.PRODUCTION == 1 ? process.env.DB_P_URL :process.env.DB_URL
+const dbURL=process.env.PRODUCTION == 1 ? process.env.DB_P_URL :process.env.DB_D_URL
 const dbName=process.env.PRODUCTION == 1 ? '' : process.env.DB_NAME
 
 

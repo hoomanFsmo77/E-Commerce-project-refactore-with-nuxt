@@ -3,11 +3,11 @@ const querySerialize = (obj) => {
 }
 
 const responseHandler = (error,msg,data) => {
-    return JSON.stringify({
+    return {
         error:error,
         msg:msg,
         data:data
-    })
+    }
 }
 
 

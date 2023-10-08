@@ -14,12 +14,12 @@ database.init()
 
 //// storage route
 const storageRoute=require('./routes/storage')
-
+const menuRoute=require('./routes/menu')
 
 
 ////
 app.use('/storage/image',storageRoute)
-
+app.use('/menu',menuRoute)
 
 
 
