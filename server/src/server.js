@@ -15,11 +15,15 @@ database.init()
 //// storage route
 const storageRoute=require('./routes/storage')
 const menuRoute=require('./routes/menu')
+const categoryRoute=require('./routes/category')
+const collectionRoute=require('./routes/collection')
 
 
 ////
 app.use('/storage/image',storageRoute)
 app.use('/menu',menuRoute)
+app.use('/category',categoryRoute)
+app.use('/collection',collectionRoute)
 
 
 
