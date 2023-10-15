@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import {corePagination} from "~/composables/usePagination";
 const props=defineProps<{
   itemInWarp:number
   source:any[]

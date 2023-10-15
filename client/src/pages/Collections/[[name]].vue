@@ -32,7 +32,7 @@
         </row>
         <row>
           <column col="12">
-            <Pagination @update="updatePage($event)" :source="productListData" :item-in-warp="24"/>
+            <Pagination @update="updatePage($event)" :source="productListData" :item-in-warp="4"/>
           </column>
         </row>
       </template>

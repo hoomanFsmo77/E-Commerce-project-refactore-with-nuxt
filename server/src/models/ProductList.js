@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 
 
-const productSchema=mongoose.Schema({
+const productListSchema=mongoose.Schema({
     category:{
         required:true,
         type:String,
@@ -56,6 +56,11 @@ const productSchema=mongoose.Schema({
         minLength:0,
         maxLength:1000,
         trim:true
+    },
+    discount:{
+        type:Number,
+        required:false,
+        default:0
     }
 })
 
@@ -63,5 +68,5 @@ const productSchema=mongoose.Schema({
 
 
 
-const productModel=mongoose.model('Product',productSchema)
-module.exports=productModel
+const productListModel=mongoose.model('ProductList',productListSchema)
+module.exports=productListModel
