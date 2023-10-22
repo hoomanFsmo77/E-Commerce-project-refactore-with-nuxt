@@ -16,7 +16,7 @@ const multerStorage = multer.diskStorage({
     },
 });
 const multerFilter = (req, file, cb) => {
-    if (file.mimetype.split("/")[1]==='octet-stream' || file.mimetype.split("/")[1] === "jpeg" || file.mimetype.split("/")[1] === "jpg" || file.mimetype.split("/")[1] === "png" || file.mimetype.split("/")[1] === "svg" || file.mimetype.split("/")[1] === "webp") {
+    if (file.mimetype.split("/")[1]==='octet-stream' || file.mimetype.split("/")[1] === "jpeg" || file.mimetype.split("/")[1] === "jpg" || file.mimetype.split("/")[1] === "png" || file.mimetype.split("/")[1] === "avif" || file.mimetype.split("/")[1] === "svg" || file.mimetype.split("/")[1] === "webp") {
         cb(null, true);
     } else {
         cb("Not a jpeg|jpg|png|svg File!!", false);

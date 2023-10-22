@@ -5,7 +5,7 @@ const galleySchema=mongoose.Schema({
         required:true,
         type:String,
         minLength:1,
-        maxLength:100,
+        maxLength:6000,
         trim:true
     },
     zoom:{
@@ -19,7 +19,7 @@ const descriptionSchema=mongoose.Schema({
         required:true,
         type:String,
         minLength:1,
-        maxLength:100,
+        maxLength:100000,
         trim:true
     },
 })
@@ -82,6 +82,13 @@ const linkSchema=mongoose.Schema({
 })
 
 const productDetailSchema=mongoose.Schema({
+    product:{
+        required:true,
+        type:String,
+        minLength:1,
+        maxLength:100,
+        trim:true
+    },
     title:{
         required:true,
         type:String,
@@ -118,8 +125,8 @@ const productDetailSchema=mongoose.Schema({
         type:Boolean,
     },
     discount:{
-        required:true,
-        type:Number,
+        required:false,
+        type:Number ,
         default:0
     },
     option:{
