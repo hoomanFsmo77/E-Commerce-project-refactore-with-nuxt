@@ -20,6 +20,8 @@ const collectionRoute=require('./routes/collection')
 const productRoute=require('./routes/product')
 const instagramRoute=require('./routes/instragm')
 const recentWorkRoute=require('./routes/recentWork')
+const policyRoute=require('./routes/policy')
+const pagesRoute=require('./routes/pages')
 
 
 ////
@@ -30,6 +32,8 @@ app.use('/collection',collectionRoute)
 app.use('/products',productRoute)
 app.use('/instagram',instagramRoute)
 app.use('/recent-work',recentWorkRoute)
+app.use('/policy',policyRoute)
+app.use('/pages',pagesRoute)
 
 
 

@@ -25,6 +25,15 @@ router.get('/detail',async (req,res)=>{
     res.status(200).send(responseHandler(false,null,result))
 })
 
-
+router.get('/popular',async (req,res)=>{
+    const count=await ProductList.count().exec();
+    let result=[]
+    for (let i=1;i<7;i++){
+        let random = Math.floor(Math.random() * count);
+        const randomItem=await ProductList.findOne().skip(random).lean()
+        result.push(randomItem)
+    }
+    res.status(200).send(responseHandler(false,null,addImageBase(result,['coverSrc','overlaySrc'])))
+})
 
 module.exports=router
