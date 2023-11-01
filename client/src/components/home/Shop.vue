@@ -10,7 +10,7 @@
                 <CollectionCart
                     :srcset="item.srcset"
                     :src="item.src"
-                    :link="item.link"
+                    :link="{name:'Collections-name',params:{name:item.link}}"
                     :text="item.text"
                     class="mx-1"
                 />

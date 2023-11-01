@@ -13,7 +13,7 @@
       <h6 class="">{{subTitle}}</h6>
       <h3 class="font-700 my-0.5">{{title}}</h3>
       <NuxtLink class="btn btn-dark-outline block my-1 w-full !py-0.6"
-                :to="recentWorkLink"
+                :to="link"
       >
         Show more
       </NuxtLink>
@@ -22,34 +22,19 @@
 </template>
 
 <script lang="ts" setup>
-type Link={
-  name:string,
-  params:{
-    name:string
-  },
-  query:{id:string},
-  hash:string
-}
+
 const props=defineProps<{
   src:string
   srcset:string
   subTitle:string
   title:string
-  link:Link
+  link:string
 }>()
 const isLoading=ref<boolean>(true)
 const imageLoad = () => {
   isLoading.value=false
 }
-const recentWorkLink = computed<string|Link>(()=>{
-  if(props.link.name==='Product-Item-name'){
-    return `/Product/Item/${props.link.params.name}?id=${props.link.query.id}${props.link.hash}`
-  }else if(props.link.name==='Product-Art-name'){
-    return `/Product/Art/${props.link.params.name}?id=${props.link.query.id}${props.link.hash}`
-  }else{
-    return  props.link
-  }
-})
+
 
 </script>
 

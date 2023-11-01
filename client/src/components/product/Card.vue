@@ -4,28 +4,23 @@
 <!--      <<<<<<<<<<<<< skeleton loader  start>>>>>>>>>>>>>>-->
       <Skeletor v-if="isLoading" class="!absolute top-0 left-0" width="100%" :shimmer="true" height="400"/>
 <!--      <<<<<<<<<<<<< skeleton loader end>>>>>>>>>>>>>>-->
-
       <div class="product-card-image-cover ">
-        <nuxt-img
+        <img
             @load="imageLoad"
             sizes="(max-width: 359px) calc(100vw - 30px), (max-width: 767px) calc((100vw - 50px) / 2),(max-width: 1023px) calc((100vw - 100px) / 3), (max-width: 1280px) calc((100vw - 120px) / 4), 300px"
             :src="coverSrc"
-            :srcset="coverSrcset"
-            src=""
             :alt="title"
         />
       </div>
       <NuxtLink
           :class="{'peer':!isLoading}"
           class="stretch-link"
-          :to="$link(link,id,category)"
+          :to="link"
       ></NuxtLink>
       <div v-if="overlaySrc" class="product-card-image-overlay peer-hover:opacity-100 peer-hover:visible">
-        <nuxt-img
+        <img
             sizes="(max-width: 359px) calc(100vw - 30px), (max-width: 767px) calc((100vw - 50px) / 2),(max-width: 1023px) calc((100vw - 100px) / 3), (max-width: 1280px) calc((100vw - 120px) / 4), 300px"
             :src="overlaySrc"
-            :srcset="overlaySrcset"
-            src=""
             :alt="title" />
       </div>
       <!--      <<<<<<<<<<<< sold out and discount badge start>>>>>>>>>>>>>-->
@@ -55,8 +50,8 @@
       <template v-if="discount">
         <span class="[&_*]:capitalize [&_*]:!text-1.2 block leading-2">
           <template v-if="isPeriod">from</template>
-          <span class="mx-0.5">${{price.toFixed(2)}}</span>
-          <span class="line-through !text-gray-400">${{discount.toFixed(2)}}</span>
+          <span class="mx-0.5">${{discount.toFixed(2)}}</span>
+          <span class="line-through !text-gray-400">${{price.toFixed(2)}}</span>
         </span>
       </template>
       <template v-else>
@@ -67,7 +62,7 @@
 <!--      <<<<<<<<<<< title start >>>>>>>>>>>>>-->
       <NuxtLink
           class="btn-link !text-1.4 !font-700  "
-          :to="$link(link,id,category)"
+          :to="link"
       >
         {{title}}
       </NuxtLink>
@@ -113,7 +108,6 @@
 import { HollowDotsSpinner } from 'epic-spinners'
 import {useProductStore} from "~/composables/useStore";
 import {useProductCard} from "~/composables/useProductCard";
-const {$link}=useNuxtApp()
 type Link={
   name:string,
   params:{
@@ -128,9 +122,7 @@ let props=defineProps<{
   price:number
   link:Link
   coverSrc:string
-  coverSrcset:string
   overlaySrc:string
-  overlaySrcset:string
   category?:string
   discount?:number
 }>()

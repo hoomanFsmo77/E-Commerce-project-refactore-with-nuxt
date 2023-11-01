@@ -1,10 +1,10 @@
 import {getQuery, H3Event} from "h3";
-import {filterProducts} from "~/utils/Helper";
+
 
 // @ts-ignore
 export default defineEventHandler(async (ev:H3Event)=>{
     const query=await getQuery(ev)
-    const {apiBase,productList}=useRuntimeConfig()
+    const {apiUrl}=useRuntimeConfig()
     if(!query.name){
         return createError({
             statusCode:402,
@@ -12,8 +12,12 @@ export default defineEventHandler(async (ev:H3Event)=>{
         })
     } else{
         try {
-            const data=  await $fetch<{productListData:any}>(apiBase + productList)
-            return  filterProducts(data.productListData,query.name as string)
+            const searchData=  await $fetch<{data:{products:any[],collections:any[]}}>(apiUrl + '/products/search',{
+                query:{
+                    name:query.name
+                }
+            });
+            return  searchData.data
         }catch (err) {
             return err
         }

@@ -10,9 +10,7 @@ interface Props {
     price:number
     link:Link
     coverSrc:string
-    coverSrcset:string
     overlaySrc:string
-    overlaySrcset:string
     category?:string
     discount?:number
 }
@@ -49,6 +47,7 @@ export const useProductCard = (props:Props)=>{
         }
     }
     const imageLoad = () => {
+        console.log('loaded')
         isLoading.value=false
     }
 

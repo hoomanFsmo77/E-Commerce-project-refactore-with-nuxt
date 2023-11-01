@@ -4,11 +4,9 @@
       <row class="flex-wrap">
         <column class="sm:pr-2 footer-border " col="12" sm="6" md="3">
           <h6 class="font-700 mb-1">We love wildlife</h6>
-          <nuxt-img
-              :src="'//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=480'"
-              srcset="//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=840 840w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-wires-sponsor-badge.png?v=1663836028&width=1080 1080w"
+          <img
+              src="/sponsor.webp"
               sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, (max-width: 1280px) calc((100vw - 100px / 4), 290px"
-              src=""
               alt=""
           />
         </column>

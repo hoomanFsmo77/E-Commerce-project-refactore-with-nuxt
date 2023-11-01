@@ -1,9 +1,9 @@
 import {Collection_Item} from "~/utils/Types";
 export default defineEventHandler(async ev=>{
-    const {apiBase,collections}=useRuntimeConfig()
+    const {apiUrl}=useRuntimeConfig()
     try {
-        const data=  await $fetch<{AllCollectionLists:Collection_Item[]}>(apiBase + collections)
-        return data.AllCollectionLists
+        const collectionData=  await $fetch<{data:Collection_Item[]}>(apiUrl + '/collection')
+        return collectionData.data
     }catch (err) {
         return err
     }

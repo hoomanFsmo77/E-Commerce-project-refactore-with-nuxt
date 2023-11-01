@@ -1,9 +1,9 @@
 
 export default defineEventHandler(async ev=>{
-    const {apiBase,navbar}=useRuntimeConfig()
+    const {apiUrl}=useRuntimeConfig()
     try {
-        const data=  await $fetch<{navbarItems:any[]}>(apiBase + navbar)
-        return data.navbarItems
+        const navbar=  await $fetch<{data:any[]}>(apiUrl + '/menu')
+        return navbar.data
     }catch (err) {
         return err
     }

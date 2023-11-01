@@ -1,9 +1,9 @@
 import {Product_Item} from "~/utils/Types";
 export default defineEventHandler(async ev=>{
-    const {apiBase,popularProduct}=useRuntimeConfig()
+    const {apiUrl}=useRuntimeConfig()
     try {
-        const data=  await $fetch<{popularProducts:Product_Item[]}>(apiBase + popularProduct)
-        return data.popularProducts
+        const popularList=  await $fetch<{data:Product_Item[]}>(apiUrl + '/products/popular')
+        return popularList.data
     }catch (err) {
         return err
     }

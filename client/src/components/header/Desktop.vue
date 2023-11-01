@@ -4,7 +4,7 @@
     <column col="6">
       <div>
         <NuxtLink  :to="{name:'index'}">
-          <nuxt-img src="https://cdn.shopify.com/s/files/1/0272/9548/1943/files/brentoslogo.png?v=1663235427" width="110" alt="" />
+          <nuxt-img src="/logo.webp" width="110" alt="" />
         </NuxtLink>
       </div>
     </column>

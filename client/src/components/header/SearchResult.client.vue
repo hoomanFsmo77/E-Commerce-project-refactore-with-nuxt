@@ -11,12 +11,10 @@
           <template v-if="searchResult.product.length>0">
             <div class="search-result-item  " v-for="item in searchResult.product">
               <nuxt-img
-
-                  :srcset="item.coverSrcset"
                   :src="item.coverSrc" height="110"  class="responsive-image rounded-8" alt="" />
-              <span class="mt-0.5 block font-600">$45.00</span>
+              <span class="mt-0.5 block font-600">${{item.price.toFixed(2)}}</span>
 
-              <NuxtLink :to="$link(item.link,item.id,item.category)" class="font-600 btn-stretch btn-link">{{item.title}}</NuxtLink>
+              <NuxtLink :to="{name:item.type==='Art'?`Products-Art-name`:`Product-Item-name`,params:{name:item.link}}" class="font-600 btn-stretch btn-link">{{item.title}}</NuxtLink>
             </div>
           </template>
           <template v-else>
@@ -34,7 +32,7 @@
             <!--        <<<<<<<< start >>>>>>>>-->
             <template v-if="searchResult.collection.length>0">
               <li v-for="item in searchResult.collection">
-                <NuxtLink class="btn-link font-600" :to="item.link">
+                <NuxtLink class="btn-link font-600" :to="{name:'Collections-name',params:{name:item.link}}">
                   {{item.text}}
                 </NuxtLink>
               </li>
@@ -60,7 +58,6 @@
 
 <script setup lang="ts">
 import {useSearchStore} from "~/composables/useStore";
-const {$link}=useNuxtApp()
 let props=defineProps<{
   searchText:string,
   isFire:boolean

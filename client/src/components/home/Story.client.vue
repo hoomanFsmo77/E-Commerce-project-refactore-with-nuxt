@@ -19,10 +19,10 @@
             </div>
           </column>
           <column class="!p-0 !m-0 order-2 sm:order-3" col="12" sm="6">
-            <nuxt-img
-                :src="'//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=480'"
+            <img
+                src="/story.webp"
                 class="object-cover w-full h-full" alt=""
-                 srcset="//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=240 240w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=360 360w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=420 420w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=480 480w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=640 640w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=840 840w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=1080 1080w,//cdn.shopify.com/s/files/1/0272/9548/1943/files/brentos-coopers-painting.jpg?v=1663897698&amp;width=1280 1280w"   sizes="632px" />
+                sizes="632px" />
           </column>
         </row>
       </container-full>

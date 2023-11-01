@@ -1,7 +1,5 @@
 import {defineStore} from "pinia";
-import {Search_Store,Product_Item,Collection_Item} from "~/utils/Types";
-import {filterCollection,filterProducts} from "~/utils/Helper";
-import {Collection} from "~/store/collection";
+import {Search_Store,Collection_Item} from "~/utils/Types";
 
 export const Search=defineStore('search',{
     state:():Search_Store=>{
@@ -33,20 +31,19 @@ export const Search=defineStore('search',{
     actions:{
         async triggerNavbarSearch(value:string){
             const token=useState<string>('x_token_x')
-            const collectionStore=Collection()
             this.navbarSearchFlag=false
             this.navbarSearchResult.product=null
             this.navbarSearchResult.collection=null
             try {
-                const product=await $fetch<Product_Item[]>('/api/search',{
+                const searchData=await $fetch<{ products:any[],collections:any[] }>('/api/search',{
                     headers:
                         {'Authentication':token.value},
                     query:{
                         name:value
                     }
                 })
-                this.navbarSearchResult.collection=filterCollection(collectionStore.getAllList ?? undefined,value)
-                this.navbarSearchResult.product=product
+                this.navbarSearchResult.collection=searchData.collections
+                this.navbarSearchResult.product=searchData.products
                 this.navbarSearchFlag=true
             }catch (err) {
                 console.log(err)
@@ -60,11 +57,11 @@ export const Search=defineStore('search',{
             this.mainSearchResult=[]
             this.mainSearchFlag=false
             try {
-                const product=await $fetch<Product_Item[]>('/api/search',{
+                const searchData=await $fetch<{ products:any[],collections:any[]}>('/api/search',{
                     headers: {'Authentication':token.value},
                     query:{name:value}
                 })
-                this.mainSearchResult=product
+                this.mainSearchResult=searchData.products
             }catch (err) {
                 console.log(err)
                 createError({

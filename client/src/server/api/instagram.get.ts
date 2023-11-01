@@ -1,9 +1,9 @@
 import {Instagram_Feed} from "~/utils/Types";
 export default defineEventHandler(async ev=>{
-    const {apiBase,instagramFeed}=useRuntimeConfig()
+    const {apiUrl}=useRuntimeConfig()
     try {
-        const data=  await $fetch<{instagramFeedList:Instagram_Feed[]}>(apiBase + instagramFeed)
-        return  data.instagramFeedList
+        const instagramFeed=  await $fetch<{data:Instagram_Feed[]}>(apiUrl + '/instagram')
+        return  instagramFeed.data
     }catch (err) {
         return err
     }

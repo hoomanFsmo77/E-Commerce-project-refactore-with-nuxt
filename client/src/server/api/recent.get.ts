@@ -1,9 +1,9 @@
 
 export default defineEventHandler(async ev=>{
-    const {apiBase,recentWork}=useRuntimeConfig()
+    const {apiUrl,recentWork}=useRuntimeConfig()
     try {
-        const data=  await $fetch<{recentWork:any}>(apiBase + recentWork)
-        return  data.recentWork
+        const recentWorkData=  await $fetch<{data:any[]}>(apiUrl + '/recent-work')
+        return  recentWorkData.data
     }catch (err) {
         return err
     }

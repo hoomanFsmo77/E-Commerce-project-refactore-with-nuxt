@@ -2,11 +2,8 @@
   <div class="insta-feed-card">
     <div>
       <nuxt-img
-          provider="cloudinary"
           class="insta-feed-img"
           :src="src"
-          src=""
-          alt=""
       />
     </div>
     <div class="stretch-link transition-all group hover:bg-dark/60 ">

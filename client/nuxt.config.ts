@@ -6,6 +6,7 @@ export default defineNuxtConfig({
       }
     },
     runtimeConfig:{
+        apiUrl:process.env.API_URL,
         apiBase:'https://mzrbnbpweekrzxizspuj.supabase.co/storage/v1/object/sign/brentos/',
         cookieName:'brentos_x_token_x',
         navbar:'NavbarData.json?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJicmVudG9zL05hdmJhckRhdGEuanNvbiIsImlhdCI6MTY3NzgzNjA5NCwiZXhwIjoxZSszMn0.83rhKCCferYO6WTyZ4-CisMLycv5ZbtgaW0WNHHCQf8&t=2023-03-03T09%3A34%3A52.508Z',
