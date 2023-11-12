@@ -127,6 +127,7 @@
                            :price="item.price"
                            :title="item.title"
                            :link="item.link"
+                           :type="item.type"
                            :discount="item.discount"
                            :cover-src="item.coverSrc"
                            :cover-srcset="item.coverSrcset"

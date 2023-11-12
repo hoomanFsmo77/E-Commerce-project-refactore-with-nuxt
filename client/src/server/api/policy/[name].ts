@@ -1,12 +1,11 @@
 
 export default defineEventHandler(async ev=>{
-    const {apiBase,policyData}=useRuntimeConfig()
+    const {apiUrl}=useRuntimeConfig()
     const params=await ev.context.params.name
     try {
-        const data=  await $fetch<{policyData:any[]}>(apiBase + policyData)
-        const target=data.policyData[params]
-        if(target){
-            return target
+        const policyData=  await $fetch<{data:any[],error:boolean}>(apiUrl + '/policy/'+ params)
+        if(policyData.data.length>0 && !policyData.error){
+            return policyData.data
         }else{
             return createError({
                 statusCode:500,

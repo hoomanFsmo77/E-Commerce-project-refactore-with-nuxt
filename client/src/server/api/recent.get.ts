@@ -1,6 +1,6 @@
 
 export default defineEventHandler(async ev=>{
-    const {apiUrl,recentWork}=useRuntimeConfig()
+    const {apiUrl}=useRuntimeConfig()
     try {
         const recentWorkData=  await $fetch<{data:any[]}>(apiUrl + '/recent-work')
         return  recentWorkData.data

@@ -15,6 +15,7 @@
             <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-1.5">
               <ProductCard class="mb-1"
                            v-for="item in list"
+                           :type="item.type"
                            :category="item.category"
                            :price="item.price"
                            :title="item.title"
@@ -43,6 +44,7 @@
               <ProductCard class="mb-1" v-for="item in productListData" :price="item.price" :title="item.title"
                            :category="item.category"
                            :link="item.link"
+                           :type="item.type"
                            :discount="item.discount"
                            :cover-src="item.coverSrc"
                            :cover-srcset="item.coverSrcset"

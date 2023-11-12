@@ -301,6 +301,7 @@
               <ProductCard class="mb-1" v-for="item in popularProducts.slice(0,4)"
                            :category="item.category"
                            :price="item.price"
+                           :type="item.type"
                            :title="item.title"
                            :link="item.link"
                            :discount="item.discount"

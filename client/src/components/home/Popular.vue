@@ -6,9 +6,11 @@
           <h4 class="text-left font-600 mb-1 md:pl-1 pl-0">Popular Now</h4>
           <div v-if="popularProductFetchFlag" class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-1.3">
             <ProductCard class="mb-1" v-for="item in popularProducts" :price="item.price" :title="item.title"
-                         :link="{name:item.type==='Art'?`Products-Art-name`:`Product-Item-name`,params:{name:item.link}}" :discount="item.discount" :cover-src="item.coverSrc"
+                         :link="item.link" :discount="item.discount" :cover-src="item.coverSrc"
                          :overlay-src="item.overlaySrc"
-                         :is-period="item.isPeriod" :id="item._id"
+                         :type="item.type"
+                         :is-period="item.isPeriod"
+                         :id="item._id"
                          :is-sold-out="item.isSoldOut" :category="item.category"/>
           </div>
           <div v-if="!popularProductFetchFlag" class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-1.3">

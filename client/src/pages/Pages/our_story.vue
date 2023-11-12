@@ -13,8 +13,7 @@
         <column class="mb-2 md:mb-2" md="6" col="12">
           <div class="px-2">
             <nuxt-img
-                src="'https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/brentoscooperspaintingstory-1664185138669.jpg?v=1664185140'"
-                srcset="https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/brentoscooperspaintingstory-1664185138669.jpg?v=1664185140 1536w"
+                src="/pages/1.webp"
                 alt=""
             />
           </div>
@@ -24,8 +23,7 @@
         <column class="mb-2 md:mb-2" md="6" col="12">
           <div class="px-2">
             <nuxt-img
-                src="'https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/magpepainting-1664183244240.jpg?v=1664183246'"
-                srcset="https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/magpepainting-1664183244240.jpg?v=1664183246 1536w"
+                src="/pages/2.webp"
                 alt=""
             />
           </div>
@@ -53,8 +51,7 @@
         <column class="mb-2 md:mb-2" md="6" col="12">
           <div class="px-2">
             <nuxt-img
-                src="'https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/brentospaintinglive-1664172334067.jpg?v=1664172336'"
-                srcset="https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/brentospaintinglive-1664172334067.jpg?v=1664172336 1536w"
+                src="/pages/3.webp"
                 alt=""
             />
           </div>
@@ -64,8 +61,7 @@
         <column class="mb-2 md:mb-2" md="6" col="12">
           <div class="px-2">
             <nuxt-img
-                src="'https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/tashsurfing-1664181389893.jpg?v=1664181393'"
-                srcset="https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/tashsurfing-1664181389893.jpg?v=1664181393 1536w"
+                src="/pages/4.webp"
                 alt=""
             />
           </div>
@@ -92,8 +88,7 @@
         <column class="mb-2 md:mb-2" md="6" col="12">
           <div class="px-2">
             <nuxt-img
-                src="'https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/wonderlandpainting-1664183403162.jpg?v=1664183404'"
-                srcset="https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/wonderlandpainting-1664183403162.jpg?v=1664183404 1536w"
+                src="/pages/5.webp"
                 alt=""
             />
           </div>
@@ -103,8 +98,7 @@
         <column class="mb-2 md:mb-2" md="6" col="12">
           <div class="px-2">
             <nuxt-img
-                :src="'https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/check-1664183652052.jpg?v=1664183654'"
-                srcset="https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/check-1664183652052.jpg?v=1664183654 1536w"
+                src="/pages/6.webp"
                 alt=""
             />
           </div>
@@ -124,11 +118,9 @@
           <div>
             <h5 class="font-600 mb-2">Clients</h5>
             <nuxt-img
-                :src="'https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/clients2-1662544427278.png?v=1662544429'"
-                srcset="https://cdn.shopify.com/s/files/1/0272/9548/1943/t/5/assets/clients2-1662544427278.png?v=1662544429 1536w"
+                src="/pages/7.webp"
                 alt=""
             />
-
           </div>
         </column>
       </row>

@@ -7,7 +7,7 @@ export const useProduct= (carousel:any)=>{
     const {cartStore}=useCartStore()
     const route=useRoute()
     const helperData=reactive({
-        productId:route.query.id as string,
+        productId:route.query.id || '123' as string,
         category:route.hash.slice(1),
         quantity:1 as number,
         sizeIndex:0 as number,
@@ -93,7 +93,7 @@ export const useProduct= (carousel:any)=>{
 
 
     onMounted(()=>{
-        productStore.triggerFetchProductDetail(helperData.productId)
+        productStore.triggerFetchProductDetail(route.params.name)
     })
 
 

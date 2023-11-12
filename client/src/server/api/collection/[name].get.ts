@@ -2,13 +2,16 @@ import {Product_Item} from "~/utils/Types";
 
 
 export default defineEventHandler(async ev=>{
-    const {apiBase,productList}=useRuntimeConfig()
-    const params=await ev.context.params.name
+    const {apiUrl}=useRuntimeConfig()
+    const category=await ev.context.params.name
     try {
-        const data=  await $fetch<{productListData:any[]}>(apiBase + productList)
-        const target:Product_Item[]=data.productListData[params]
-        if(target){
-            return target.map(item=>{return {...item,category:params}})
+        const productList=  await $fetch<{data:Product_Item[],error:boolean}>(apiUrl + '/products/list',{
+            query:{
+                category:category
+            }
+        })
+        if(productList.data.length>0 && !productList.error){
+            return productList.data
         }else{
             return createError({
                 statusCode:501,

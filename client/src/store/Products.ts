@@ -75,12 +75,12 @@ export const Products=defineStore('product',{
                 this.productListErrorFlag=true
             }
         },
-        async triggerFetchProductDetail(id:string){
+        async triggerFetchProductDetail(productName:string){
             const token=useState<string>('x_token_x')
             this.productDetailFetchFlag=false
             this.productDetail=null
             try{
-                const data=await $fetch<Product_Item>(`/api/product/${id}`,{headers:{'Authentication':token.value}})
+                const data=await $fetch<Product_Item>(`/api/product/${productName}`,{headers:{'Authentication':token.value}})
                 this.productDetail=data
             }catch (err) {
                 console.log(err)
