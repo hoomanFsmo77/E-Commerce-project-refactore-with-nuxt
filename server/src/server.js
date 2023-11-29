@@ -1,12 +1,12 @@
 require('dotenv').config()
 const express=require('express')
 const bodyParser=require('body-parser')
-const cors=require('cors')
-const { query,body ,validationResult,matchedData} = require('express-validator');
+const cors=require('cors');
 const app=express()
 const database=require('./database/database')
 ///////
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use(cors())
 
 ////// initial db
@@ -22,6 +22,7 @@ const instagramRoute=require('./routes/instragm')
 const recentWorkRoute=require('./routes/recentWork')
 const policyRoute=require('./routes/policy')
 const pagesRoute=require('./routes/pages')
+const cartRoute=require('./routes/cart')
 
 
 ////
@@ -34,6 +35,7 @@ app.use('/instagram',instagramRoute)
 app.use('/recent-work',recentWorkRoute)
 app.use('/policy',policyRoute)
 app.use('/pages',pagesRoute)
+app.use('/cart',cartRoute)
 
 
 

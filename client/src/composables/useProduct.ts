@@ -1,14 +1,14 @@
 import {useProductStore} from "~/composables/useStore";
 import {useCartStore} from "~/composables/useStore";
 import {Cart_Item} from "~/utils/Types";
+import { useToast } from 'vue-toastification'
 
 export const useProduct= (carousel:any)=>{
+    const toast = useToast()
     const {productStore,productData,popularProductFetchFlag}=useProductStore()
     const {cartStore}=useCartStore()
     const route=useRoute()
     const helperData=reactive({
-        productId:route.query.id || '123' as string,
-        category:route.hash.slice(1),
         quantity:1 as number,
         sizeIndex:0 as number,
         familyIndex:0 as number,
@@ -59,21 +59,14 @@ export const useProduct= (carousel:any)=>{
     const userProductDetail=computed<Cart_Item|null>(()=>{
         if(productData.value){
             return{
-                category:helperData.category,
-                src:productData.value.gallery[0].src,
-                available:productData.value.available,
-                link:route.fullPath,
-                srcset:productData.value.gallery[0].srcset,
-                title:productData.value.title,
-                productId:helperData.productId,
+                productLink:route.params.name as string,
                 quantity:helperData.quantity,
                 priceDetail:{
                     size:productData.value?.option?.sizes ? productData.value.option.sizes[helperData.sizeIndex].size : null,
                     frame:productData.value.hasFrame ? (helperData.whichFrame===0 ? 'No frame' : 'Recycled Timber Frame') : null,
                     price:helperData.whichFrame===0 ? totalPriceWithOutFrame.value : totalPriceWithFrame.value,
                     family:(productData.value.hasFamily && productData.value.option.family) ? (productData.value.option.family[helperData.familyIndex].item) : null
-                },
-                discount:productData.value.discount || null
+                }
             }
         }else{
             return  null
@@ -81,8 +74,12 @@ export const useProduct= (carousel:any)=>{
 
     })
     const addToCart = () => {
-        if(userProductDetail.value){
-            cartStore.addToUserCart(userProductDetail.value)
+        if(userProductDetail.value && productData.value){
+            if(productData.value?.available > helperData.quantity){
+                cartStore.addToUserCart(userProductDetail.value)
+            }else{
+                toast.error(`Maximum available quantity is ${productData.value.available}!`)
+            }
         }
     }
     const setSelectedSize = computed(():void => {
@@ -92,8 +89,8 @@ export const useProduct= (carousel:any)=>{
     })
 
 
-    onMounted(()=>{
-        productStore.triggerFetchProductDetail(route.params.name)
+    onMounted(async ()=>{
+       await productStore.triggerFetchProductDetail(route.params.name)
     })
 
 

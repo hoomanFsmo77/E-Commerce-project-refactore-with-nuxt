@@ -29,16 +29,11 @@ export const Cart=defineStore('cart',{
     },
     actions:{
         addToUserCart(product:Cart_Item){
-            let productIsExist=this.cart.some(item=>item.title===product.title)
-            let target=this.cart[this.cart.findIndex(item=>item.title===product.title)]
+            let productIsExist=this.cart.some(item=>item.productLink===product.productLink)
+            let target=this.cart[this.cart.findIndex(item=>item.productLink===product.productLink)]
             if(productIsExist){
-                if( target.available > target.quantity){
-                    target.quantity++
-                    toast.success("Product added to your cart!")
-                }else{
-                    toast.error(`Maximum available quantity is ${target.quantity}!`)
-                }
-
+                target.quantity++
+                toast.success("Product added to your cart!")
             }else {
                 // @ts-ignore
                 this.cart.push(product)

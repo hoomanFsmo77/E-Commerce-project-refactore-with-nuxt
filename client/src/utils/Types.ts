@@ -2,21 +2,14 @@
 
 ////////////////////////////////// cart store
 export interface Cart_Item {
-    src:string
-    available:number
-    link:Link|string
-    srcset:string
-    title:string
-    productId:string
+    productLink:string
     quantity:number,
-    category:string|undefined
     priceDetail:{
         size:string|null,
         frame:string|null,
         price:number|string,
         family:string|null
-    },
-    discount:number|null
+    }
 }
 
 

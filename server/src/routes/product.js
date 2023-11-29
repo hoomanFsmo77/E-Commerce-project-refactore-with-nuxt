@@ -20,10 +20,15 @@ router.get('/list',async (req,res)=>{
 })
 
 router.get('/detail',async (req,res)=>{
-    const product=req.query.product;
-    let productListData=await ProductDetail.find({product}).lean();
-    const result=productListData.length>0 ? productListData[0] : null;
-    res.status(200).send(responseHandler(false,null,result))
+    const productLink=req.query.product;
+    let targetProduct=await ProductDetail.find({product:productLink}).lean();
+    const isProductExist=targetProduct.length>0 ? targetProduct[0] : null;
+    if(isProductExist){
+        const productListData=await ProductList.find({link:productLink}).lean();
+        res.status(200).send(responseHandler(false,null,{...targetProduct[0],category:productListData[0].category}))
+    }else{
+        res.status(200).send(responseHandler(true,null,'Product does not exist!'))
+    }
 })
 
 router.get('/popular',async (req,res)=>{

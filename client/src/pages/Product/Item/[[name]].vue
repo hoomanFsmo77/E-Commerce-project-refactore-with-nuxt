@@ -1,12 +1,12 @@
 <template>
-  <section  :id="`product-show-id-${helperData.productId}`">
+  <section  :id="`product-show-id-${$route.params.name}`">
     <container>
-      <row>
-        <column col="12">
+      <row v-if="productDetailFlag">
+        <column col="12" >
           <BreadCrumb :pages="
             [{name:'Home',link:{name:'index'}},
             {name:'Collections',link:{name:'Collections-All'}},
-            {name:helperData?.category?.split('-')?.join(' ') ?? '',link:{name:'Collections-name',params:{name:helperData?.category ?? ''}}},
+            {name:productData?.category?.split('-')?.join(' ') ?? '',link:{name:'Collections-name',params:{name:productData?.category ?? ''}}},
             {name:productData?.title?.split('-').join(' ') ?? ''}]"
           />
         </column>
