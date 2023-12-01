@@ -20,7 +20,7 @@ export default defineEventHandler(async ev=>{
             },
             body
         })
-        if(!addCartItem.error && addCartItem.data.uid){
+        if(!addCartItem.error && addCartItem.data &&  addCartItem.data.uid){
             return addCartItem.data.uid
         }else{
             return  null
@@ -28,7 +28,8 @@ export default defineEventHandler(async ev=>{
     }else if(query.method==='PUT'){
         const updateCartItem=  await $fetch<{data:null,error:boolean}>(apiUrl + '/cart',{
             query:{...query},
-            method:'PUT'
+            method:'PUT',
+            body
         })
         return updateCartItem
     }

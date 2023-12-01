@@ -76,43 +76,57 @@ router.get('/',async (req,res)=>{
 router.put('/',async (req,res)=>{
     const query=req.query;
     const targetCart=await cartModel.findOne({uid:query.uid}).lean();
-    const productIdx=targetCart.items.findIndex(item=>item.productLink===query.productLink);
-    if(query.mode==='increment'){
-        if(targetCart.items[productIdx].quantity===targetCart.items[productIdx].available){
-            res.status(200).send(responseHandler(true,'There is no more available items in this product!',null))
-        }else{
-            targetCart.items[productIdx].quantity++
-            await cartModel.findOneAndUpdate({uid:query.uid},{
-                items:[...targetCart.items]
-            });
-            res.status(200).send(responseHandler(false,'product updated!',null))
-        }
-    }else if(query.mode==='decrement'){
-        if(targetCart.items[productIdx].quantity===1){
+    const productIdx=targetCart?.items.findIndex(item=>item.productLink===query.productLink);
+    if(!targetCart || !targetCart.items[productIdx]){
+        res.status(200).send(responseHandler(true,'You should first add Product to your Cart!',null))
+    }else{
+        if(query.mode==='increment' ){
+            if( targetCart.items[productIdx].quantity===targetCart.items[productIdx].available){
+                res.status(200).send(responseHandler(true,'There is no more available items in this product!',null))
+            }else{
+                targetCart.items[productIdx].quantity++
+                await cartModel.findOneAndUpdate({uid:query.uid},{
+                    items:[...targetCart.items]
+                });
+                res.status(200).send(responseHandler(false,'product updated!',null))
+            }
+        }else if(query.mode==='decrement'){
+
+            if(targetCart.items[productIdx] && targetCart.items[productIdx].quantity===1){
+                targetCart.items.splice(productIdx,1)
+                await cartModel.findOneAndUpdate({uid:query.uid},{
+                    items:[...targetCart.items]
+                });
+                res.status(200).send(responseHandler(false,'Product removed!',null))
+            }else{
+                targetCart.items[productIdx].quantity--
+                await cartModel.findOneAndUpdate({uid:query.uid},{
+                    items:[...targetCart.items]
+                });
+                res.status(200).send(responseHandler(false,'product updated!',null))
+            }
+        }else if(query.mode==='remove'){
             targetCart.items.splice(productIdx,1)
             await cartModel.findOneAndUpdate({uid:query.uid},{
                 items:[...targetCart.items]
             });
-            res.status(200).send(responseHandler(false,'Product removed!',null))
-        }else{
-            targetCart.items[productIdx].quantity--
+            res.status(200).send(responseHandler(false,'product removed!',null))
+
+        }else if(query.mode==='reset'){
+            await cartModel.findOneAndDelete({uid:query.uid});
+            res.status(200).send(responseHandler(false,'cart reset!',null))
+        }else if(query.mode==='config'){
+            targetCart.items[productIdx].priceDetail.size=req.body.size
+            targetCart.items[productIdx].priceDetail.frame=req.body.frame
+            targetCart.items[productIdx].priceDetail.family=req.body.family
+            targetCart.items[productIdx].priceDetail.price=req.body.price
             await cartModel.findOneAndUpdate({uid:query.uid},{
                 items:[...targetCart.items]
             });
             res.status(200).send(responseHandler(false,'product updated!',null))
         }
-    }else if(query.mode==='remove'){
-        targetCart.items.splice(productIdx,1)
-        await cartModel.findOneAndUpdate({uid:query.uid},{
-            items:[...targetCart.items]
-        });
-        res.status(200).send(responseHandler(false,'product removed!',null))
-
-    }else if(query.mode==='reset'){
-        await cartModel.findOneAndDelete({uid:query.uid});
-        res.status(200).send(responseHandler(false,'cart reset!',null))
-
     }
+
 
 })
 module.exports=router

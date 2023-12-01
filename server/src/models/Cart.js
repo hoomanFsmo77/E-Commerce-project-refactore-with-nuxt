@@ -2,11 +2,11 @@ const mongoose=require('mongoose')
 
 const priceDetailSchema=mongoose.Schema({
     size:{
-      type:String,
+      type:Number,
         required:false
     },
     frame:{
-      type:String,
+      type:Number,
         required:false
     },
     price:{
@@ -15,7 +15,7 @@ const priceDetailSchema=mongoose.Schema({
         set:(v)=>Number(v)
     },
     family:{
-      type:String,
+      type:Number,
         required:false
     },
 })

@@ -89,7 +89,7 @@
                 </button>
               </div>
               <button :disabled="productData.isSoldOut" :class="{'w-[50%] !bg-gray-400':productData.isSoldOut}" @click="addToCart" class="btn btn-dark-fill px-2 text-1.2 font-700">
-                {{productData.isSoldOut ? 'Sold Out':'Add to cart'}}
+                {{productData.isSoldOut ? 'Sold Out': isProductInCart($route.params.name) ? 'remove product' :'Add to cart'}}
               </button>
             </div>
             <div class="mt-4">
@@ -153,11 +153,12 @@
 
 <script setup lang="ts">
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
-import {useProductStore} from "~/composables/useStore";
+import {useCartStore, useProductStore} from "~/composables/useStore";
 import {useCarousel} from "~/composables/useCarousel";
 import {useProduct} from "~/composables/useProduct";
 //////////////////////////////////////
 const route=useRoute()
+const {isProductInCart,getProductConfig}=useCartStore()
 const {next,prev,settings,carousel}=useCarousel()
 const {productData,productDetailFlag,popularProducts,popularProductFetchFlag}=useProductStore()
 const {addToCart,decrement,increment,changeSize,totalPriceWithFrame,totalPriceWithOutFrame,setSelectedSize,helperData}=useProduct(carousel)

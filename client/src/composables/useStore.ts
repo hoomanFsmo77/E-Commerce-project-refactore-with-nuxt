@@ -4,6 +4,7 @@ import {Collection} from "~/store/collection";
 import {Products} from "~/store/Products";
 import {Checkout} from "~/store/checkout";
 import {Product_Item, Collection_Item, User_Information} from "~/utils/Types";
+import {storeToRefs} from "pinia";
 
 export const useSearchStore=()=>{
     const searchStore=Search()
@@ -19,6 +20,7 @@ export const useSearchStore=()=>{
 
 export const useCartStore=()=>{
     const cartStore=Cart()
+    const {isProductInCart,getProductConfig}=storeToRefs(cartStore)
     const cartLength=computed<number>(()=>cartStore.cartLength)
     const totalPrice=computed<number|string>(()=>cartStore.getTotalPrice)
     const cartList=computed(()=>cartStore.getCart)
@@ -26,7 +28,7 @@ export const useCartStore=()=>{
     return{
         cartStore,
         cartLength,
-        totalPrice,cartList
+        totalPrice,cartList,isProductInCart,getProductConfig
     }
 }
 
