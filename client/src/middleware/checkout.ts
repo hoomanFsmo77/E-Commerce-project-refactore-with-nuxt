@@ -1,3 +1,5 @@
+import {useCheckoutStore} from "~/composables/useStore";
+import {useCartStore} from "~/composables/useStore";
 
 export default defineNuxtRouteMiddleware(async (to,from)=>{
     if(process.server)return

@@ -8,18 +8,13 @@ interface Props {
     isSoldOut:boolean
     isPeriod:boolean
     price:number
-    link:Link
+    link:string
     coverSrc:string
     overlaySrc:string
     category?:string
     discount?:number
 }
-type Link={
-    name:string,
-    params:{
-        name:string
-    }
-}
+
 
 export const useProductCard = (props:Props)=>{
     const {productStore}=useProductStore()
@@ -36,7 +31,7 @@ export const useProductCard = (props:Props)=>{
             document.body.style.overflow=isModalActive.value ? 'hidden' : 'auto'
         }
         if(isModalActive.value){
-            productStore.triggerFetchProductDetail(props.id)
+            productStore.triggerFetchProductDetail(props.link)
         }
     }
     const closeModal = (e:boolean) => {
@@ -47,37 +42,18 @@ export const useProductCard = (props:Props)=>{
         }
     }
     const imageLoad = () => {
-        console.log('loaded')
         isLoading.value=false
     }
 
     const addToCart = async () => {
-        const token=useState<string>('x_token_x')
         addToCartFlag.value=true
         try {
-            const data=await $fetch<Product_Item>(`/api/product/${props.id}`,{headers:{'Authentication':token.value}})
-            cartStore.addToUserCart({
-                        src:data.gallery[0].src,
-                        available:data.available,
-                        link:$link(props.link,props.id,props.category),
-                        srcset:data.gallery[0].srcset,
-                        title:data.title,
-                        productId:props.id,
-                        quantity:1,
-                        priceDetail:{
-                            size: null,
-                            frame: null,
-                            price:data.price,
-                            family: null
-                        },
-                        discount:data.discount || null,
-                        category:undefined
-            })
-        }catch (err) {
-            console.log(err)
-        }finally {
+            await cartStore.addToUserCart({productLink:props.link})
             addToCartFlag.value=false
+        }catch (e) {
+            console.log(e)
         }
+
     }
 
     return {discountPercent,toggleModal,closeModal,isModalActive,isLoading,imageLoad,addToCart,addToCartFlag}

@@ -31,32 +31,31 @@
               <tr v-for="cart in cartList">
                 <CartDesktopItem
                     :src="cart.src"
-                    :srcset="cart.srcset"
                     :title="cart.title"
-                    :productId="cart.productId"
                     :category="cart.category"
                     :quantity="cart.quantity"
                     :priceDetail="cart.priceDetail"
                     :discount="cart.discount"
-                    :link="cart.link"
+                    :link="cart.productLink"
                     :available="cart.available"
+                    :type="cart.type"
                 />
               </tr>
+
               </tbody>
             </table>
             <div class="md:hidden block">
               <CartMobileItem
                   v-for="cart in cartList"
                   :src="cart.src"
-                  :srcset="cart.srcset"
                   :title="cart.title"
-                  :productId="cart.productId"
                   :category="cart.category"
                   :quantity="cart.quantity"
                   :priceDetail="cart.priceDetail"
                   :discount="cart.discount"
-                  :link="cart.link"
+                  :link="cart.productLink"
                   :available="cart.available"
+                  :type="cart.type"
               />
             </div>
           </template>
@@ -90,6 +89,8 @@ import {useCartStore} from "~/composables/useStore";
 import {useCart} from "~/composables/useCart";
 const {cartLength,totalPrice,cartList}=useCartStore()
 const {goToCheckout}=useCart()
+
+
 
 </script>
 

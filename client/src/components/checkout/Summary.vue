@@ -23,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import {useCheckoutSummaryModal} from "~/composables/useCheckoutSummary";
+
 const {downloadPdf,backToHome}=useCheckoutSummaryModal()
 </script>
 

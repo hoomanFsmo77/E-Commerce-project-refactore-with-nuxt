@@ -107,6 +107,11 @@
 
 <script lang="ts" setup>
 definePageMeta({layout:false,middleware:'checkout'})
+import {useCheckoutStore} from "~/composables/useStore";
+import {useCartStore} from "~/composables/useStore";
+import {useCheckoutLinks} from "~/composables/useCheckout";
+import {useCheckoutSummary} from "~/composables/useCheckoutSummary";
+
 const {allInformation}=useCheckoutStore()
 const {cartList,totalPrice}=useCartStore()
 const {calculateShippingAddress}=useCheckoutLinks()

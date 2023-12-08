@@ -287,6 +287,11 @@
   </Modal>
 </template>
 <script lang="ts" setup>
+import {useCheckoutStore} from "~/composables/useStore";
+import {useCheckoutLinks} from "~/composables/useCheckout";
+import {usePayment} from "~/composables/useCheckout";
+import {useCountry} from "~/composables/useCountry";
+
 definePageMeta({layout:'checkout',middleware:'checkout'});
 const {informationPageLink,calculateShippingAddress}=useCheckoutLinks();
 const {shippingPageLink,finishPaymentWithoutChangeAddress,userCartInfo,setValue,helperInfo,changeShippingAddress,finishPaymentWithChangingAddress,formElement,phoneNumber,isOpenModal}=usePayment();

@@ -19,8 +19,8 @@ export const Cart=defineStore('cart',{
         getTotalPrice(state){
             return state.totalPrice.toFixed(2)
         },
-        getProductPrice:(state)=>(id:string)=>{
-            let target:Cart_Item=state.cart.filter(item=>item.productId===id)[0]
+        getProductPrice:(state)=>(link:string)=>{
+            let target:Cart_Item=state.cart.filter(item=>item.productLink===link)[0]
             return (Number(target.priceDetail.price) * target.quantity).toFixed(2)
         },
         getCart(state){

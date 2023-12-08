@@ -8,7 +8,10 @@ export interface Cart_Item {
         size:string|null,
         frame:string|null,
         price:number|string,
-        family:string|null
+        family:string|null,
+        size_d?:string,
+        frame_d?:string,
+        family_d?:string
     }
 }
 

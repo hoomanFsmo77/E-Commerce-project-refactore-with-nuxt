@@ -98,7 +98,6 @@ export const useShipping=()=>{
 
     onMounted( ()=>{
         if(userInformationShippingStore.value){
-            console.log('1')
             selectedMethod(userInformationShippingStore.value.id-1)
         }else{
             selectedMethod(0)
@@ -114,11 +113,13 @@ export const useShipping=()=>{
     ]
 
     const goPayment = async () => {
+        console.log('payment')
         try {
             const data=await $fetch('/api/checkout/payment',{
                 method:'POST',
                 headers:{'Authentication':token.value}
             })
+            console.log(data)
             return navigateTo(data)
         }catch (err) {
             showError({

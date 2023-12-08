@@ -1,5 +1,7 @@
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+import {useCheckoutStore} from "~/composables/useStore";
+import {useCartStore} from "~/composables/useStore";
 
 export const useCheckoutSummaryModal= ()=> {
     const token = useState<string>('x_token_x')

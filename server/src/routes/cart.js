@@ -15,25 +15,40 @@ router.use(bodyParser.json())
 const calculateTotalPrice = (cart) => {
   let total=0;
   cart.forEach(item=>{
-      total+=item.quantity*item.priceDetail.price;
+      total+=item.discount ? Number(item.discount)*item.quantity : item.quantity*item.priceDetail.price;
   });
   return total
 }
 
+
+
 router.post('/',async (req,res)=>{
-    const uid=req.query.uid;
+    const {uid,type}=req.query
     const body=req.body;
     const productDetail=await productDetailModel.findOne({product:body.productLink}).lean();
     const productList=await productListModel.findOne({link:body.productLink}).lean();
     const targetCart=await cartModel.findOne({uid}).lean();
     const newItem={
-        ...body,
         src:productList.coverSrc,
         overlaySrc:productList.overlaySrc,
         available:productDetail.available,
         title:productDetail.title,
-        discount:productDetail.discount
+        discount:productDetail.discount,
+        category:productList.category,
+        productLink:body.productLink,
+        quantity:body?.quantity || 1,
+        type:productList.type,
+        priceDetail:{
+            family: body?.priceDetail?.family || null,
+            frame: body?.priceDetail?.frame || null,
+            price:productDetail.price,
+            size: body?.priceDetail?.size || null
+        }
     }
+
+    !!productDetail?.option?.family ? newItem.priceDetail.family_d=productDetail?.option?.family[body.priceDetail.family].family : null;
+    !!productDetail?.option?.frame ? newItem.priceDetail.frame_d=productDetail?.option?.frame[body.priceDetail.frame].frame : null;
+    !!productDetail?.option?.sizes ? newItem.priceDetail.size_d=productDetail?.option?.sizes[body.priceDetail.size].size : null;
     if(targetCart){
         const isProductExist=targetCart.items.some(item=>item.productLink===body.productLink);
         if(isProductExist){
@@ -56,6 +71,7 @@ router.post('/',async (req,res)=>{
         }).save();
         res.status(200).send(responseHandler(false,null,{uid:randomUid}))
     }
+
 })
 
 

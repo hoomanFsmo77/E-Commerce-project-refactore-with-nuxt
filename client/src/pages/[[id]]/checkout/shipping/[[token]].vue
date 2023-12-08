@@ -55,6 +55,10 @@
 </template>
 
 <script setup lang="ts">
+import {useShipping} from "~/composables/useCheckout";
+import {useCheckoutStore} from "~/composables/useStore";
+import {useCheckoutLinks} from "~/composables/useCheckout";
+
 definePageMeta({layout:'checkout',middleware:'checkout'})
 const {shippingMethods, methodIndex,selectedMethod,goPayment}=useShipping()
 const {userInformationContact}=useCheckoutStore()

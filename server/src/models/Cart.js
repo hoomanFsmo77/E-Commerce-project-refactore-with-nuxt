@@ -18,6 +18,18 @@ const priceDetailSchema=mongoose.Schema({
       type:Number,
         required:false
     },
+    family_d:{
+        type:String,
+        required:false
+    },
+    frame_d:{
+        type:String,
+        required:false
+    },
+    size_d:{
+        type:String,
+        required:false
+    }
 })
 
 const cartItemsSchema=mongoose.Schema({
@@ -50,6 +62,14 @@ const cartItemsSchema=mongoose.Schema({
         required:false
     },
     title:{
+        type:String,
+        required:true
+    },
+    type:{
+        type:String,
+        required:true
+    },
+    category:{
         type:String,
         required:true
     }

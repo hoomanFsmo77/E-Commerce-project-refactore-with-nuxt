@@ -15,8 +15,8 @@ export const useProduct= (carousel:any)=>{
         whichFrame:0 as number,
         reset(){
             this.quantity=1
-            this.sizeIndex=0
-            this.familyIndex=0
+            this.sizeIndex=productData.value?.option.sizes?.findIndex(item=>item.available) || 0
+            this.familyIndex=productData.value?.option.family?.findIndex(item=>item.available) || 0
             this.whichFrame=0
         },
         get config(){
@@ -31,7 +31,8 @@ export const useProduct= (carousel:any)=>{
 
     const totalPriceWithFrame=computed<number|string>(()=>{
         if(productData.value && productData.value.option.sizes){
-            return productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) ?? Number(productData.value.price).toFixed(2)
+            const finalPrice=productData.value?.discount ? (productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) ?? Number(productData.value?.discount).toFixed(2)) :productData.value.option.sizes[helperData.sizeIndex].frame ? (productData.value.option.sizes[helperData.sizeIndex].price + productData.value.option.sizes[helperData.sizeIndex].frame.price).toFixed(2) :  Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) ?? Number(productData.value.price).toFixed(2)
+            return Number(finalPrice) * helperData.quantity
         }else{
             return 0
         }
@@ -40,9 +41,10 @@ export const useProduct= (carousel:any)=>{
     const totalPriceWithOutFrame=computed<number|string>(()=>{
         if(productData.value){
             if(helperData.sizeIndex>-1){
-               return  productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2)
+                const finalPrice:any=productData.value?.discount ? (Number(productData.value?.discount).toFixed(2)) : (productData.value?.option?.sizes ? Number(productData.value.option.sizes[helperData.sizeIndex].price).toFixed(2) : Number(productData.value.price).toFixed(2));
+                return  Number(finalPrice)* helperData.quantity
             }else{
-                return  productData.value.price
+                return  productData.value?.discount ? Number(productData.value?.discount) * helperData.quantity : Number(productData.value.price) * helperData.quantity
             }
         }else{
             return 0

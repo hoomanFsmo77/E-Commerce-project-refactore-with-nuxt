@@ -36,8 +36,8 @@
               <h1 class="font-600 ">{{productData.title}}</h1>
               <template  v-if="productData.discount">
                 <div class="flex gap-2">
-                  <h3 class="font-600 my-1">${{productData.discount.toFixed(2)}}</h3>
-                  <h3 class="font-600 my-1 line-through text-gray-500">${{helperData.whichFrame===0 ? totalPriceWithOutFrame :totalPriceWithFrame }}</h3>
+                  <h3 class="font-600 my-1">${{helperData.whichFrame===0 ? totalPriceWithOutFrame.toFixed(2) :totalPriceWithFrame.toFixed(2)}}</h3>
+                  <h3 class="font-600 my-1 line-through text-gray-500">${{productData.price.toFixed(2) }}</h3>
                 </div>
 
               </template>
@@ -61,9 +61,9 @@
             <div class="mb-1">
               <template v-if="productData.discount">
                 <div class="flex items-center gap-1">
-                  <h1 class="font-600 my-2">${{productData.discount.toFixed(2)}}</h1>
+                  <h1 class="font-600 my-2">${{helperData.whichFrame===0 ? totalPriceWithOutFrame.toFixed(2)  :totalPriceWithFrame.toFixed(2)}}</h1>
                   <div>
-                    <span class="line-through ">${{helperData.whichFrame===0 ? totalPriceWithOutFrame :totalPriceWithFrame }}</span>
+                    <span class="line-through ">${{productData.price.toFixed(2) }}</span>
                     <br>
                     <span class="text-gray-500 ">you have saved ${{(productData.price-productData.discount).toFixed(2)}}</span>
                   </div>
@@ -71,7 +71,7 @@
               </template>
               <template v-else>
                 <h1 class="font-600 my-2">
-                  ${{helperData.whichFrame===0 ? totalPriceWithOutFrame :totalPriceWithFrame }}
+                  ${{helperData.whichFrame===0 ? totalPriceWithOutFrame.toFixed(2)  :totalPriceWithFrame.toFixed(2)  }}
                 </h1>
               </template>
             </div>

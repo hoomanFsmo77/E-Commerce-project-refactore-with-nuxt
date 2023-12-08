@@ -4,28 +4,27 @@ import {useToast} from "vue-toastification";
 import {RouteLocationRaw} from "vue-router";
 interface Props {
     src:string
-    srcset:string
     title:string
-    param:string
-    productId:string
     category:string
     quantity:number
     priceDetail:Cart_Item['priceDetail']
-    discount:number
-    link:Link|string
-    available:number
+    discount:number|null
+    link:string
+    available:number,
+    type:string
+
 }
 
 
 export const useCartItem=(props:Props)=>{
     const {cartStore}=useCartStore()
     const productQuantity=ref<number>(props.quantity)
-    const productPrice=computed(()=>cartStore.getProductPrice(props.productId))
+    const productPrice=computed(()=>cartStore.getProductPrice(props.link))
     let productLink=computed<string>(()=>{
-        if(typeof props.link==='string'){
-            return props.link
+        if(props.type==='Item'){
+            return `/Products/Item/${props.link}`
         }else{
-            return `/Products/Art/${props.link.params.name}?id=${props.productId}#${props.category}`
+            return `/Products/Art/${props.link}`
         }
     })
 
@@ -34,7 +33,7 @@ export const useCartItem=(props:Props)=>{
         if(productQuantity.value<1){
             productQuantity.value=1
         }
-        cartStore.decreaseProductQuantity(props.productId,productQuantity.value)
+        cartStore.decreaseProductQuantity(props.link)
     }
 
     const increment = () => {
@@ -42,11 +41,11 @@ export const useCartItem=(props:Props)=>{
         if(productQuantity.value>props.available){
             productQuantity.value=props.available
         }
-        cartStore.increaseProductQuantity(props.productId,productQuantity.value)
+        cartStore.increaseProductQuantity(props.link)
     }
 
     const removeProduct = () => {
-        cartStore.removeProductCart(props.productId)
+        cartStore.removeProductCart(props.link)
     }
 
 

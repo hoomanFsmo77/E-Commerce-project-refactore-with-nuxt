@@ -217,6 +217,11 @@
 </template>
 
 <script setup lang="ts" >
+import {useCheckoutStore} from "~/composables/useStore";
+import {useCheckout} from "~/composables/useCheckout";
+import {useInformation} from "~/composables/useCheckout";
+import {useCountry} from "~/composables/useCountry";
+
 definePageMeta({layout:'checkout',middleware:'checkout'})
 const {userInformationContact}=useCheckoutStore();
 const {closeModal,openModal,fetchFlag,policyData,modalTarget,isOpenModal}=useCheckout();

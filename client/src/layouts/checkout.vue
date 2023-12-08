@@ -48,13 +48,16 @@
                       Frame: {{item.priceDetail.frame}}
                     </p>
                     <p class="text-gray-500 " v-if="item.discount">
-                      Discount: {{item.discount}}
+                      Discount: -{{discountPercent(item.priceDetail.price,item.discount)}}%
                     </p>
 
                   </div>
                 </div>
                 <div>
-                  <p class="font-400 ">
+                  <p v-if="item.discount" class="font-400 ">
+                    ${{item.discount * item.quantity}}
+                  </p>
+                  <p v-else class="font-400 ">
                     ${{item.priceDetail.price * item.quantity}}
                   </p>
                 </div>
@@ -142,13 +145,16 @@
                       Frame: {{item.priceDetail.frame}}
                     </p>
                     <p class="text-gray-500 " v-if="item.discount">
-                      Discount: {{item.discount}}
+                      Discount: -{{discountPercent(item.priceDetail.price,item.discount)}}%
                     </p>
 
                   </div>
                 </div>
                 <div>
-                  <p class="font-400 ">
+                  <p v-if="item.discount" class="font-400 ">
+                    ${{item.discount * item.quantity}}
+                  </p>
+                  <p v-else class="font-400 ">
                     ${{item.priceDetail.price * item.quantity}}
                   </p>
                 </div>
@@ -218,6 +224,11 @@
 
 </template>
 <script setup lang="ts">
+import {useCheckoutStore} from "~/composables/useStore";
+import {useCartStore} from "~/composables/useStore";
+import {useCountry} from "~/composables/useCountry";
+import {useCheckout} from "~/composables/useCheckout";
+
 const {isCollapse,closeModal,openModal,fetchFlag,policyData,modalTarget,isOpenModal}=useCheckout()
 const {hasShippingStore,userInformationShippingStore}=useCheckoutStore()
 const {cartList,totalPrice}=useCartStore()
@@ -227,7 +238,7 @@ onMounted(()=>{
   windowWidth=window.innerWidth
   triggerCountryFetchList()
 })
-
+const discountPercent = (price:number,discount:number) => discount && Math.ceil((1-(discount /price))*100)
 </script>
 
 <style lang="scss">
